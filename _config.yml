@@ -1,0 +1,13 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: false
+
+gems:
+   - jekyll-paginate
+
+paginate: 2
+
+# Setup
+title:               Brad Keys - Game Development Blog
