@@ -1,0 +1,148 @@
+<iframe width="500" height="281" src="//www.youtube.com/embed/oB4R9O3RY_8" frameborder="0" allowfullscreen></iframe>
+<p>
+	This past weekend I participated in the 2014 <a href="http://globalgamejam.org">Global Game Jam</a> at the University of Waterloo.
+	Lumos cofounder <a href="http://matthewminer.com">Matthew Miner</a> joined my team, along with Ubisoft level designer Brent Mitchell.
+	Together we created the game <a href="http://globalgamejam.org/2014/games/bursting-colour">Bursting With Colour</a>.
+</p>
+<h2>Friday</h2>
+<p>
+    The theme was <em>&quot;We don't see things as they are, we see them as we are.&quot;</em> We spent Friday brainstorming
+    ideas. We kept ideas 2D because we wanted to experience Unity's new 2D system. The three of us
+    also enjoy multiplayer games, so that was another factor our ideas involved. In the end, the mechanic we kept coming back to was switching
+    colours of blocks to make them active (able to stand on).
+</p>
+<h2>Game Design</h2>
+<p>
+    We decided on a co-operative 2D platformer where two players using Xbox 360 controllers work together to climb platforms as high as they can.
+    The challenge being that of the four colours of blocks that make the level, only two can be active at a time.
+    Players may switch active colours, but must be careful as it can lead to players falling off-screen (death) or making a block appear where they are already standing (death).
+    Players may not switch to the colour the other player has active, even if that player has died.
+    The camera moves upwards, forcing players to climb higher, and gains speed over time.
+    Each player only has one life.
+    You get a score based on the maximum height you achieve, and double the points while both players are still alive.
+</p>
+<img src="http://www.bradkeys.com/img/posts/ggj14_friday.jpg" />
+<p>
+    We have done game jams before and we agreed there is no point in doing all-nighters and burning ourselves out.
+	We did that in the past and found that by Sunday, tasks that are typically simple would take considerable amounts of time
+	to complete... and you just feel bad.
+	So we went to sleep Friday night around 2AM and were back to work around 11AM Saturday.
+	No coding was done Friday night.
+</p>
+<h2>Saturday</h2>
+<p>
+	Our goal Saturday was to have a playable version of the game, and Sunday we would polish and play test.
+	Amazingly, things actually worked out according to plan.
+</p>
+<p>
+	We split the team up as follows: Matthew on art, UI, audio, and additional programming.
+	Brent on game mechanics (player death, camera movement, etc) and level design.
+	And I worked on the character controller, Xbox controller input, scoring, and parts of the procedural level generation.
+</p>
+<h2>Controller Input</h2>
+<p>
+    For the Xbox 360 controller we used an Input Manager from the <a href="http://wiki.unity3d.com/index.php?title=Xbox360Controller">Unify Wiki</a>
+    and modified it to suit our needs.
+    Brent was developing on Windows, while Matthew and I were on Macs.
+    So we had to have variations of the input for player 1 and player 2, for both Windows and Mac, resulting in 4 inputs per button we used.
+    To get the controllers to work on Mac we installed a driver from <a href="http://tattiebogle.net/index.php/ProjectRoot/Xbox360Controller/OsxDriver">Tattibogle.net</a>.
+</p>
+<h2>Character Control</h2>
+<p>
+    For character control we grabbed the 2D robot from Unity's <a href="https://www.assetstore.unity3d.com/#/content/14474">Sample Assets</a> package.
+    We had to do quite a bit of tweaking to the code to get our input and mechanics to work the way we wanted to. For instance the character was able to
+    stick to walls if you jumped and held the joystick in the direction of the wall/block you were colliding with. There is also a bug in their code
+    that caused the character to have different jump heights depending on the framerate achieved by the computer you are on. Needless to say, I spent a
+    lot of time fudging around with this.
+</p>
+<h2>Art &amp; Sound</h2>
+<p>
+    The art was made entirely by Matthew. None of us are artists, so we went with a simple design we knew we could achieve. To save some work Matthew
+    took the sprite sheet of the sample robot character into PhotoShop and simply turned him into outlines. For audio we found sounds and music that were free
+    online, including the infamous <a href="http://en.wikipedia.org/wiki/Wilhelm_scream">Wilhelm Scream</a>. We chose a free retro font to go along with
+    the art style. All the UI was implemented using Unity's GUI system.
+</p>
+<img src="http://www.bradkeys.com/img/posts/ggj14_art.jpg" />
+<br />
+<br />
+<h2>Level Generation</h2>
+<p>
+    We knew we didn't have time to make a bunch of awesome levels. And we also didn't have time to make a kick-ass procedural level creator. So we made
+    a half-ass procedural level creator! There isn't much to it really. We define how many units wide and tall the level should be. It performs a couple
+    of for-loops using those numbers to generate rows of tiles. For each tile it creates we have defined percent chance of it being the same colour as the
+    last tile that was generated. We found that having this number higher made the game easier. There is also a defined percent chance of a tile being blank
+    (non-existent), which we found made the game harder the higher it was. Lastly we made it so that ever 3 rows, the entire row is blank, allowing for more
+    interesting jumping. We thought of these values and tweaked them quite a bit before finding a great balance.
+</p>
+<code>
+<pre>
+for (int x = 0; x < gridWidth; x++) {
+  // Only create a new tile a specified percent of the time.
+  if (Random.Range(0f, 1f) < chanceOfBlankTile) {
+      continue;
+  }
+
+  LayerColor tileColor = LayerColor.Solid;
+
+  // Randomly decide if this tile should share its neighbours color
+  if (lastColor != LayerColor.Solid) {
+      if (Random.Range(0f, 1f) < chanceOfNeighbourColour) {
+		  tileColor = lastColor;
+	  }
+  }
+
+  // Randomly decide which color to make tile.
+  if (tileColor == LayerColor.Solid) {
+      tileColor = (LayerColor)Random.Range(0, LayerManager.layers.Count - 1);
+      lastColor = tileColor;
+  }
+
+  CreateTile(tileColor, x, y);
+}
+</pre>
+</code>
+<p>
+    <em>
+        After the jam I made the game start easy (high chance of sharing neighbour colour, low chance of blank tile) and progressively (every 12 rows)
+        get harder. This should help beginners.
+    </em>
+</p>
+<h2>Unity 2D</h2>
+<p>
+    We did not have a single issue using Unity's new 2D system.
+    Now and then in our code we would forget to use <em>Physics2D</em> instead of just <em>Physics</em> and other little things like that.
+    But overall it just worked.
+    We never had to worry about the z-axis.
+    It made development incredibly easy.
+</p>
+<h2>Play Testing</h2>
+<p>
+	By midnight we were able to play an alpha version of our small game.
+	Art and audio was in and the mechanics worked.
+	So we spent about an hour playing the game and tweaking values here and there.
+	It was the most surprising part of our day because the game was actually pretty fun.
+	We found ourselves constantly screwing each other over by accident, but eventually working together to get high scores.
+</p>
+<h2>Sunday</h2>
+<p>
+	We started work on Sunday around noon.
+	We spent the remaining 5 hours of the jam tweaking character controls, level generation, and polishing art and sound.
+	We also added keyboard input and the bonus score system.
+</p>
+<p>
+    By 6pm we were at the University of Waterloo to show off our work, and I think it is safe to say it was a hit.
+    A great experience overall.
+    I made some improvements  the day after the jam finished just so I could put the game on the shelf and not be bugged about some stupid little problem it still had.
+    If you would like to try the latest versions of the game, check out the links below.
+</p>
+<iframe width="500" height="281" src="//www.youtube.com/embed/VWXn95A1KSU" frameborder="0" allowfullscreen></iframe>
+<br />
+<br />
+<h2>Downloads</h2>
+<a href="http://bradkeys.com/games/downloads/bursting-with-colour-win-single.zip">
+    Bursting With Colour (Single Player, Windows)
+</a>
+<br />
+<a href="http://bradkeys.com/games/downloads/bursting_with_colour_win_2P.zip">
+    Bursting With Colour (Multiplayer, Windows)
+</a>

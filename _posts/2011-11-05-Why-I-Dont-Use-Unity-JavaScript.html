@@ -1,0 +1,100 @@
+---
+layout: post
+title: Why I Don't Use Unity's JavaScript
+---
+
+<p>
+    When I started using Unity in 2005 I was very attracted to programming with JavaScript.
+    It had easier syntax and less rules for me to bother with.
+    And Unity's documentation at the time was completely done (I think) with JavaScript examples.
+    It just made sense to use it.
+</p>
+<p>
+    I continued using JavaScript for 4 years.
+    During that time I ran into many confusing frustrations and started to gradually strictly type my JavaScript to avoid problems.
+    It eventually reached the point where it just made sense to switch over to C#.
+    I can't stress enough how much of a difference this has made in my coding experience with Unity.
+    Here's why...
+</p>
+<p>
+    <strong>Compiler Confusion</strong>
+    <br />
+    There's quite a bit you can get away with using Unity JS.
+    So much in fact that you might actually have many errors in your code, but they only occur during run-time.
+    This mostly happens when an untyped variable is assigned to a typed variable.
+    For example
+</p>
+<code>
+<pre>
+var aVector;
+var anInt : int;
+
+function Start() {
+	aVector = Vector3.zero;
+	anInt = aVector;
+}
+</pre>
+</code>
+<p>
+    This code compiles just fine, but as soon as it's executed during run-time an error will occur.
+    A pretty easy fix as soon as the error pops up.
+    But that's just it.
+    What if you never hit the case where the error occurs?
+    You end up releasing your game with a bug just waiting to happen.
+    And it probably will.
+    Strictly typing your code or using C# will avoid this issue.
+</p>
+<p>
+    <strong>IDE Confusion</strong>
+    <br />
+    This is more of a convenience frustration.
+    If you're using an IDE like MonoDevelop and you're programming with untyped elements of your code, then your IDE won't be able to use some of its convenient features.
+    Looking at the code example above, your IDE would not know to list Vector methods when dealing with variable <em>aVector</em>.
+    Strictly typing your code or using C# will avoid this issue.
+</p>
+<p>
+    <strong>Improved Run-Time Performance</strong>
+    <br />
+    You may not ever notice it, but strictly typing your code or using C# will actually
+    <a href="http://unity3d.com/support/documentation/ScriptReference/index.Performance_Optimization.html">make your game faster</a>
+    during run-time. Cool!
+</p>
+<p>
+    <strong>Benefits of C#</strong>
+    <br />
+    Some major benefits of using C# (not strictly typed JS) is that it's a completely
+    <a href="http://msdn.microsoft.com/en-us/vstudio/hh341490">documented language</a>.
+    If you ever want to know how to do something, just look it up.
+    JavaScript doesn't have official documentation and Unity's implementation of JavaScript is not the same as the JavaScript known to the web.
+    So it can be annoying just to look up even the simplest thing.
+    In fact some times you'll need to look up C# syntax to figure out the correct syntax for Unity's JavaScript.
+</p>
+<p>
+    Using JavaScript will restrict you from using some libraries that C# will be able to use.
+    But C# can use all the libraries JS has access to.
+    For example C# can access the <a href="http://en.wikipedia.org/wiki/LINQ">LINQ</a>
+    libraries but Unity JavaScript cannot.
+</p>
+
+<p>
+    <strong>Compiler Confusion Continued</strong>
+    <br />
+    There are areas of the Unity API where both JavaScript <em>and</em>
+    C# users are led into avoidable issues with the compiler missing errors.
+    A big culprit being the <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.GetComponent.html">GetComponent function</a>.
+    One way of using it is by passing a string for the name of a component, rather than a type.
+    This caused me major headaches.
+    I used to love it because I could simply type in a string of the component I wanted and <em>BAM</em> it worked.
+    Really awesome; until you make a typo that's not obvious at all and the compiler isn't pointing it out.
+    Here's an example of just how much you can get away with without the compiler throwing an error.
+    In the example below the component and its variable do not exist, but Unity is totally cool with it during compilation.
+</p>
+<code>
+<pre>
+var c : int  = GetComponent("Something I Just Made Up").someVariable;
+</pre>
+</code>
+<p>
+    If you're cautious with your decisions and ensure the compiler can catch as many problems as possible,
+    your development process is going to go much smoother.
+</p>

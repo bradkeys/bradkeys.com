@@ -1,0 +1,59 @@
+---
+layout: post
+title: Hip Ship
+---
+
+<p>
+    <a target="_blank" href="http://apps.facebook.com/dimerocker/play/hipship/">
+        <img src="img/posts/hipship.png" class="post-img" />
+    </a>
+    Today I launched Hip Ship, a game I've been developing over the past few weekends.
+    It's a short but challenging arcade style game where you navigate a spaceship through several mazes.
+    You have to avoid walls and objects while beating each maze in the shortest time possible.
+    You can optionally collect coins to slightly improve your score.
+</p>
+
+<p>
+    I chose to use the <a href="http://apps.facebook.com/dimerocker/">dimeRocker Arcade app</a>
+    on Facebook [disclaimer: I work on dimeRocker] as my deployment platform using the
+    <a href="http://unity3d.com">Unity game engine</a>.
+    The Arcade allowed me to easily integrate high scores, achievements and social features, as well as benefit from the traffic being sent to that app.
+</p>
+<p>
+    The game was originally a single level demo I made at work.
+    I had four hours to create a game from scratch that would showcase the features used in the dimeRocker Arcade.
+    So I decided the best way to end off with a decent looking project in such a short amount of time was to start by using one of the Unity tutorials and modify it into a simple game.
+    The tutorial I chose was the <a href="http://unity3d.com/support/resources/tutorials/2d-gameplay-tutorial">2D Gameplay Tutorial</a>.
+</p>
+<p>
+    After playing around with the tutorial the thing I enjoyed most about it were the controls for flying the ship.
+    I was then inspired to make a game out of the platforms and kill zones.
+    This was fairly straightforward since the platform objects were setup nicely.
+    I designed a level on-the-fly, created a spawn point, a finish point, and a timer.
+    The score was originally based on how long it took you to beat the level.
+    However I didn't find it very interesting if time was the only factor.
+    So I added in the coin collecting to increase your score.
+    I whipped up some achievements using dimeRocker based on how many coins you could collect.
+    And that was the demo!
+</p>
+<p>
+    After seeing it get a decent amount of plays in the Arcade I decided to transform Hip Ship into a multi-level game.
+    The largest challenge here was redoing the score system in a way that made sense over multiple levels.
+    Considering the levels were already particularly challenging, I decided to add lives into the game.
+    And instead of playing one level at a time, I went with the true spirit of an arcade game and had it be continuous throughout a single play.
+    Since the levels were quite frustrating, I decided to award players with an extra life each time they complete a level.
+    At the end of the game if you finish, you are awarded bonus points for the remaining lives you have.
+</p>
+<p>
+    Now that all is said and done I hope this game becomes a short competitive play experience among casual gamers on Facebook.
+    And it's great that I was able to do it using completely free tools and assets.
+</p>
+<p>
+    <a href="http://apps.facebook.com/dimerocker/play/hipship/">Play Hip Ship</a>
+</p>
+<div id="thumbs">
+    <a href="img/misc/playingHipShip.jpg" rel="lightbox-hipship" title="Hip Ship gameplay">
+        Gameplay Screenshot<br />
+        <img src="img/misc/playingHipShipThumb.jpg" alt="Hip Ship Gameplay">
+    </a>
+</div>

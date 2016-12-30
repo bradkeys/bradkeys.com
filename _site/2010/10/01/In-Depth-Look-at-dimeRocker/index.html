@@ -1,0 +1,150 @@
+<p>
+    <a href="http://dimerocker.com">
+        <img class="post-img" src="/img/posts/dr-amp.jpg" />
+    </a>
+    I've been inspired to write this article with the recent announcement of the
+    <a href="http://us1.campaign-archive.com/?u=26602e4ff9cd3d1688d099d53&id=5e66cbfc85">dimeRocker Arcade</a>.
+    It's a very exciting announcement and I'll explain why by comparing it to the current
+    <a href="http://dimerocker.com/services">dimeRocker platform</a> that was released this past March.
+</p>
+<br />
+<p>
+    <strong>About the dimeRocker (dR) Platform</strong>
+</p>
+<p>
+    The main purpose of dR is to simplify the social game development process and help developers make money.
+    It's currently targeted at Unity developers.
+    It takes care of most server-related features a web-based game would ever need including hosting.
+    Its API is extremely flexible as it's meant to suit any kind of game and support multiple social networks.
+    It includes a payment gateway option so you can include microtransactions in your game and profit from the large user-base on social networks.
+    It's also free unless you have microtransactions, then dR takes a cut.
+</p>
+<p>
+    There are a few steps involved in integrating dR into your game.
+    They are as follows:
+</p>
+<ul>
+    <li>Setup the services you'd like to use on <a href="http://stack.dimerocker.com/">stack.dimerocker.com</a></li>
+    <li><a href="http://www.facebook.com/developers/">Create a Facebook app</a> that dR will use for your game</li>
+    <li><a href="http://github.com/dimerocker/dimeRocker-Unity-Client/downloads">Download</a> the dR API to integrate into your Unity game</li>
+    <li>Integrate the dR API into your game with help from the <a href="http://dimerocker.com/feature-overview">feature</a> and <a href="http://docs.dimerocker.com/index/Classes.html">API docs</a></li>
+    <li>Upload and deploy your game on <a href="http://stack.dimerocker.com/">stack.dimerocker.com</a></li>
+</ul>
+<p>
+    You could skip the third and fourth steps if you simply just want to put your Unity game on Facebook with free hosting.
+    However the game probably wouldn't become popular if it's not using any social or viral features provided in the dR API.
+</p>
+<br />
+<p>
+    <strong>Example: Sugar Rush Rally</strong>
+</p>
+<p>
+    <a href="http://apps.facebook.com/sugarrush/">
+        <img class="post-img" src="/img/posts/srr.jpg" />
+    </a>
+    Sugar Rush Rally is a game I helped make with <a href="http://www.matthewminer.com/">Matthew Miner</a> and <a href="http://www.nickbreslin.com/">Nick Breslin</a>.
+    It was fully developed within ten days as a dimeRocker demo to show at conferences and other events.
+    A ten day development cycle is incredibly short but the three of us were confident we could do it.
+    We estimated and recorded the hours spent on every aspect of the game.
+</p>
+<p>
+    The current state of the game is what we accomplished in those ten days.
+    If you <a href="http://apps.facebook.com/sugarrush/">play it now</a> you'll notice an obvious lack of polish, but it does use every dimeRocker service.
+    Keep in mind the game was made from scratch, aside from the models which were purchased in a model pack.
+    Here's a list of the dR features and where you can see them being used:
+</p>
+<ul>
+    <li><em>Leaderboard</em> along the bottom</li>
+    <li><em>Achievements</em> click your player in the leaderboard to view</li>
+    <li><em>Data Store</em> click your player in the leaderboard and view records/stats</li>
+    <li><em>Wallets</em> you earn coins for racing, get Bucko's by clicking "Add Buckos"</li>
+    <li><em>Stores</em> on the main menu you can buy new vehicles</li>
+    <li><em>Lockers/Inventory</em> the game knows which vehicles you've purchased from the store</li>
+    <li><em>Social Publishing</em> earning an achievement or beating your best time triggers this</li>
+    <li><em>Inviting Friends</em> click "Invite Friend" on the bottom bar</li>
+</ul>
+<p>
+    After completing our post mortem we concluded that a third of our development time was GUI related.
+    It seemed like too much work for a simple demo and we missed out on a lot of polish because of it.
+    It bugged us a lot and it led to discussions about what more dimeRocker could do for developers.
+    We found ourselves going through every step of the dimeRocker integration process and finding ways to simplify it.
+    This led to...
+</p>
+<br />
+<p>
+    <strong>The dimeRocker Arcade</strong>
+</p>
+<p>
+    It's called the Arcade because the games using it will be found within the same Facebook app.
+    A popular example of this game collection system on Facebook is the <a href="http://apps.facebook.com/mindjolt/">MindJolt Games app</a>.
+</p>
+<p>
+    One big change that really made the awesomeness of the arcade possible is that it's only meant for Facebook.
+    So instead of developers going to an external site to setup their game for the arcade, now you actually create it right there in the Facebook app.
+</p>
+<p>
+    The look and feel of the Arcade is heavily based off the iTunes store.
+    Great, popular, new, and featured games will be shown off.
+    There are also search options.
+</p>
+<p>
+    Overall it's very different from the dimeRocker platform.
+    If you're familiar with the dR platform, here are my favourite changes:
+</p>
+<ul>
+    <li>GUIs for leaderboards, achievements, stores, and inventories are created for you and displayed on the web page</li>
+    <li>Logic for stores and inventories is done for you</li>
+    <li>Facebook viral features are automatically called for you</li>
+    <li>You no longer have to create your own Facebook app</li>
+    <li>There's a completely new API that is significantly smaller and simplified</li>
+</ul>
+<p>
+    Huge differences.
+    There's barely any work involved with integrating your game.
+    It should take most people less than an hour to fully integrate.
+    The worst time-sink that could get you is if your game has 100 achievements that require programming the logic for when to award them.
+</p>
+<br />
+<p>
+    <strong>Migrating from the Platform to the Arcade</strong>
+</p>
+<p>
+    For most people this means removing a lot of code and replacing it with a few lines from the new API.
+    Lets imagine we were going to migrate Sugar Rush Rally to the arcade.
+    Looking at the last two lists I went over, I know I need to remove the GUIs for leaderboards, achievements, and stores.
+    I'd need to get rid of my code that calls the Facebook social publishing, as well as remove the invite friends button.
+    I would remove the code that awards coins and remove the button for "Get Buckos".
+    I'd keep my inventory for vehicle selection but replace it with the new arcade API call.
+    And I could keep my stats and records features and replace that data store API with the new one.
+</p>
+<p>
+    The rest of the migration would be setting up the game and services on the dimeRocker Arcade app.
+    The game would now be using new leaderboards and would require me to recreate the achievements and items I had.
+</p>
+<br />
+<p>
+    <strong>Which One Should You Use?</strong>
+</p>
+<p>
+    Here's a breakdown of major reasons to use either service.
+    Choose the one that makes the most sense for your game.
+</p>
+<h4>dR Platform</h4>
+<ul>
+    <li>You want achievements, leaderboards, or stores <em>inside</em> your game (not on the web page/canvas)</li>
+    <li>You want to customize your web page/canvas</li>
+    <li>You want more customization in general</li>
+    <li>A longer integration process is okay</li>
+    <li>You want your game to have its own Facebook app</li>
+</ul>
+<br />
+<h4>dR Arcade</h4>
+<ul>
+    <li>You want a leaderboard, achievements, or microtransactions</li>
+    <li>You want simple and quick integration</li>
+    <li>Sharing users within a verified app</li>
+    <li>Your game wasn't created to be a social game initially</li>
+    <li>Good for web builds of Unity iPhone games</li>
+    <li>Your game is Flash AS3 based</li>
+    <li>You just want your game on Facebook and hosted for free</li>
+</ul>

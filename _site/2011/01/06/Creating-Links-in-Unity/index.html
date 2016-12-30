@@ -1,0 +1,51 @@
+<p>
+    This is extremely simple to do but may not be obvious at first.
+    For my purposes I wanted a clickable label that opened my website.
+    To do this you need to create a button and change it's
+    <a href="http://unity3d.com/support/documentation/ScriptReference/GUIStyle.html">GUIStyle</a> to use your label's GUIStyle.
+    Then use Unity's <a href="http://unity3d.com/support/documentation/ScriptReference/Application.OpenURL.html">Application.OpenURL</a>
+    function to actually open a web page.
+</p>
+<code>
+if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) { <br />
+&nbsp;&nbsp;&nbsp;&nbsp;Application.OpenURL("http://bradkeys.com/");<br />
+}
+</code>
+<p>
+    This works great in most cases but my Facebook app used an iFrame to display its content.
+    When I used Application.OpenURL it loaded my website inside of Facebook and looked awful.
+    Thankfully Unity can execute custom JavaScript from the webplayer using
+    <a href="http://unity3d.com/support/documentation/ScriptReference/Application.ExternalEval.html">Application.ExternalEval</a>.
+    Using this I was able to open a new window.
+</p>
+<code>
+if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Application.ExternalEval("window.open('http://www.bradkeys.com/');");<br />
+}
+</code>
+<p>
+    However this method has a downside.
+    Since JavaScript is opening the new window, any browsers with pop-up blockers enabled will prevent the window from opening.
+    Safari and Chrome do not notify the user if a pop-up was blocked, so those users will have no idea that it even tried opening a website.
+    FireFox, IE, and Chrome notify the user that it prevented a window from opening and give the option to allow it.
+    And of course if they have pop-up blockers disabled then you're fine.
+</p>
+<p>
+    If you don't mind taking the player away from your game page, then you can use a JavaScript redirect.
+    Below is an example of handling a redirect in a normal window as well as handling a redirect from within an iFrame like Facebook.
+</p>
+<code>
+// Normal window<br />
+if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Application.ExternalEval("top.location = 'http://www.bradkeys.com/';");<br />
+}<br /><br />
+
+// iFrame (eg. Facebook)<br />
+if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;Application.ExternalEval("window.parent.top.location = 'http://www.bradkeys.com/';");<br />
+}<br />
+</code>
+<p>
+    This should cover most situations.
+    If you have any questions, feel free to contact me.
+</p>
