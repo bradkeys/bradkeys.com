@@ -1,30 +1,33 @@
 ---
-layout: default
-title: Development Blog
+layout: blog
+title: Game Dev Blog
 ---
 
 <!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
-  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-  <p class="author">
-    <span class="date">{{ post.date }}</span>
-  </p>
-  <div class="content">
-    {{ post.content }}
-  </div>
+    <article>
+        <h1>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            <time datetime="{{ page.date | date: "%Y/%m/%d" }}">{{ post.date  | date_to_string }}</time>
+        </h1>
+        <div class="content">
+            {{ post.content | strip_html | truncatewords:75 }}
+        </div>
+        <a class="btn btn-sharp btn-sm hvr-push" href="{{ post.url }}">Read More</a>
+    </article>
 {% endfor %}
 
 <!-- Pagination links -->
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+    <a href="{{ paginator.previous_page_path }}" class="previous hvr-push">&#8249;</a>
   {% else %}
-    <span class="previous">Previous</span>
+    <span class="previous hvr-push">&#8249;</span>
   {% endif %}
-  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  <span class="page_number">{{ paginator.page }} of {{ paginator.total_pages }}</span>
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+    <a href="{{ paginator.next_page_path }}" class="next hvr-push">&#8250;</a>
   {% else %}
-    <span class="next ">Next</span>
+    <span class="next hvr-push">&#8250;</span>
   {% endif %}
 </div>

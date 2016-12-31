@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+    <head>
 	<meta charset="UTF-8" />
 	<meta name="copyright" content="&copy; 2015 Rebel Hippo Inc." />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 	<meta name="google-site-verification" content="p1mSsTQKTBPCQYTaiKcwBJ9t8n9sgQ1g2lQ--ozQhtM" />
-	<title>Development Blog &middot; Brad Keys - Game Development Blog</title>
+	<title>Game Dev Blog &middot; Brad Keys</title>
 
 	<!-- Styles -->
 	<link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -41,15 +41,15 @@
     
 </head>
 
-  <body>
-      <div id="website">
-          <div id="header">
-              <div id="logo">
-                  <span id="logo-title">Brad Keys</span>
-                  <span id="logo-subtitle">Game Designer &amp; Programmer</span>
-              </div>
-              <nav>
-                  <div id="social-links">
+    <body>
+        <div id="header-wrapper">
+            <div id="header">
+                <div id="logo">
+                    <span id="logo-title">Brad Keys</span>
+                    <span id="logo-subtitle">Game Designer | Programmer</span>
+                </div>
+                <nav>
+                    <div id="social-links">
                         <a class="hvr-push" href="http://twitter.com/bradkeys">
                             <img src="/img/icon_twitter.png" />
                         </a>
@@ -59,355 +59,106 @@
                         <a class="hvr-push" href="http://www.rebelhippo.com/">
                             <img src="/img/icon_rebelhippo.png" />
                         </a>
-                  </div>
-                  <div id="nav-links">
-                      <a class="btn btn-sharp btn-sm hvr-push" href="/">Blog</a>
-                      <a class="btn btn-sharp btn-sm hvr-push" href="/portfolio/">Portfolio</a>
-                      <a class="btn btn-sharp btn-sm hvr-push" href="/contact/">Contact</a>
-                  </div>
-              </nav>
-          </div>
-          <main>
-              <!-- This loops through the paginated posts -->
+                    </div>
+                    <div id="nav-links">
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/">Blog</a>
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/portfolio/">Portfolio</a>
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/contact/">Contact</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div id="main-wrapper">
+            <main>
+                <div id="blog">
+    <!-- This loops through the paginated posts -->
 
-  <h1><a href="/2012/03/01/Loading-Unity-SWF-in-Flex/">Loading a Unity SWF in Flex</a></h1>
-  <p class="author">
-    <span class="date">2012-03-01 00:00:00 -0500</span>
-  </p>
-  <div class="content">
-    <img class="post-img" src="/img/posts/flex.png" />
-<p>
-    With the release of Unity 3.5's Flash export option there are many new
-    opportunities for Unity and Flash developers. Since my career has
-    mainly involved working with both technologies, I wanted to try loading a
-    Unity-exported SWF file into a Flex application to prove the possibility of a Flash
-    game incorporating Unity content. It's straightforward to do,
-    but the requirements aren't documented in one spot. This article
-    should help solve that. It does not cover Flash-to-Unity communication, but
-    it's the right place to start.
-    Below is a short list of requirements that I'll be explaining:
-</p>
-<ul>
-    <li>Flex project must use at least
-        <a href="http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+4.6">
-            Flex SDK 4.6
-        </a>
-    </li>
-    <li>Flex project build should target
-        <a href="http://www.adobe.com/support/flashplayer/downloads.html#fp11">
-            Flash Player 11.1.0
-        </a>
-    </li>
-    <li>Add the <em>Additional Compiler Argument</em>: -swf-version 13</li>
-    <li>The flash player embed needs to include the attribute wmode=direct</li>
-    <li>Your .mxml <em>application</em> tag might need to include <em>backgroundAlpha="0"</em></li>
-    <li>Include the
-        <a href="http://bradkeys.com/files/UnityShared.swc">
-            UnityShared.swc file
-        </a>
-        in your project
-    </li>
-    <li>
-        Download the files provided by Unity in this
-        <a href="http://forum.unity3d.com/threads/116650-UnityShared.swc-Communicating-between-Unity-Flash-Content-and-AS3"
-            target="_blank">
-            forum post
-        </a>
-        by Unity
-    </li>
-</u>
-<p>
-    <span class="subtitle">Using Flex SDK 4.6</span>
-    You must have at least Flex SDK version 4.6 to make sure your project has the
-    neccessary Molehill and AIR APIs available. If you don't already have it,
-    <a href="http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+4.6">
-        download it here
-    </a>
-    and then set your Flex SDK version by going to:
-    <span class="filepath">
-        Project -> Properties -> Flex Compiler -> Configure Flex SDKs -> Add...
-    </span>
-    Then select your downloaded 4.6 SDK folder. After selecting the folder, be sure
-    to come back to select it from the list on the <em>Configure Flex SDKs</em>
-    panel.
-</p>
-<p>
-    <span class="subtitle">Targetting Flash Player 11</span>
-    Your project must build to Flash Player 11 because it's the first Flash
-    Player to support molehill's 3D rendering. You won't be able to set Flex to
-    use this version until you've set your project to use SDK 4.6. You can set
-    your application to target Flash Player 11 by going to:
-    <span class="filepath">
-        Project -> Properties -> Flex Compiler
-    </span>
-    Then check off <em>Require Flash Player version</em> and set it to 11.1.0.
-    You will need
-    <a href="http://www.adobe.com/support/flashplayer/downloads.html#fp11">
-        Flash Player 11
-    </a>
-    installed on your computer to view the 3D content.
-</p>
-<p>
-    <span class="subtitle">Additional Compiler Argument</span>
-    Setting the swf-version to 13 allows the Unity SWF to utilize AIR 3 APIs
-    that it requires. You won't be able to do this until you have your project set
-    to Flex SDK 4.6, otherwise it will throw an error. To set the swf version go to:
-    <span class="filepath">
-        Project -> Properties -> Flex Compiler
-    </span>
-    In the <em>Additional compiler arguments</em> text box be sure to include the argument
-    <em>-swf-version 13</em>. You can read more about SWF versions from
-    <a href="http://blogs.adobe.com/airodynamics/2011/08/16/versioning-in-flash-runtime-swf-version/">
-        Adobe's blog.
-    </a>
-</p>
-<p>
-    <span class="subtitle">Using wmode="direct"</span>
-    In order for Stage 3D content to display, a Flash variable called <em>wmode</em>
-    (window mode) needs to be set to equal <em>direct</em>. This requirement causes a
-    Unity SWF to not open properly in a browser directly and you'll see some errors.
-    The wmode attribute is set in the embed code running your Flash content.
-    I set it in the following two places in my HTML and JavaScript:
-</p>
+    <article>
+        <h1>
+            <a href="/2010/10/05/Securing-Your-Web-Game/">Securing Your Web Game - Byte Editing</a>
+            <time datetime="">05 Oct 2010</time>
+        </h1>
+        <div class="content">
+            One of the easiest and most effective ways for people to hack a game is byte editing. Basically there are tools available that can pin-point variables used in your game and change their values. For example if you have a game that gives the player a score, the player can use a tool to search for that value in their system's memory and modify it to be whatever they want. This can be particularly bad...
+        </div>
+        <a class="btn btn-sharp btn-sm hvr-push" href="/2010/10/05/Securing-Your-Web-Game/">Read More</a>
+    </article>
 
-<code>
-    <pre>
-AC_FL_RunContent(
-		"wmode", "direct",
-		....
+    <article>
+        <h1>
+            <a href="/2010/10/01/In-Depth-Look-at-dimeRocker/">An In-Depth Look at dimeRocker</a>
+            <time datetime="">01 Oct 2010</time>
+        </h1>
+        <div class="content">
+            I've been inspired to write this article with the recent announcement of the dimeRocker Arcade. It's a very exciting announcement and I'll explain why by comparing it to the current dimeRocker platform that was released this past March. About the dimeRocker (dR) Platform The main purpose of dR is to simplify the social game development process and help developers make money. It's currently targeted at Unity developers. It takes care of most server-related features a...
+        </div>
+        <a class="btn btn-sharp btn-sm hvr-push" href="/2010/10/01/In-Depth-Look-at-dimeRocker/">Read More</a>
+    </article>
 
-if (hasRequestedVersion) {
-	// if we've detected an acceptable version
-	// embed the Flash Content SWF when all tests are passed
-	AC_FL_RunContent(
-			"wmode", "direct",
-	....
-    </pre>
-</code>
-<p>
-    And lastly make sure that the HTML embed tag has the attribute
-    <em>wmode="direct"</em>.
-</p>
-<p>
-    <span class="subtitle">Change the Stage Transparency</span>
-    I believe there are two stages when working with molehill. There is your normal
-    stage layer that we've always known and loved. And then there is the Stage
-    3D layer. The Stage 3D layer is rendered behind the normal stage.
-</p>
-<p>
-    If you load a Unity SWF into an empty stage you'll likely see a
-    blank white screen. The trick is to turn the transparency of the normal
-    stage to zero and it will reveal the Stage 3D content behind it. This can be
-    done in your .mxml file by giving whatever <em>application</em> tag you use to
-    have the attribute <em>backgroundAlpha="0"</em>.
-</p>
-<p>
-    The cool thing about the two stages is you could create UI elements in
-    Flash that overlay your Unity content. The down side is I don't believe it
-    is easily possible to show Unity content above Flash content. For instance
-    your game probably couldn't have a pop-up window displaying Unity content
-    unless you can easily detect and hide whatever Flash objects are
-    overlapping it.
-</p>
-<p>
-    <span class="subtitle">Include the UnityShared SWC file</span>
-    To load and communicate with the Unity SWF you're going to need to include
-    a SWC file called <em>UnityShared.swc</em> in your project. This file is
-    created when you export a SWF from Unity. For convenience you can also
-    <a href="/files/UnityShared.swc">
-        download
-    </a>
-    it from me. After moving the file into your project go to:
-    <span class="filepath">
-        Project -> Properties -> Flex Build Path
-    </span>
-    Click <em>Add SWC...</em> and select UnityShared.swc. This SWC file contains
-    a few classes made by Unity. The class we care about is
-    <em>UnityContentLoader</em>.
-</p>
-<p>
-    <span class="subtitle">Loading Unity Content</span>
-    To load the Unity content you're going to need to look at this
-    <a href="http://forum.unity3d.com/threads/116650-UnityShared.swc-Communicating-between-Unity-Flash-Content-and-AS3">
-        forum post
-    </a>
-    provided by Unity and at least download the file entitled
-    <em>"AS3Communication_as3_src.zip"</em>. Add the two ActionScript files to
-    your Flex project as well as the images. You will probably want to edit the
-    file called SimplePreloader.as and change the line that says:
-</p>
-<code>
-    <pre>
-unityContentLoader = new UnityContentLoader("unity-flash-small.swf", this, params, false);
-    </pre>
-</code>
-<p>
-    You want the string <em>"unity-flash-small.swf"</em> to be the name and path of the
-    Unity SWF you want to load. You might even want to change this class to accept
-    a string URL for the file you are loading to make it more reusable. This class
-    can load in remote Unity SWFs from web servers, or it can load local files. Once you
-    have this part set up the way you want, you can get things rocking and rolling
-    with the following code wherever you want to load the Unity SWF in your project.
-</p>
-<code>
-    <pre>
-import com.unity.UnityContentLoader;
+    <article>
+        <h1>
+            <a href="/2010/07/14/MondoCloud/">MondoCloud</a>
+            <time datetime="">14 Jul 2010</time>
+        </h1>
+        <div class="content">
+            For the past little while I've been helping to build the just announced service called MondoCloud. In a nutshell, it allows developers to do easy server-side game logic as well as real-time messaging services. This is a great solution for features such as in-game chat, lobby systems, and most multiplayer needs. The only multiplayer requirements it really wouldn't be suitable for are tracking positions in real-time. For example a multiplayer FPS game would not work...
+        </div>
+        <a class="btn btn-sharp btn-sm hvr-push" href="/2010/07/14/MondoCloud/">Read More</a>
+    </article>
 
-private var unityContentLoader:UnityContentLoader;
+    <article>
+        <h1>
+            <a href="/2010/05/23/New-Development-Blog/">New Development Blog</a>
+            <time datetime="">23 May 2010</time>
+        </h1>
+        <div class="content">
+            For the past few months I've been slowly transforming this site into a development blog. Articles can be linked to individually, the main feed is now paginated, and most recently I added an RSS Feed. From now on I'll be posting about my game design and programming experiences and opinions. My current job has put me through a lot of challenges with Unity3D, Flash, and other technologies like PHP, JavaScript, databases, and Unix based operations....
+        </div>
+        <a class="btn btn-sharp btn-sm hvr-push" href="/2010/05/23/New-Development-Blog/">Read More</a>
+    </article>
 
-private function startLoad() : void {
-	var loader:SimplePreloader = new SimplePreloader();
-	stage.addChild(loader);
-}
-    </pre>
-</code>
-<p>
-   This should be all you really need to get started with loading in Unity content
-   to a Flash application. If you want to know about communicating with the loaded
-   Unity content I recommend continuing to read this
-   <a href="http://forum.unity3d.com/threads/116650-UnityShared.swc-Communicating-between-Unity-Flash-Content-and-AS3">
-       forum topic
-   </a>
-   . To export a SWF file from Unity, read
-   <a href="http://unity3d.com/unity/publishing/flash">
-       this page
-   </a>
-   on their website.
-</p>
-
-  </div>
-
-  <h1><a href="/2011/11/05/Why-I-Dont-Use-Unity-JavaScript/">Why I Don't Use Unity's JavaScript</a></h1>
-  <p class="author">
-    <span class="date">2011-11-05 00:00:00 -0400</span>
-  </p>
-  <div class="content">
-    <p>
-    When I started using Unity in 2005 I was very attracted to programming with JavaScript.
-    It had easier syntax and less rules for me to bother with.
-    And Unity's documentation at the time was completely done (I think) with JavaScript examples.
-    It just made sense to use it.
-</p>
-<p>
-    I continued using JavaScript for 4 years.
-    During that time I ran into many confusing frustrations and started to gradually strictly type my JavaScript to avoid problems.
-    It eventually reached the point where it just made sense to switch over to C#.
-    I can't stress enough how much of a difference this has made in my coding experience with Unity.
-    Here's why...
-</p>
-<p>
-    <strong>Compiler Confusion</strong>
-    <br />
-    There's quite a bit you can get away with using Unity JS.
-    So much in fact that you might actually have many errors in your code, but they only occur during run-time.
-    This mostly happens when an untyped variable is assigned to a typed variable.
-    For example
-</p>
-<code>
-<pre>
-var aVector;
-var anInt : int;
-
-function Start() {
-	aVector = Vector3.zero;
-	anInt = aVector;
-}
-</pre>
-</code>
-<p>
-    This code compiles just fine, but as soon as it's executed during run-time an error will occur.
-    A pretty easy fix as soon as the error pops up.
-    But that's just it.
-    What if you never hit the case where the error occurs?
-    You end up releasing your game with a bug just waiting to happen.
-    And it probably will.
-    Strictly typing your code or using C# will avoid this issue.
-</p>
-<p>
-    <strong>IDE Confusion</strong>
-    <br />
-    This is more of a convenience frustration.
-    If you're using an IDE like MonoDevelop and you're programming with untyped elements of your code, then your IDE won't be able to use some of its convenient features.
-    Looking at the code example above, your IDE would not know to list Vector methods when dealing with variable <em>aVector</em>.
-    Strictly typing your code or using C# will avoid this issue.
-</p>
-<p>
-    <strong>Improved Run-Time Performance</strong>
-    <br />
-    You may not ever notice it, but strictly typing your code or using C# will actually
-    <a href="http://unity3d.com/support/documentation/ScriptReference/index.Performance_Optimization.html">make your game faster</a>
-    during run-time. Cool!
-</p>
-<p>
-    <strong>Benefits of C#</strong>
-    <br />
-    Some major benefits of using C# (not strictly typed JS) is that it's a completely
-    <a href="http://msdn.microsoft.com/en-us/vstudio/hh341490">documented language</a>.
-    If you ever want to know how to do something, just look it up.
-    JavaScript doesn't have official documentation and Unity's implementation of JavaScript is not the same as the JavaScript known to the web.
-    So it can be annoying just to look up even the simplest thing.
-    In fact some times you'll need to look up C# syntax to figure out the correct syntax for Unity's JavaScript.
-</p>
-<p>
-    Using JavaScript will restrict you from using some libraries that C# will be able to use.
-    But C# can use all the libraries JS has access to.
-    For example C# can access the <a href="http://en.wikipedia.org/wiki/LINQ">LINQ</a>
-    libraries but Unity JavaScript cannot.
-</p>
-
-<p>
-    <strong>Compiler Confusion Continued</strong>
-    <br />
-    There are areas of the Unity API where both JavaScript <em>and</em>
-    C# users are led into avoidable issues with the compiler missing errors.
-    A big culprit being the <a href="http://unity3d.com/support/documentation/ScriptReference/GameObject.GetComponent.html">GetComponent function</a>.
-    One way of using it is by passing a string for the name of a component, rather than a type.
-    This caused me major headaches.
-    I used to love it because I could simply type in a string of the component I wanted and <em>BAM</em> it worked.
-    Really awesome; until you make a typo that's not obvious at all and the compiler isn't pointing it out.
-    Here's an example of just how much you can get away with without the compiler throwing an error.
-    In the example below the component and its variable do not exist, but Unity is totally cool with it during compilation.
-</p>
-<code>
-<pre>
-var c : int  = GetComponent("Something I Just Made Up").someVariable;
-</pre>
-</code>
-<p>
-    If you're cautious with your decisions and ensure the compiler can catch as many problems as possible,
-    your development process is going to go much smoother.
-</p>
-
-  </div>
+    <article>
+        <h1>
+            <a href="/2010/03/17/dimeRocker-at-GDC-San-Francisco/">dimeRocker @ GDC San Francisco</a>
+            <time datetime="">17 Mar 2010</time>
+        </h1>
+        <div class="content">
+            Last week I was in San Francisco with OMI to help man the dimeRocker booth at GDC. I met hundreds of developers and gave hands-on lessons about the dimeRocker platform, as well as two presentations in the Unity booth. If you'd like to check out the two games we demoed, here are links for BATTLE BEARS and Air Traffic Commander. Both utilize features such as leaderboards, profile info, friend info, storing data, wall posts, and...
+        </div>
+        <a class="btn btn-sharp btn-sm hvr-push" href="/2010/03/17/dimeRocker-at-GDC-San-Francisco/">Read More</a>
+    </article>
 
 
 <!-- Pagination links -->
 <div class="pagination">
   
-    <a href="/page3" class="previous">Previous</a>
+    <a href="/page3" class="previous hvr-push">&#8249;</a>
   
-  <span class="page_number ">Page: 4 of 12</span>
+  <span class="page_number">4 of 5</span>
   
-    <a href="/page5" class="next">Next</a>
+    <a href="/page5" class="next hvr-push">&#8250;</a>
   
 </div>
 
-          </main>
-          <footer>
-              <hr />
-              <p>
-                  Copyright &copy; <time datetime="2016-12-30T15:53:20-05:00">2016</time>
-                  Brad Keys :: All rights reserved.
-              </p>
-          </footer>
-      </div>
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-15714823-1', 'auto');
-        ga('send', 'pageview');
-      </script>
-  </body>
+</div>
+            </main>
+        </div>
+        <footer>
+            <hr />
+            <p>
+                Copyright &copy; <time datetime="2016-12-31T00:26:14-05:00">2016</time>
+                Brad Keys
+                <br />
+                All rights reserved.
+            </p>
+        </footer>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-15714823-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
 </html>

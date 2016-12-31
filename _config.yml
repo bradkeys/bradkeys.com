@@ -7,7 +7,7 @@ relative_permalinks: false
 gems:
    - jekyll-paginate
 
-paginate: 2
+paginate: 5
 
 # Setup
-title:               Brad Keys - Game Development Blog
+title:               Brad Keys
