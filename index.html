@@ -11,7 +11,19 @@ title: Game Dev Blog
             <time datetime="{{ page.date | date: "%Y/%m/%d" }}">{{ post.date  | date_to_string }}</time>
         </h1>
         <div class="content">
-            {{ post.content | strip_html | truncatewords:75 }}
+            {% if post.image %}
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="{{ post.url }}">
+                        <img src="{{ post.image }}" />
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    {{ post.content | strip_html | truncatewords:75 }}
+                </div>
+            {% else %}
+                {{ post.content | strip_html | truncatewords:75 }}
+            {% endif %}
         </div>
         <a class="btn btn-sharp btn-sm hvr-push" href="{{ post.url }}">Read More</a>
     </article>
