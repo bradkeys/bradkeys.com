@@ -330,11 +330,12 @@ footer p {
 }
 
 #blog .page_number {
+    width: 75%;
     display: inline-block;
     font-size: 4em;
     text-align: center;
     margin: 0 auto;
-    width: 80%;
+    margin-top: 45px;
 }
 
 #blog .next {
@@ -348,6 +349,7 @@ footer p {
 .pagination {
     width: 100%;
     margin: 0 auto;
+    text-align: center;
 }
 
 /* mobile scaling */
