@@ -181,12 +181,19 @@ footer p {
     margin: 15px 0px;
 }
 
+#contact .info a {
+    color: white;
+}
+
 #contact .type {
     font-weight: bold;
+    font-size: 2em;
+    margin-left: 25px;
 }
 
 #contact .data {
-    margin-bottom: 15px;
+    margin-bottom: 35px;
+    margin-left: 25px;
 }
 
 #contact .data, #contact .type {
@@ -194,7 +201,8 @@ footer p {
 }
 
 #contact .info img {
-    width: 32px;
+    width: 64px;
+    border: 2px solid white;
     border-radius: 50%;
 }
 
@@ -250,7 +258,7 @@ footer p {
     font-style: italic;
 }
 
-#blog .content {
+#blog .content, #portfolio p {
     text-align: justify;
     font-size: 1.2em;
 }
@@ -358,6 +366,10 @@ footer p {
     width: 100%;
     margin: 0 auto;
     text-align: center;
+}
+
+.gravatar {
+    margin-bottom: 15px;
 }
 
 /* mobile scaling */
