@@ -71,7 +71,14 @@
         <div id="main-wrapper">
             <main>
                 <div id="blog">
-    <p>
+    <div id="blog-post">
+    <article>
+        <h1>
+            New Development Blog
+            <time datetime="2010/05/23">23 May 2010</time>
+        </h1>
+        <div class="content">
+            <p>
     <a href="img/posts/coder_brad.jpg" rel="lightbox-coderbrad" title="Brad Keys coding binary">
         <img class="post-img" src="img/posts/coder_brad_thumb.jpg" alt="Coder Brad" />
     </a>
@@ -94,13 +101,35 @@
     On the side I'm always working on a project or two, I'll be sure to mention and demo those projects here as well.
 </p>
 
+        </div>
+    </article>
+
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com/2010/05/23/New-Development-Blog/';
+                this.page.identifier = 'New Development Blog';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
 
 </div>
             </main>
         </div>
         <footer>
             <p>
-                Copyright &copy; <time datetime="2017-01-02T09:59:35-05:00">2017</time>
+                Copyright &copy; <time datetime="2017-01-02T11:01:20-05:00">2017</time>
                 Brad Keys
                 <br />
                 All rights reserved.

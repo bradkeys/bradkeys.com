@@ -71,7 +71,14 @@
         <div id="main-wrapper">
             <main>
                 <div id="blog">
-    <a href="http://playfight2013.com">
+    <div id="blog-post">
+    <article>
+        <h1>
+            Play Fight 2013
+            <time datetime="2013/01/18">18 Jan 2013</time>
+        </h1>
+        <div class="content">
+            <a href="http://playfight2013.com">
 	<img class="post-img" src="/img/posts/playfight.png" />
 </a>
 <p>
@@ -101,13 +108,35 @@
 	Be sure to follow <a href="https://twitter.com/playfight2013">@PlayFight2013</a> for the latest progress and posts on the participants.
 </p>
 
+        </div>
+    </article>
+
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com/2013/01/18/Play-Fight-2013/';
+                this.page.identifier = 'Play Fight 2013';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
 
 </div>
             </main>
         </div>
         <footer>
             <p>
-                Copyright &copy; <time datetime="2017-01-02T09:59:35-05:00">2017</time>
+                Copyright &copy; <time datetime="2017-01-02T11:01:20-05:00">2017</time>
                 Brad Keys
                 <br />
                 All rights reserved.

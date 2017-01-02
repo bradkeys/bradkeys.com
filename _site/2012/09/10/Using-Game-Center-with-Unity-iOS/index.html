@@ -71,7 +71,14 @@
         <div id="main-wrapper">
             <main>
                 <div id="blog">
-    <img class="post-img" src="/img/posts/unity-ios.png" />
+    <div id="blog-post">
+    <article>
+        <h1>
+            Using Game Center with Unity iOS
+            <time datetime="2012/09/10">10 Sep 2012</time>
+        </h1>
+        <div class="content">
+            <img class="post-img" src="/img/posts/unity-ios.png" />
 <p>
     Today I experimented with Apple's Game Center for the first time and thought I'd share some pointers.
     I'll assume you are a registered Apple Developer and already understand how to create certificates and provisioning profiles.
@@ -170,13 +177,35 @@
     Enjoy!
 </p>
 
+        </div>
+    </article>
+
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com/2012/09/10/Using-Game-Center-with-Unity-iOS/';
+                this.page.identifier = '23';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
 
 </div>
             </main>
         </div>
         <footer>
             <p>
-                Copyright &copy; <time datetime="2017-01-02T09:59:35-05:00">2017</time>
+                Copyright &copy; <time datetime="2017-01-02T11:01:20-05:00">2017</time>
                 Brad Keys
                 <br />
                 All rights reserved.

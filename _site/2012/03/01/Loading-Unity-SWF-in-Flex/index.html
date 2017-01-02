@@ -71,7 +71,14 @@
         <div id="main-wrapper">
             <main>
                 <div id="blog">
-    <img class="post-img" src="/img/posts/flex.png" />
+    <div id="blog-post">
+    <article>
+        <h1>
+            Loading a Unity SWF in Flex
+            <time datetime="2012/03/01">01 Mar 2012</time>
+        </h1>
+        <div class="content">
+            <img class="post-img" src="/img/posts/flex.png" />
 <p>
     With the release of Unity 3.5's Flash export option there are many new
     opportunities for Unity and Flash developers. Since my career has
@@ -271,13 +278,35 @@ private function startLoad() : void {
    on their website.
 </p>
 
+        </div>
+    </article>
+
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com/2012/03/01/Loading-Unity-SWF-in-Flex/';
+                this.page.identifier = '22';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
 
 </div>
             </main>
         </div>
         <footer>
             <p>
-                Copyright &copy; <time datetime="2017-01-02T09:59:35-05:00">2017</time>
+                Copyright &copy; <time datetime="2017-01-02T11:01:20-05:00">2017</time>
                 Brad Keys
                 <br />
                 All rights reserved.

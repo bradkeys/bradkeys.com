@@ -71,7 +71,14 @@
         <div id="main-wrapper">
             <main>
                 <div id="blog">
-    <p>
+    <div id="blog-post">
+    <article>
+        <h1>
+            Why I Don't Use Unity's JavaScript
+            <time datetime="2011/11/05">05 Nov 2011</time>
+        </h1>
+        <div class="content">
+            <p>
     When I started using Unity in 2005 I was very attracted to programming with JavaScript.
     It had easier syntax and less rules for me to bother with.
     And Unity's documentation at the time was completely done (I think) with JavaScript examples.
@@ -167,13 +174,35 @@ var c : int  = GetComponent("Something I Just Made Up").someVariable;
     your development process is going to go much smoother.
 </p>
 
+        </div>
+    </article>
+
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com/2011/11/05/Why-I-Dont-Use-Unity-JavaScript/';
+                this.page.identifier = '21';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
 
 </div>
             </main>
         </div>
         <footer>
             <p>
-                Copyright &copy; <time datetime="2017-01-02T09:59:35-05:00">2017</time>
+                Copyright &copy; <time datetime="2017-01-02T11:01:20-05:00">2017</time>
                 Brad Keys
                 <br />
                 All rights reserved.

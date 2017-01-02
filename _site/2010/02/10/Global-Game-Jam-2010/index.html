@@ -71,7 +71,14 @@
         <div id="main-wrapper">
             <main>
                 <div id="blog">
-    <p>
+    <div id="blog-post">
+    <article>
+        <h1>
+            Global Game Jam 2010
+            <time datetime="2010/02/10">10 Feb 2010</time>
+        </h1>
+        <div class="content">
+            <p>
     <img src="/img/posts/game_jam.jpg" alt="Global Game Jam Logo" />
     Two weekends ago I participated in <a href="http://www.globalgamejam.org/">
     Global Game Jam</a> Vancouver, a 48 hour game contest held at UBC.
@@ -94,13 +101,35 @@
     Both of which are challenges everyone in the game industry deals with on a regular basis.
 </p>
 
+        </div>
+    </article>
+
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com/2010/02/10/Global-Game-Jam-2010/';
+                this.page.identifier = 'Global Game Jam 2010';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
 
 </div>
             </main>
         </div>
         <footer>
             <p>
-                Copyright &copy; <time datetime="2017-01-02T09:59:35-05:00">2017</time>
+                Copyright &copy; <time datetime="2017-01-02T11:01:20-05:00">2017</time>
                 Brad Keys
                 <br />
                 All rights reserved.

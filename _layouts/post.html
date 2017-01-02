@@ -2,5 +2,33 @@
 layout: blog
 ---
 
+<div id="blog-post">
+    <article>
+        <h1>
+            {{ page.title }}
+            <time datetime="{{ page.date | date: "%Y/%m/%d" }}">{{ page.date  | date_to_string }}</time>
+        </h1>
+        <div class="content">
+            {{ content }}
+        </div>
+    </article>
 
-{{ content }}
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com{{ page.url }}';
+                this.page.identifier = '{% if page.disqus_id %}{{ page.disqus_id }}{% else %}{{ page.title }}{% endif %}';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
