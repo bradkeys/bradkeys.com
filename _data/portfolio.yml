@@ -1,0 +1,253 @@
+Just Pretend:
+    company: Rebel Hippo Inc.
+    role: Game Designer &amp; Unity Developer
+    year: In Development
+    thumbnail: just-pretend-banner.jpg
+    filename: just-pretend
+    images:
+      - just-pretend-1.jpg
+      - just-pretend-2.jpg
+      - just-pretend-3.jpg
+      - just-pretend-4.jpg
+      - just-pretend-5.jpg
+    website: "http://www.rebelhippo.com"
+    video: "https://www.youtube.com/embed/F-8PQvm0Nnc"
+
+Orbert:
+    company: Rebel Hippo Inc.
+    role: Unity Developer &amp; Level Designer
+    year: 2016
+    thumbnail: orbert-banner2.png
+    filename: orbert
+    images:
+      - orbert_1.png
+      - orbert_2.png
+      - orbert_3.png
+      - orbert_4.png
+      - orbert_5.png
+    platforms:
+      "Google Play": "https://play.google.com/store/apps/details?id=com.RebelHippo.Orbert"
+      "iOS": "https://itunes.apple.com/us/app/orbert/id845310880?ls=1&mt=8"
+    website: "http://www.playorbert.com"
+    video: "https://www.youtube.com/embed/H8DMQPQ2hzU"
+
+Lawren Harris - Where the Universe Sings AR:
+    company: Secret Location
+    role: Unity Developer
+    year: 2016
+    thumbnail: lawren-harris-banner.jpg
+    filename: lawren-harris
+    images:
+      - lawren-harris-1.jpg
+      - lawren-harris-2.jpg
+      - lawren-harris-3.jpg
+      - lawren-harris-4.jpg
+      - lawren-harris-5.jpg
+    platforms:
+      "iOS": "https://itunes.apple.com/ca/app/lawren-harris-where-universe/id1145080236?mt=8"
+      "Google Play": "https://play.google.com/store/apps/details?id=com.secretlocation.lawrenharris&hl=en"
+    website: "https://www.wheretheuniversesings.com"
+
+Modbox:
+    company: Alientrap
+    role: Unity Developer
+    year: 2016
+    thumbnail: modbox-banner.jpg
+    filename: modbox
+    images:
+      - modbox-1.jpg
+      - modbox-2.jpg
+      - modbox-3.jpg
+      - modbox-4.jpg
+      - modbox-5.jpg
+    platforms:
+      "Steam": "http://store.steampowered.com/app/414120/"
+    website: "http://www.modboxgame.com"
+    video: "https://www.youtube.com/embed/_TPXop3ONPk"
+
+Winston Steinburger & The Distractor Beam:
+    company: Entertainment One
+    role: Unity Developer
+    year: 2015
+    thumbnail: winston-banner.jpg
+    filename: winston
+    images:
+      - winston-1.jpg
+      - winston-2.jpg
+      - winston-3.jpg
+      - winston-4.jpg
+      - winston-5.jpg
+    platforms:
+      "iOS": "https://itunes.apple.com/ca/app/winston-steinburger-distractor/id1125529950?mt=8"
+      "Google Play": "https://play.google.com/store/apps/details?id=com.eone.winstongame&hl=en"
+    website: "http://www.eonefamily.com"
+    video: "https://www.youtube.com/embed/tk5JZA4kTTo"
+
+Bonk a Nerd:
+    company: Secret Location
+    role: Unity Developer
+    year: 2015
+    thumbnail: bonk-a-nerd-banner.jpg
+    filename: bonk-a-nerd
+    images:
+      - bonk-a-nerd-1.jpg
+      - bonk-a-nerd-2.jpg
+      - bonk-a-nerd-3.jpg
+      - bonk-a-nerd-4.jpg
+      - bonk-a-nerd-5.jpg
+    platforms:
+      "iOS": "https://itunes.apple.com/us/app/nerds-and-monsters-bonk-a-nerd/id1003928997?mt=8"
+    website: "http://www.ytv.com/shows/nerds-and-monsters"
+
+Switchit:
+    company: Global Game Jam
+    role: Game Designer &amp; Unity Developer
+    year: 2015
+    thumbnail: switchit-banner.png
+    filename: switchit
+    images:
+      - switchit-1.png
+      - switchit-2.png
+      - switchit-3.png
+      - switchit-4.png
+      - switchit-5.png
+    video: "https://www.youtube.com/embed/wqsgUEohncM"
+
+Kings of Pool:
+    company: Uken Games
+    role: Unity Developer
+    year: 2014
+    thumbnail: kop-banner.png
+    filename: kings-of-pool
+    images:
+      - kop-1.png
+      - kop-2.png
+      - kop-3.png
+      - kop-4.png
+      - kop-5.png
+    platforms:
+      "iOS": "https://itunes.apple.com/ca/app/8-ball-kings-of-pool/id1049420215?mt=8"
+      "Google Play": "https://play.google.com/store/apps/details?id=com.uken.pool&hl=en"
+    website: "http://www.uken.com/"
+    video: "https://www.youtube.com/embed/h9e2Uy6c28k"
+
+Bursting with Colour:
+    company: Global Game Jam
+    role: Game Designer &amp; Unity Developer
+    year: 2014
+    thumbnail: bursting-banner.png
+    filename: bursting-with-colour
+    images:
+      - bursting-1.png
+      - bursting-2.png
+      - bursting-3.png
+      - bursting-4.png
+      - bursting-5.png
+    video: "https://www.youtube.com/embed/oB4R9O3RY_8"
+
+Lumos Powered:
+    company: Rebel Hippo Inc.
+    role: Web / Unity Developer
+    year: 2013
+    thumbnail: lumospowered-banner2.png
+    filename: lumospowered
+    images:
+      - lumospowered-1.png
+      - lumospowered-2.png
+      - lumospowered-3.png
+      - lumospowered-4.png
+      - lumospowered-5.png
+    website: "http://www.lumospowered.com"
+    video: "https://www.youtube.com/embed/l4FKrllkUnE"
+
+Frocket:
+    company: Ganz
+    role: Lead Game Designer &amp; Unity Developer
+    year: 2012
+    thumbnail: frocket-banner.jpg
+    filename: frocket
+    images:
+      - frocket-1.jpg
+      - frocket-2.jpg
+      - frocket-3.jpg
+      - frocket-4.jpg
+      - frocket-5.jpg
+    platforms:
+      "iOS": "https://itunes.apple.com/ca/app/frocket/id561291205"
+      "Web": "http://www.kongregate.com/games/frocketgame/frocket"
+    website: "http://www.ganzstudios.com/our-games/mobile-games/frocket/"
+    video: "http://www.youtube.com/embed/cxeg0XKEOaY"
+
+Amazing World Friends:
+    company: Ganz
+    role: Lead Game Designer
+    year: 2012
+    thumbnail: awf-banner.png
+    filename: amazing-world-friends
+    images:
+      - awf-1.jpg
+      - awf-2.jpg
+      - awf-3.jpg
+      - awf-4.jpg
+      - awf-5.jpg
+    platforms:
+      "iOS": "https://itunes.apple.com/us/app/amazing-world-friends/id578737510"
+    website: "http://www.ganzstudios.com"
+
+Tail Towns Friends:
+    company: Ganz
+    role: Technical Game Designer
+    year: 2012
+    thumbnail: ttf-banner.png
+    filename: tail-towns-friends
+    images:
+      - ttf-1.jpg
+      - ttf-2.jpg
+      - ttf-3.jpg
+      - ttf-4.jpg
+      - ttf-5.jpg
+    platforms:
+      "Facebook": "http://apps.facebook.com/tailtownsfriends/"
+    website: "http://www.ganzstudios.com/our-games/tail-towns-friends/"
+
+Lumos:
+    company: Rebel Hippo Inc.
+    role: Web Developer
+    year: 2011
+    thumbnail: lumos-banner.png
+    filename: lumos
+    images:
+      - lumos-1.png
+      - lumos-2.png
+      - lumos-3.png
+      - lumos-4.png
+      - lumos-5.png
+    website: "http://www.uselumos.com"
+
+dimeRocker:
+    company: OverInteractive Media Inc.
+    role: Lead Unity/Flash Developer, Web Developer
+    year: 2010
+    thumbnail: dr-banner.png
+    filename: dimerocker
+    images:
+      - dr-1.jpg
+      - dr-2.jpg
+      - dr-3.jpg
+      - dr-4.jpg
+      - dr-5.jpg
+    website: "http://www.dimerocker.com"
+
+Tire &amp; Brimstone:
+    company: Vancouver Film School
+    role: Game Designer &amp; Unity Developer
+    year: 2009
+    thumbnail: tb-banner.png
+    filename: tire-and-brimstone
+    images:
+      - TB-1.jpg
+      - TB-2.jpg
+      - TB-3.jpg
+      - TB-4.jpg
+    website: "https://projects.myvfs.com/games/Gd13_TireAndBrimstone/"
+    video: "//player.vimeo.com/video/6839794"

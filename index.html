@@ -22,7 +22,7 @@ title: Game Dev Blog
                     {{ post.content | strip_html | truncatewords:75 }}
                 </div>
             {% else %}
-                {{ post.content | strip_html | truncatewords:75 }}
+                {{ post.content | strip_html | truncatewords:100 }}
             {% endif %}
         </div>
         <a class="btn btn-sharp btn-sm hvr-push" href="{{ post.url }}">Read More</a>

@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+{% assign project = site.data.portfolio[page.title] %}
+
+<link rel="stylesheet" href="/css/swipebox.min.css">
+
+<div id="project-page">
+    <h1>{{ page.title }}</h1>
+    <h2>{{ project.company }} ({{ project.year }})</h2>
+    <h3><em>{{ project.role }}</em></h3>
+    <br />
+    {% if project.video %}
+        <div id="video-outer">
+            <div id="video-inner">
+                <iframe src="{{ project.video }}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    {% endif %}
+    <div class="gallery">
+        {% for image in project.images %}
+    	    <a class="hvr-grow swipebox" href="/img/portfolio/{{ image }}">
+        		<img src="/img/portfolio/{{ image }}" />
+        	</a>
+    	{% endfor %}
+    </div>
+    <div id="project-website">
+        <p>
+            <strong>Official Website</strong>
+            <br />
+            <a href="{{ project.website }}">{{ project.website | remove: 'http://' | remove: 'https://' }}</a>
+    </div>
+    <div id="platforms">
+        {% for platform in project.platforms %}
+            <a class="hvr-grow" href="{{ platform[1] }}">
+                {% if platform[0] == 'iOS' %}
+                    <img src="/img/badges/iOS.svg" />
+                {% elsif platform[0] == 'Google Play' %}
+                    <img src="/img/badges/GooglePlay.png" />
+                {% elsif platform[0] == 'Web' %}
+                    <img src="/img/badges/Web.png" />
+                {% elsif platform[0] == 'Steam' %}
+                    <img src="/img/badges/steam.png" />
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+    <hr />
+    <div id="project-story">
+        {{ page.content }}
+    </div>
+</div>
+
+<script src="/js/jquery.swipebox.min.js"></script>
+<script type="text/javascript">
+;( function( $ ) {
+	$( '.swipebox' ).swipebox();
+} )( jQuery );
+</script>
