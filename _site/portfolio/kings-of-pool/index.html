@@ -100,12 +100,14 @@
         	</a>
     	
     </div>
+    
     <div id="project-website">
-        <p>
-            <strong>Official Website</strong>
-            <br />
-            <a href="http://www.uken.com/">www.uken.com/</a>
+        <h4>Website</h4>
+        <a href="http://www.uken.com">
+            www.uken.com
+        </a>
     </div>
+    
     <div id="platforms">
         
             <a class="hvr-grow" href="https://itunes.apple.com/ca/app/8-ball-kings-of-pool/id1049420215?mt=8">
@@ -121,13 +123,42 @@
             </a>
         
     </div>
+    
+        <div id="project-summary">
+            <h4>SUMMARY</h4>
+            An online multiplayer 8-ball pool game for mobile created with Unity. I worked as a contract developer on an early version of the game.
+        </div>
+    
     <hr />
     <div id="project-story">
+        <h4>EXPERIENCE</h4>
         <p>
-	content here...
+	I was hired by Uken as a contract Unity developer to work on this project from scratch.
+	The game was already designed and had artists working on it.
+	It was the first game I made for Android.
+	My primary role was programming shots and ball physics, AI logic, and implementing online networking.
+	Kings of Pool pushed the limits of Unity at the time as it required real-time networking and accurate physics which could be reenacted on the other player's device.
+</p>
+<p>
+	While the physics needed to be accurate, they also needed to have an arcadey feel to it.
+	So there was some physics-cheating to accomplish the desired feeling.
+	The biggest issue with physics though was that it could not be deterministic with Unity's physics engine.
+	This caused issues recreating shots on the opponent's device, as the slightest variation in a shot, especially the break, could cause a different outcome.
+	We rectified this by ensuring the position of balls at the end of a shot were in sync, but it wasn't an elegant solution since the user would sometimes see the balls move.
+</p>
+<p>
+    Unity's built-in networking was very dated at the time and hadn't been updated to support networking on smart phones.
+    This created a number of connection issues, primarily when using phone data (3G/LTE), where things like NAT punchthrough were difficult.
+    We did everything possible to make Unity's networking perform as we needed it to.
+    For the most part it did work, but the unreliability of connections made the solution unideal and unacceptable.
+</p>
+<p>
+    We had proved Unity incapable of accomplishing our goals and there was a decision made to use a new physics engine with deterministic phyics and a different networking library for online play.
+    I assisted with switching the existing game to the new physics and networking, and that concluded my involvement on the project!
 </p>
 
     </div>
+    
 </div>
 
 <script src="/js/jquery.swipebox.min.js"></script>
@@ -141,7 +172,7 @@
         </div>
         <footer>
             <p>
-                Copyright &copy; <time datetime="2017-01-05T14:57:01-05:00">2017</time>
+                Copyright &copy; <time datetime="2017-01-12T17:00:42-05:00">2017</time>
                 Brad Keys
                 <br />
                 All rights reserved.

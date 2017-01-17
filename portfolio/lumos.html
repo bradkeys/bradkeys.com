@@ -4,13 +4,27 @@ title: Lumos
 ---
 
 <p>
-	Lumos Game Analytics is a simple drag-and-drop analytics service designed specifically for Unity3D. I developed it under
-	my own company with my co-founder Matthew Miner. The service is free to use.
+    Lumos was initially created by Matthew Miner, a childhood friend and colleague during my time at OverInteractive Media Inc. (OMI)
+    After <a href="/portfolio/dimerocker/">our experience at OMI</a>, we had extensively used several web analytics solutions for dimeRocker, and became baffled when we were unable to find an analytics solution for games.
+    Matthew left OMI to return to his studies at the University of Waterloo and began developing Lumos Game Analytics in his spare time.
+    As I shared an interest in the product, I lent a hand from time to time.
+<p>
+	The platform was developed using <em>Google App Engine</em>, an all-in-one solution for building scalable web services.
+	The backend was written in Python, a welcome departure from our experience with PHP.
+	A very simple Unity library was created, allowing Unity developers to add Lumos to their game with literally no coding required.
 </p>
 <p>
-	With Lumos you can record demographics, custom events, errors and debug logs, system/device information, and allow players
-	to submit feedback about your game.
+    When Lumos launched it offered features such as custom events, automated events (level loaded, etc), error/warning/log tracking, hardware &amp; software statistics, and a live activity feed.
+    Lumos became quite popular, tracking analytics for millions of players.
 </p>
 <p>
-    Lumos was rebuilt (see above) during 2013 when we began working on it full time.
+    It was free to use because it didn't cost us anything to operate thanks to Google giving about $20K in App Engine credit to University students like Matthew.
+    We also hadn't had the time or means to implement a payable subscription to the service.
+    This started to become problematic once massively popular games started using our product and our App Engine credits were running low.
+    Google also raised their prices on a few crucial aspects of App Engine, causing enough panick that we decided we'd need to migrate the service elsewhere.
+</p>
+<p>
+    In 2013 we secured investment to work on Lumos fulltime.
+    We recreated the entire service using Amazon Web Services and migrated all games and their data.
+    <a href="/portfolio/lumospowered/">Read more about the second version of Lumos</a>.
 </p>

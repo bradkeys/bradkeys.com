@@ -100,29 +100,107 @@
         	</a>
     	
     </div>
+    
     <div id="project-website">
-        <p>
-            <strong>Official Website</strong>
-            <br />
-            <a href="http://www.lumospowered.com">www.lumospowered.com</a>
+        <h4>Website</h4>
+        <a href="http://www.lumospowered.com">
+            www.lumospowered.com
+        </a>
     </div>
+    
     <div id="platforms">
         
     </div>
+    
+        <div id="project-summary">
+            <h4>SUMMARY</h4>
+            The 2nd major version of the <a href='/portfolio/lumos/'>Lumos Game Analytics</a> platform. Built on an AWS stack, features included analytics, error tracking/diagnostics, and social functionality such as leaderboards and achievements.
+        </div>
+    
     <hr />
     <div id="project-story">
-        <p>
-	The second major version of Lumos. Built on a completely new tech stack to accomodate mass scaling,
-	and with pricing plans to prevent having to disable popular games costing our free service
-	too much money.
+        <h4>EXPERIENCE</h4>
+        <h5>Technology &amp; Role</h5>
+
+<p>
+    The majority of my time was spent doing web development.
+    We used a Tornado web server (Python) hosted on Amazon EC2, using DynamoDB for the majority of game data and MySQL for website related data.
+    The front end website used
+    <a href="https://www.djangoproject.com/start/overview/">Django</a> templates,
+    <a href="http://getbootstrap.com/">Bootstrap</a>,
+    <a href="https://angularjs.org/">AngularJS</a>,
+    <a href="http://www.highcharts.com/">Highcharts</a> for visualizing data,
+    and <a href-"https://stripe.com/ca">Stripe</a> for payments.
+</p>
+
+<p>
+    Other responsibilities included creating the Lumos library for Unity, customer support, and accounting.
+</p>
+
+<h5>Story</h5>
+
+<p>
+    In early 2003 my business (<a href="http://rebelhippo.com/">Rebel Hippo Inc.</a>) received an angel investment, allowing me to quit my day job and work on Lumos fulltime.
+    Together with <a href="http://www.matthewminer.com">Matther Miner</a> we worked out of the <a href="http://velocity.uwaterloo.ca/workspaces/velocity-garage/">Velocity Garage</a> in the Tannery Building in Kitchener, ON.
+    The first half of 2013 was spent recreating Lumos in Amazon Web Services (AWS) and migrating our existing users and data from Google App Engine to our AWS stack.
 </p>
 <p>
-	Along with the original features of Lumos, this version includes other services
-	such as Social connectivity (users, achievements, leaderboards). The entire site was built
-	with enterprise in mind and is much friendlier for larger teams to work with.
+    We had been interviewed by Y-Combinator months earlier.
+    In a dramatic end to the interview, where one judge came rushing out to keep asking us questions, we ultimately were not accepted.
+    We understood why though, Lumos wasn't Y-Combinator level ambitious.
+    So on our journey back to Ontario from California we discussed this a lot and came up with an idea.
+    Lumos would allow 3rd party service providers to add their service to our site for more exposure and we'd help create a Unity plugin for them.
+</p>
+<p>
+    We went down this path and created the Lumos website in such a way that we could keep adding new services which developers could subscribe to piece-meal.
+    As an example, we separated our Analytics and Diagnostics services, and created a fully functional social API which adhered to <a href="https://docs.unity3d.com/Manual/net-SocialAPI.html">Unity's new (at the time) Social API</a>.
+    As far as we know, we were the only service available at the time which fully utilized this API.
+    We also created a fairly robust package manager for Lumos services within the Unity editor.
+    This allowed developers to import and update only the services they subscribed to.
+</p>
+<p>
+    The site was live and functioning by the end of 2013, but we were quickly running out of money to keep the lights on.
+    From a combination of large competitors emerging in the game analytics scene and Unity enforcing service providers to pay a hefty fee to be listed in their Asset Store, things were not looking good.
+    By Spring 2014 we knew we had to pivot and find an alternate revenue source.
+    This led us to offering contract Unity development, which we still do today!
+    Recently even Unity themselves launched <a href="https://unity3d.com/services/analytics">their own analytics service</a>.
+    The Lumos website is no longer in service as of 2016.
 </p>
 
     </div>
+    
+        <hr />
+        <div id="project-blog-posts">
+            <h4>Related Blog Posts</h4>
+            <ul>
+            
+                <li>
+                    <a href="/2013/02/26/Farewell-Ganz/">
+                        Farewell Ganz
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/2011/09/25/See-You-at-Unite-2011/">
+                        See You at Unite 2011
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/2011/06/05/Lumos-Wins-Velocity-Venture-Fund/">
+                        Lumos Wins Velocity Venture Fund
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/2011/05/23/Lumos-Your-Game-Analytics-Service/">
+                        Lumos - Your Game Analytics Service
+                    </a>
+                </li>
+            
+            </ul>
+        </div>
+    
 </div>
 
 <script src="/js/jquery.swipebox.min.js"></script>
@@ -136,7 +214,7 @@
         </div>
         <footer>
             <p>
-                Copyright &copy; <time datetime="2017-01-05T14:57:01-05:00">2017</time>
+                Copyright &copy; <time datetime="2017-01-12T17:00:42-05:00">2017</time>
                 Brad Keys
                 <br />
                 All rights reserved.

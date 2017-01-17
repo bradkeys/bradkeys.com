@@ -25,12 +25,14 @@ layout: default
         	</a>
     	{% endfor %}
     </div>
+    {% if project.website %}
     <div id="project-website">
-        <p>
-            <strong>Official Website</strong>
-            <br />
-            <a href="{{ project.website }}">{{ project.website | remove: 'http://' | remove: 'https://' }}</a>
+        <h4>Website</h4>
+        <a href="{{ project.website }}">
+            {{ project.website | remove: 'http://' | remove: 'https://' }}
+        </a>
     </div>
+    {% endif %}
     <div id="platforms">
         {% for platform in project.platforms %}
             <a class="hvr-grow" href="{{ platform[1] }}">
@@ -46,10 +48,32 @@ layout: default
             </a>
         {% endfor %}
     </div>
+    {% if project.summary %}
+        <div id="project-summary">
+            <h4>SUMMARY</h4>
+            {{ project.summary }}
+        </div>
+    {% endif %}
     <hr />
     <div id="project-story">
+        <h4>EXPERIENCE</h4>
         {{ page.content }}
     </div>
+    {% if project.blog-posts %}
+        <hr />
+        <div id="project-blog-posts">
+            <h4>Related Blog Posts</h4>
+            <ul>
+            {% for post in project.blog-posts %}
+                <li>
+                    <a href="{{ post[1] }}">
+                        {{ post[0] }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif%}
 </div>
 
 <script src="/js/jquery.swipebox.min.js"></script>

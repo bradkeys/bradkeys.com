@@ -10,8 +10,9 @@ Just Pretend:
       - just-pretend-3.jpg
       - just-pretend-4.jpg
       - just-pretend-5.jpg
-    website: "http://www.rebelhippo.com"
+    website: "http://rebelhippo.com/products/just-pretend"
     video: "https://www.youtube.com/embed/F-8PQvm0Nnc"
+    summary: "A top-down 3D action-adventure roguelike game aimed for release on current generation consoles. Inspired by <em>Zelda: A Link to the Past</em> and <em>Spelunky</em>. Made with Unity. In development."
 
 Orbert:
     company: Rebel Hippo Inc.
@@ -30,6 +31,7 @@ Orbert:
       "iOS": "https://itunes.apple.com/us/app/orbert/id845310880?ls=1&mt=8"
     website: "http://www.playorbert.com"
     video: "https://www.youtube.com/embed/H8DMQPQ2hzU"
+    summary: "A 2D physics-based mobile arcade game with 100 levels, made with Unity. Players swing the character around levels to collect moons while avoiding obstacles."
 
 Lawren Harris - Where the Universe Sings AR:
     company: Secret Location
@@ -47,6 +49,7 @@ Lawren Harris - Where the Universe Sings AR:
       "iOS": "https://itunes.apple.com/ca/app/lawren-harris-where-universe/id1145080236?mt=8"
       "Google Play": "https://play.google.com/store/apps/details?id=com.secretlocation.lawrenharris&hl=en"
     website: "https://www.wheretheuniversesings.com"
+    summary: "An augmented reality app for iOS and Android, made with Unity. Users can scan select paintings by artist Lawren Harris and watch videos of his work coming to life with audio from Lawren himself."
 
 Modbox:
     company: Alientrap
@@ -64,6 +67,7 @@ Modbox:
       "Steam": "http://store.steampowered.com/app/414120/"
     website: "http://www.modboxgame.com"
     video: "https://www.youtube.com/embed/_TPXop3ONPk"
+    summary: "An online multiplayer 3D virtual reality (HTC Vive) sandbox game, made with Unity."
 
 Winston Steinburger & The Distractor Beam:
     company: Entertainment One
@@ -82,6 +86,7 @@ Winston Steinburger & The Distractor Beam:
       "Google Play": "https://play.google.com/store/apps/details?id=com.eone.winstongame&hl=en"
     website: "http://www.eonefamily.com"
     video: "https://www.youtube.com/embed/tk5JZA4kTTo"
+    summary: "An isometric 2D puzzle game with maze-like gameplay for Android and iOS, made with Unity. Companion app for the <em>Winston Steinburger &amp; Sir Dudley Ding Dong</em> TV show."
 
 Bonk a Nerd:
     company: Secret Location
@@ -98,20 +103,24 @@ Bonk a Nerd:
     platforms:
       "iOS": "https://itunes.apple.com/us/app/nerds-and-monsters-bonk-a-nerd/id1003928997?mt=8"
     website: "http://www.ytv.com/shows/nerds-and-monsters"
+    summary: "A 2D whack-a-mole style game for iOS, made with Unity, based on the Nerds and Monsters brand."
 
 Switchit:
     company: Global Game Jam
     role: Game Designer &amp; Unity Developer
     year: 2015
-    thumbnail: switchit-banner.png
+    thumbnail: switchit-banner.jpg
     filename: switchit
     images:
-      - switchit-1.png
-      - switchit-2.png
-      - switchit-3.png
-      - switchit-4.png
-      - switchit-5.png
+      - switchit-1.jpg
+      - switchit-2.jpg
+      - switchit-3.jpg
+      - switchit-4.jpg
+      - switchit-5.jpg
     video: "https://www.youtube.com/embed/wqsgUEohncM"
+    blog-posts:
+      "Switchit (Global Game Jam)": "/2015/01/31/Switchit-Global-Game-Jam/"
+    summary: "Created with Unity during the 2015 Global Game Jam. A top-down 3D multiplayer (local-only) game where players compete to win 3 rounds, where each round's objective is a randomly selected and undisplayed game mode the players must figure out."
 
 Kings of Pool:
     company: Uken Games
@@ -128,22 +137,26 @@ Kings of Pool:
     platforms:
       "iOS": "https://itunes.apple.com/ca/app/8-ball-kings-of-pool/id1049420215?mt=8"
       "Google Play": "https://play.google.com/store/apps/details?id=com.uken.pool&hl=en"
-    website: "http://www.uken.com/"
+    website: "http://www.uken.com"
     video: "https://www.youtube.com/embed/h9e2Uy6c28k"
+    summary: "An online multiplayer 8-ball pool game for mobile created with Unity. I worked as a contract developer on an early version of the game."
 
 Bursting with Colour:
     company: Global Game Jam
     role: Game Designer &amp; Unity Developer
     year: 2014
-    thumbnail: bursting-banner.png
+    thumbnail: bursting-banner.jpg
     filename: bursting-with-colour
     images:
-      - bursting-1.png
-      - bursting-2.png
-      - bursting-3.png
-      - bursting-4.png
-      - bursting-5.png
+      - bursting-1.jpg
+      - bursting-2.jpg
+      - bursting-3.jpg
+      - bursting-4.jpg
+    website: "http://globalgamejam.org/2014/games/bursting-colour"
     video: "https://www.youtube.com/embed/oB4R9O3RY_8"
+    blog-posts:
+      "Bursting With Colour (Global Game Jam)": "/2014/01/29/Bursting-With-Colour-Global-Game-Jam/"
+    summary: "A hectic 2D multiplayer (local-only) platformer game for PC, created with Unity during the 2014 Global Game Jam. Each player controls an active colour, allowing them to stand on that colour of block. The screen moves upwards, forcing the players to work together by swapping colours and trying not to fall."
 
 Lumos Powered:
     company: Rebel Hippo Inc.
@@ -159,6 +172,12 @@ Lumos Powered:
       - lumospowered-5.png
     website: "http://www.lumospowered.com"
     video: "https://www.youtube.com/embed/l4FKrllkUnE"
+    blog-posts:
+      "Farewell Ganz": "/2013/02/26/Farewell-Ganz/"
+      "See You at Unite 2011": "/2011/09/25/See-You-at-Unite-2011/"
+      "Lumos Wins Velocity Venture Fund": "/2011/06/05/Lumos-Wins-Velocity-Venture-Fund/"
+      "Lumos - Your Game Analytics Service": "/2011/05/23/Lumos-Your-Game-Analytics-Service/"
+    summary: "The 2nd major version of the <a href='/portfolio/lumos/'>Lumos Game Analytics</a> platform. Built on an AWS stack, features included analytics, error tracking/diagnostics, and social functionality such as leaderboards and achievements."
 
 Frocket:
     company: Ganz
@@ -177,6 +196,11 @@ Frocket:
       "Web": "http://www.kongregate.com/games/frocketgame/frocket"
     website: "http://www.ganzstudios.com/our-games/mobile-games/frocket/"
     video: "http://www.youtube.com/embed/cxeg0XKEOaY"
+    blog-posts:
+      "Farewell Ganz": "/2013/02/26/Farewell-Ganz/"
+      "Introducing Frocket": "/2013/01/17/Introducing-Frocket/"
+      "Using Game Center with Unity iOS": "/2012/09/10/Using-Game-Center-with-Unity-iOS/"
+    summary: "One-button (tap) arcade style game created with Unity for iOS. Core mechanic is inspired by the barrel blasting mechanic in the Donkey Kong Country series."
 
 Amazing World Friends:
     company: Ganz
@@ -193,6 +217,7 @@ Amazing World Friends:
     platforms:
       "iOS": "https://itunes.apple.com/us/app/amazing-world-friends/id578737510"
     website: "http://www.ganzstudios.com"
+    summary: "A Flash-based Facebook game with traditional farming mechanics, complimented by hidden object games and whack-a-mole style enemy encounters. It was a spin-off of the <a href='http://www.amazingworld.com/'>Amazing World MMO</a>."
 
 Tail Towns Friends:
     company: Ganz
@@ -206,9 +231,11 @@ Tail Towns Friends:
       - ttf-3.jpg
       - ttf-4.jpg
       - ttf-5.jpg
+      - ttf-6.jpg
     platforms:
       "Facebook": "http://apps.facebook.com/tailtownsfriends/"
     website: "http://www.ganzstudios.com/our-games/tail-towns-friends/"
+    summary: "A Flash-based Facebook game with traditional 'farming' and social mechanics. Tail Towns was unique in tying physical goods sold by Ganz with in-game rewards. It offered a truly artistic world to build upon, and delivered a dramatic soap-opera inspired storyline featuring humorous woodland characters."
 
 Lumos:
     company: Rebel Hippo Inc.
@@ -223,6 +250,11 @@ Lumos:
       - lumos-4.png
       - lumos-5.png
     website: "http://www.uselumos.com"
+    blog-posts:
+      "See You at Unite 2011": "/2011/09/25/See-You-at-Unite-2011/"
+      "Lumos Wins Velocity Venture Fund": "/2011/06/05/Lumos-Wins-Velocity-Venture-Fund/"
+      "Lumos - Your Game Analytics Service": "/2011/05/23/Lumos-Your-Game-Analytics-Service/"
+    summary: "Lumos Game Analytics was a free drag-and-drop analytics service designed specifically for Unity games. It was developed via my own company with co-founder <a href='http://matthewminer.com'>Matthew Miner</a>."
 
 dimeRocker:
     company: OverInteractive Media Inc.
@@ -237,6 +269,13 @@ dimeRocker:
       - dr-4.jpg
       - dr-5.jpg
     website: "http://www.dimerocker.com"
+    blog-posts:
+      "Farewell dimeRocker": "/2011/04/15/Farewell-dimeRocker/"
+      "Hip Ship": "/2010/12/09/Hip-Ship/"
+      "An In-Depth Look at dimeRocker": "/2010/10/01/In-Depth-Look-at-dimeRocker/"
+      "Mondocloud": "/2010/07/14/MondoCloud/"
+      "dimeRocker @ GDC San Francisco": "/2010/03/17/dimeRocker-at-GDC-San-Francisco/"
+    summary: "The dimeRocker platform allowed developers to deploy Unity or Flash web games to Facebook and MySpace without learning their respective APIs. Instead developers only needed to know the dimeRocker API, which included achievements, leaderboards, inventories, wallets, and access to social hooks such as wall posts and friends lists."
 
 Tire &amp; Brimstone:
     company: Vancouver Film School
@@ -251,3 +290,4 @@ Tire &amp; Brimstone:
       - TB-4.jpg
     website: "https://projects.myvfs.com/games/Gd13_TireAndBrimstone/"
     video: "//player.vimeo.com/video/6839794"
+    summary: "Tire &amp; Brimstone was an online multiplayer vehicular combat game that allowed up to 6 players to compete against (shoot) each other in a battle arena setting. It was created with Unity and deployed via the (now obsolete) Unity Web Player. I was primarily responsible for the online networking portion of the game and creating a website with backend logic allowing us to track player statistics (kills, deaths, wins, losses, etc) and display them in-game."

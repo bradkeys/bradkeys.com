@@ -5,40 +5,35 @@ title: Portfolio
 
 <div id="portfolio">
     <div id="about" class="row">
-        <div class="col-md-3">
-            <img class="gravatar" alt="Brad Keys" src="http://www.gravatar.com/avatar/4e71b2307ee4dc0f92bb670dd8d078f6?s=200" />
-        </div>
-        <div class="col-md-9">
-            <p>
-                I live in Kitchener, Ontario, Canada. I enjoy creating games, work in the video game industry, and have a passion
-                for learning and innovating with new technologies. My career has primarily involved developing mobile and social/web games, as well as SaaS for games.
-                I'm most proficient with the <a href="http://www.unity3d.com">Unity</a> game engine and help organize the <a href="http://www.meetup.com/Toronto-Unity-Developers/">Toronto Unity Developers meetup</a>.
-                I use this site to showcase my projects and discuss interesting challenges I encounter as a game developer.
-            </p>
-            <p>
-                Feel free to <a href="/contact/">contact me</a> about development questions or opportunities. I'd be glad to assist!
-                You can also check out my game development company <a href="http://www.rebelhippo.com">Rebel Hippo Inc.</a> if you're
-                interested in applying for a job, requesting contract Unity development from me, or if you're interested in investment opportunities.
-            </p>
-            <p>
-                Below is a showcase of larger projects I've worked on throughout my career.
-                Click on a project to see more details about it, as well as a brief account of my experience working on the project.
-            </p>
-        </div>
+        <p>
+            I live in Kitchener, Ontario, Canada.
+            I enjoy creating games, work in the video game industry, and have a passion for learning and innovating with new technologies.
+            I use this site to showcase my projects and discuss interesting challenges I encounter as a game developer.
+        </p>
+        <p>
+            Feel free to <a href="/contact/">contact me</a> about development questions or opportunities.
+            Check out my company <a href="http://www.rebelhippo.com">Rebel Hippo Inc.</a> if you're interested in applying for a job, requesting contract Unity development, or interested in investment opportunities.
+        </p>
+        <p>
+            Below is a showcase of some projects I've worked on throughout my career.
+            Click a project to see more details, and a brief account of my experience on the project.
+        </p>
     </div>
-    {% for project_info in site.data.portfolio %}
-        {% assign project = project_info[1] %}
-        <a href="/portfolio/{{ project.filename }}/">
-            <div class="project hvr-grow">
-                <img src="/img/portfolio/{{ project.thumbnail }}" />
-                <div class="transbox"></div>
-                <div class="project-info">
-                    <span class="project-title">{{ project_info[0] }}</span>
-                    <span class="project-date">{{ project.year }}</span>
-                    <br />
-                    <span class="project-role"><em>{{ project.role }}</em></span>
+    <div id="project-list">
+        {% for project_info in site.data.portfolio %}
+            {% assign project = project_info[1] %}
+            <a href="/portfolio/{{ project.filename }}/">
+                <div class="project hvr-grow">
+                    <img src="/img/portfolio/{{ project.thumbnail }}" />
+                    <div class="transbox"></div>
+                    <div class="project-info">
+                        <span class="project-title">{{ project_info[0] }}</span>
+                        <span class="project-date">{{ project.year }}</span>
+                        <br />
+                        <span class="project-role"><em>{{ project.role }}</em></span>
+                    </div>
                 </div>
-            </div>
-        </a>
-    {% endfor %}
+            </a>
+        {% endfor %}
+    </div>
 </div>
