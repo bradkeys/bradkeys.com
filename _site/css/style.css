@@ -16,6 +16,10 @@ h1 {
     width: 100%;
 }
 
+#main-wrapper {
+    margin-bottom: 50px;
+}
+
 #header-wrapper {
     background-color: white;
 }
@@ -264,7 +268,7 @@ main a:hover {
 }
 
 #blog .content, #portfolio p {
-    text-align: justify;
+    text-align: left;
     font-size: 1.2em;
 }
 
@@ -390,7 +394,7 @@ main a:hover {
 }
 
 #about p {
-    text-align: justify;
+    text-align: left;
 }
 
 #about a {
@@ -496,7 +500,7 @@ main a:hover {
     width: 90%;
     max-width: 1000px;
     padding-left: 5px;
-    text-align: justify;
+    text-align: left;
 }
 
 #project-story h5 {
