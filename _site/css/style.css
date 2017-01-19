@@ -134,7 +134,7 @@ nav {
 main {
     position: relative;
     margin-top: 50px;
-    padding: 0px 10px;
+    padding: 0px 15px;
     min-height: 850px;
     overflow: hidden;
     background-color: black;
@@ -150,13 +150,13 @@ main > img {
 }
 
 main a {
-    color: white;
+    color: #BBF;
     text-decoration: underline;
-    font-weight: bold;
 }
 
 main a:hover {
     text-decoration: none;
+    color: #AAF;
 }
 
 #website hr {
@@ -177,11 +177,18 @@ main a:hover {
 }
 
 #contact {
-    margin-top: 25px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+#contact-form {
+    max-width: 500px;
+    margin-left: auto;
 }
 
 #contact .info {
     margin: 15px 0px;
+    margin-right: auto;
 }
 
 #contact .info a {
@@ -207,25 +214,6 @@ main a:hover {
     width: 64px;
     border: 2px solid white;
     border-radius: 50%;
-}
-
-.contact-info {
-    bottom: -40px;
-    display: inline-block;
-    position: relative;
-    text-align: left;
-}
-
-#map {
-    width: 600px;
-    height: 300px;
-}
-
-.aspect-ratio {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 51%;
 }
 
 #blog {
@@ -258,6 +246,7 @@ main a:hover {
 
 #blog h1 a {
     color: white;
+    text-decoration: none;
 }
 
 #blog time {
@@ -292,7 +281,7 @@ main a:hover {
 }
 
 #blog-post .content a {
-    color: white;
+    color: #BBF;
     text-decoration: underline;
     font-weight: bold;
 }
@@ -362,28 +351,26 @@ main a:hover {
 #blog .next, #blog .previous {
     font-size: 8em;
     display: inline-block;
-    color: white;
+}
+
+.pagination {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: inline-block;
+    font-size: 4em;
+    margin-top: 45px;
 }
 
 #blog .next:hover, #blog .previous:hover {
     text-decoration: none;
 }
 
-#blog .page_number {
-    width: 75%;
-    display: inline-block;
-    font-size: 4em;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 45px;
-}
-
-#blog .next {
-    float: right;
-}
-
-#blog .previous {
-    float: left;
+.pagination .next, .pagination .prev {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3em !important;
+    margin: 0px 15px;
 }
 
 #about {
@@ -391,6 +378,10 @@ main a:hover {
     position: relative;
     margin-bottom: 25px;
     max-width: 1000px;
+}
+
+.excerpt a {
+    text-decoration: none;
 }
 
 #about p {
@@ -404,12 +395,6 @@ main a:hover {
 #about a:hover {
     color: white;
     text-decoration: none;
-}
-
-.pagination {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
 }
 
 .gravatar {
@@ -525,7 +510,7 @@ main a:hover {
 
 #project-page a:hover {
     text-decoration: none;
-    color: white;
+    color: #99F;
 }
 
 #project-page iframe {
@@ -683,6 +668,10 @@ main a:hover {
     #logo-subtitle {
     	font-size: 1.7em;
     }
+
+    #contact-form, #contact .info {
+        margin: 0 auto;
+    }
 }
 
 @media all and (max-width: 600px)  {
@@ -712,5 +701,13 @@ main a:hover {
         width: 48px;
         border-radius: 50%;
         margin-bottom: 5px;
+    }
+
+    #contact-form, #contact .info {
+        margin: 0 auto;
+    }
+
+    #contact .info {
+        margin-top: 50px;
     }
 }

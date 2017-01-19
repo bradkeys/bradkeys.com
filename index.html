@@ -31,15 +31,11 @@ title: Game Dev Blog
 <!-- Pagination links -->
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous hvr-push">&#8249;</a>
-  {% else %}
-    <span class="previous hvr-push">&#8249;</span>
+    <a href="{{ paginator.previous_page_path }}" class="prev hvr-push">&#8249;</a>
   {% endif %}
   <span class="page_number">{{ paginator.page }} of {{ paginator.total_pages }}</span>
   {% if paginator.next_page %}
     <a href="{{ paginator.next_page_path }}" class="next hvr-push">&#8250;</a>
-  {% else %}
-    <span class="next hvr-push">&#8250;</span>
   {% endif %}
 </div>
 
