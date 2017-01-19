@@ -11,3 +11,6 @@ paginate: 5
 
 # Setup
 title:               Brad Keys
+
+sass:
+  style: compressed
