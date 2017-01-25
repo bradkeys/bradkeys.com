@@ -6,11 +6,10 @@ relative_permalinks: false
 
 gems:
    - jekyll-paginate
-   - rouge
 
 # Setup
-title:               Brad Keys
-highlighter:         rouge
-paginate:            5
+title: Brad Keys
+highlighter: rouge
+paginate: 5
 sass:
   style: compressed
