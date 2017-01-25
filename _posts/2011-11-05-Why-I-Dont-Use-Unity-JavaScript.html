@@ -25,8 +25,7 @@ disqus_id: 21
     This mostly happens when an untyped variable is assigned to a typed variable.
     For example
 </p>
-<code>
-<pre>
+{% highlight c# %}
 var aVector;
 var anInt : int;
 
@@ -34,8 +33,7 @@ function Start() {
 	aVector = Vector3.zero;
 	anInt = aVector;
 }
-</pre>
-</code>
+{% endhighlight %}
 <p>
     This code compiles just fine, but as soon as it's executed during run-time an error will occur.
     A pretty easy fix as soon as the error pops up.
@@ -90,11 +88,9 @@ function Start() {
     Here's an example of just how much you can get away with without the compiler throwing an error.
     In the example below the component and its variable do not exist, but Unity is totally cool with it during compilation.
 </p>
-<code>
-<pre>
+{% highlight c# %}
 var c : int  = GetComponent("Something I Just Made Up").someVariable;
-</pre>
-</code>
+{% endhighlight %}
 <p>
     If you're cautious with your decisions and ensure the compiler can catch as many problems as possible,
     your development process is going to go much smoother.

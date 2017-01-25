@@ -76,11 +76,9 @@
     Then use Unity's <a href="http://unity3d.com/support/documentation/ScriptReference/Application.OpenURL.html">Application.OpenURL</a>
     function to actually open a web page.
 </p>
-<code>
-if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) { <br />
-&nbsp;&nbsp;&nbsp;&nbsp;Application.OpenURL("http://bradkeys.com/");<br />
-}
-</code>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">if</span> <span class="p">(</span><span class="n">GUILayout</span><span class="p">.</span><span class="nf">Button</span><span class="p">(</span><span class="s">"\nCreated by\nwww.bradkeys.com"</span><span class="p">,</span> <span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">label</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">Application</span><span class="p">.</span><span class="nf">OpenURL</span><span class="p">(</span><span class="s">"http://bradkeys.com/"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
 <p>
     This works great in most cases but my Facebook app used an iFrame to display its content.
     When I used Application.OpenURL it loaded my website inside of Facebook and looked awful.
@@ -88,11 +86,9 @@ if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) { <br />
     <a href="http://unity3d.com/support/documentation/ScriptReference/Application.ExternalEval.html">Application.ExternalEval</a>.
     Using this I was able to open a new window.
 </p>
-<code>
-if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;Application.ExternalEval("window.open('http://www.bradkeys.com/');");<br />
-}
-</code>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">if</span> <span class="p">(</span><span class="n">GUILayout</span><span class="p">.</span><span class="nf">Button</span><span class="p">(</span><span class="s">"\nCreated by\nwww.bradkeys.com"</span><span class="p">,</span> <span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">label</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">Application</span><span class="p">.</span><span class="nf">ExternalEval</span><span class="p">(</span><span class="s">"window.open('http://www.bradkeys.com/');"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
 <p>
     However this method has a downside.
     Since JavaScript is opening the new window, any browsers with pop-up blockers enabled will prevent the window from opening.
@@ -104,17 +100,15 @@ if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) {<br />
     If you don't mind taking the player away from your game page, then you can use a JavaScript redirect.
     Below is an example of handling a redirect in a normal window as well as handling a redirect from within an iFrame like Facebook.
 </p>
-<code>
-// Normal window<br />
-if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;Application.ExternalEval("top.location = 'http://www.bradkeys.com/';");<br />
-}<br /><br />
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="c1">// Normal window
+</span><span class="k">if</span> <span class="p">(</span><span class="n">GUILayout</span><span class="p">.</span><span class="nf">Button</span><span class="p">(</span><span class="s">"\nCreated by\nwww.bradkeys.com"</span><span class="p">,</span> <span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">label</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">Application</span><span class="p">.</span><span class="nf">ExternalEval</span><span class="p">(</span><span class="s">"top.location = 'http://www.bradkeys.com/';"</span><span class="p">);</span>
+<span class="p">}</span>
 
-// iFrame (eg. Facebook)<br />
-if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) {<br />
-&nbsp;&nbsp;&nbsp;&nbsp;Application.ExternalEval("window.parent.top.location = 'http://www.bradkeys.com/';");<br />
-}<br />
-</code>
+<span class="c1">// iFrame (eg. Facebook)
+</span><span class="k">if</span> <span class="p">(</span><span class="n">GUILayout</span><span class="p">.</span><span class="nf">Button</span><span class="p">(</span><span class="s">"\nCreated by\nwww.bradkeys.com"</span><span class="p">,</span> <span class="n">GUI</span><span class="p">.</span><span class="n">skin</span><span class="p">.</span><span class="n">label</span><span class="p">))</span> <span class="p">{</span>
+<span class="p">&amp;</span><span class="n">nbsp</span><span class="p">;&amp;</span><span class="n">nbsp</span><span class="p">;&amp;</span><span class="n">nbsp</span><span class="p">;&amp;</span><span class="n">nbsp</span><span class="p">;</span><span class="n">Application</span><span class="p">.</span><span class="nf">ExternalEval</span><span class="p">(</span><span class="s">"window.parent.top.location = 'http://www.bradkeys.com/';"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
 <p>
     This should cover most situations.
     If you have any questions, feel free to contact me.

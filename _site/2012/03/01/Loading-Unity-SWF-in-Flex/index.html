@@ -163,20 +163,16 @@
     I set it in the following two places in my HTML and JavaScript:
 </p>
 
-<code>
-    <pre>
-AC_FL_RunContent(
-		"wmode", "direct",
-		....
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="nf">AC_FL_RunContent</span><span class="p">(</span>
+		<span class="s">"wmode"</span><span class="p">,</span> <span class="s">"direct"</span><span class="p">,</span>
+		<span class="p">....</span>
 
-if (hasRequestedVersion) {
-	// if we've detected an acceptable version
-	// embed the Flash Content SWF when all tests are passed
-	AC_FL_RunContent(
-			"wmode", "direct",
-	....
-    </pre>
-</code>
+<span class="k">if</span> <span class="p">(</span><span class="n">hasRequestedVersion</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// if we've detected an acceptable version
+</span>	<span class="c1">// embed the Flash Content SWF when all tests are passed
+</span>	<span class="nf">AC_FL_RunContent</span><span class="p">(</span>
+			<span class="s">"wmode"</span><span class="p">,</span> <span class="s">"direct"</span><span class="p">,</span>
+	<span class="p">....</span></code></pre></figure>
 <p>
     And lastly make sure that the HTML embed tag has the attribute
     <em>wmode="direct"</em>.
@@ -229,11 +225,7 @@ if (hasRequestedVersion) {
     your Flex project as well as the images. You will probably want to edit the
     file called SimplePreloader.as and change the line that says:
 </p>
-<code>
-    <pre>
-unityContentLoader = new UnityContentLoader("unity-flash-small.swf", this, params, false);
-    </pre>
-</code>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">unityContentLoader</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">UnityContentLoader</span><span class="p">(</span><span class="s">"unity-flash-small.swf"</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="k">params</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span></code></pre></figure>
 <p>
     You want the string <em>"unity-flash-small.swf"</em> to be the name and path of the
     Unity SWF you want to load. You might even want to change this class to accept
@@ -242,18 +234,14 @@ unityContentLoader = new UnityContentLoader("unity-flash-small.swf", this, param
     have this part set up the way you want, you can get things rocking and rolling
     with the following code wherever you want to load the Unity SWF in your project.
 </p>
-<code>
-    <pre>
-import com.unity.UnityContentLoader;
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="n">unity</span><span class="p">.</span><span class="n">UnityContentLoader</span><span class="p">;</span>
 
-private var unityContentLoader:UnityContentLoader;
+<span class="k">private</span> <span class="kt">var</span> <span class="n">unityContentLoader</span><span class="p">:</span><span class="n">UnityContentLoader</span><span class="p">;</span>
 
-private function startLoad() : void {
-	var loader:SimplePreloader = new SimplePreloader();
-	stage.addChild(loader);
-}
-    </pre>
-</code>
+<span class="k">private</span> <span class="n">function</span> <span class="nf">startLoad</span><span class="p">()</span> <span class="p">:</span> <span class="k">void</span> <span class="p">{</span>
+	<span class="kt">var</span> <span class="n">loader</span><span class="p">:</span><span class="n">SimplePreloader</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SimplePreloader</span><span class="p">();</span>
+	<span class="n">stage</span><span class="p">.</span><span class="nf">addChild</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
 <p>
    This should be all you really need to get started with loading in Unity content
    to a Flash application. If you want to know about communicating with the loaded

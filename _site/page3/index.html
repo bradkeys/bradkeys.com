@@ -122,7 +122,7 @@
         </h1>
         <div class="excerpt">
             
-                This is extremely simple to do but may not be obvious at first. For my purposes I wanted a clickable label that opened my website. To do this you need to create a button and change it's GUIStyle to use your label's GUIStyle. Then use Unity's Application.OpenURL function to actually open a web page. if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) { &nbsp;&nbsp;&nbsp;&nbsp;Application.OpenURL("http://bradkeys.com/"); } This works great in most cases but my Facebook app used an iFrame to display its content. When I used Application.OpenURL it loaded my website inside of Facebook and looked awful. Thankfully Unity can execute custom JavaScript from the...
+                This is extremely simple to do but may not be obvious at first. For my purposes I wanted a clickable label that opened my website. To do this you need to create a button and change it's GUIStyle to use your label's GUIStyle. Then use Unity's Application.OpenURL function to actually open a web page. if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) { Application.OpenURL("http://bradkeys.com/"); } This works great in most cases but my Facebook app used an iFrame to display its content. When I used Application.OpenURL it loaded my website inside of Facebook and looked awful. Thankfully Unity can execute custom JavaScript from the...
             
         </div>
         <a class="btn btn-sharp btn-sm hvr-push" href="/2011/01/06/Creating-Links-in-Unity/">Read More</a>

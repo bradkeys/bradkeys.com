@@ -99,8 +99,7 @@ disqus_id: 22
     I set it in the following two places in my HTML and JavaScript:
 </p>
 
-<code>
-    <pre>
+{% highlight c# %}
 AC_FL_RunContent(
 		"wmode", "direct",
 		....
@@ -111,8 +110,7 @@ if (hasRequestedVersion) {
 	AC_FL_RunContent(
 			"wmode", "direct",
 	....
-    </pre>
-</code>
+{% endhighlight %}
 <p>
     And lastly make sure that the HTML embed tag has the attribute
     <em>wmode="direct"</em>.
@@ -165,11 +163,9 @@ if (hasRequestedVersion) {
     your Flex project as well as the images. You will probably want to edit the
     file called SimplePreloader.as and change the line that says:
 </p>
-<code>
-    <pre>
+{% highlight c# %}
 unityContentLoader = new UnityContentLoader("unity-flash-small.swf", this, params, false);
-    </pre>
-</code>
+{% endhighlight %}
 <p>
     You want the string <em>"unity-flash-small.swf"</em> to be the name and path of the
     Unity SWF you want to load. You might even want to change this class to accept
@@ -178,8 +174,7 @@ unityContentLoader = new UnityContentLoader("unity-flash-small.swf", this, param
     have this part set up the way you want, you can get things rocking and rolling
     with the following code wherever you want to load the Unity SWF in your project.
 </p>
-<code>
-    <pre>
+{% highlight c# %}
 import com.unity.UnityContentLoader;
 
 private var unityContentLoader:UnityContentLoader;
@@ -188,8 +183,7 @@ private function startLoad() : void {
 	var loader:SimplePreloader = new SimplePreloader();
 	stage.addChild(loader);
 }
-    </pre>
-</code>
+{% endhighlight %}
 <p>
    This should be all you really need to get started with loading in Unity content
    to a Flash application. If you want to know about communicating with the loaded

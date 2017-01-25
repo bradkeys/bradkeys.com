@@ -80,8 +80,7 @@ image: https://img.youtube.com/vi/oB4R9O3RY_8/0.jpg
     (non-existent), which we found made the game harder the higher it was. Lastly we made it so that ever 3 rows, the entire row is blank, allowing for more
     interesting jumping. We thought of these values and tweaked them quite a bit before finding a great balance.
 </p>
-<code>
-<pre>
+{% highlight c# %}
 for (int x = 0; x < gridWidth; x++) {
   // Only create a new tile a specified percent of the time.
   if (Random.Range(0f, 1f) < chanceOfBlankTile) {
@@ -105,8 +104,7 @@ for (int x = 0; x < gridWidth; x++) {
 
   CreateTile(tileColor, x, y);
 }
-</pre>
-</code>
+{% endhighlight %}
 <p>
     <em>
         After the jam I made the game start easy (high chance of sharing neighbour colour, low chance of blank tile) and progressively (every 12 rows)
