@@ -14,6 +14,22 @@ Just Pretend:
     video: "https://www.youtube.com/embed/F-8PQvm0Nnc"
     summary: "A top-down 3D action-adventure roguelike game aimed for release on current generation consoles. Inspired by <em>Zelda: A Link to the Past</em> and <em>Spelunky</em>. Made with Unity. In development."
 
+Sine Shooter:
+    company: Global Game Jam
+    role: Game Designer &amp; Unity Developer
+    year: 2017
+    thumbnail: sine-banner.png
+    filename: sine-shooter
+    images:
+      - sine-1.png
+      - sine-2.png
+      - sine-3.png
+      - sine-4.png
+    video: "https://www.youtube.com/embed/DqQPiXFe_7U"
+    blog-posts:
+      "Sine Shooter (Global Game Jam)": "/2017/01/25/Sine-Shooter-Global-Game-Jam/"
+    summary: "Created with Unity during the 2017 Global Game Jam. A virtual reality multiplayer FPS where players fend off waves of enemies in a constantly changing environment."
+
 Orbert:
     company: Rebel Hippo Inc.
     role: Unity Developer &amp; Level Designer
