@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!-- Fun Stuff! -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta name="google-site-verification" content="p1mSsTQKTBPCQYTaiKcwBJ9t8n9sgQ1g2lQ--ozQhtM" />
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="/css/main.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/public/favicon.ico">
+
+    <!-- Javascript -->
+    <script src="/js/modernizr.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- SEO -->
+    <title>Sine Shooter (Global Game Jam) &middot; Brad Keys</title>
+	<meta name="author" content="Brad Keys" />
+	<meta name="copyright" content="&copy; 2017 Brad Keys" />
+	<meta name="description" content="Game development blog &amp; portfolio." />
+	<meta name="keywords" content="programming, programmer, Lumos, analytics, Unity3d, Unity, Brad Keys,
+	Bradley Keys, Game Design, VFS, rebel hippo, rebelhippo, just pretend, orbert, canada,
+	ontario, kitchener, waterloo, toronto, velocity, contract, consulting, consultant, game industry,
+	virtual reality, vr, augmented reality, ar"
+	/>
+</head>
+
+    <body>
+        <div id="header-wrapper">
+            <div id="header">
+                <div id="logo">
+                    <a href="/">
+                        <span id="logo-title">Brad Keys</span>
+                        <span id="logo-subtitle">Game Designer | Programmer</span>
+                    </a>
+                </div>
+                <nav>
+                    <div id="social-links">
+                        <a class="hvr-grow" href="http://twitter.com/bradkeys">
+                            <img src="/img/icon_twitter.png" />
+                        </a>
+                        <a class="hvr-grow" href="http://www.linkedin.com/in/bradkeys">
+                            <img src="/img/icon_linkedin.png" />
+                        </a>
+                        <a class="hvr-grow" href="http://www.rebelhippo.com/">
+                            <img src="/img/icon_rebelhippo.png" />
+                        </a>
+                    </div>
+                    <div id="nav-links">
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/">Blog</a>
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/portfolio/">Portfolio</a>
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/contact/">Contact</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div id="main-wrapper">
+            <main>
+                <div id="blog">
+    <div id="blog-post">
+    <article>
+        <h1>
+            Sine Shooter (Global Game Jam)
+            <time datetime="2017/01/23">23 Jan 2017</time>
+        </h1>
+        <div class="content">
+            <div id="video-outer">
+    <div id="video-inner">
+        <iframe src="https://www.youtube.com/embed/DqQPiXFe_7U" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+<br />
+<h2>Intro</h2>
+<p>
+    This past weekend I once again collaborated with the talented Brent Mitchell for the 48 hour <a href="http://globalgamejam.org/2017/games/sine-shooter">Global Game Jam</a>.
+    The theme this year was <em>Waves</em>.
+</p>
+<p>
+    This jam was quite different than our past collaborations because we worked remotely from each other.
+    We then decided to make it more difficult for ourselves by making a virtual reality game, which only Brent has the hardware (HTC Vive) for currently.
+    And to top it off we also decided to keep up our trend of making multiplayer games!
+    So this was one heck of a challenging game jam for us, but we are quite happy with the results!
+</p>
+<img src="/img/portfolio/sine-2.png" />
+<span class="image-description">
+    VR player view, with Vive controllers used to aim &amp; shoot guns in both hands at AI enemies.
+</span>
+<h2>Friday</h2>
+<p>
+    Friday night we made our design decisions, but this year we kept them vague.
+    We only knew we were making an FPS in VR where enemies and the environment would spawn in waves.
+    For multiplayer, a second non-VR player would be able to view the map from a bird's eye perspective and affect gameplay <em>somehow</em>.
+    While this was intended to be played offline on a single computer, we did not have that luxury since we worked remotely from each other.
+    So we wanted multiplayer to have an optional online component which would allow us to test gameplay together.
+    Brent went ahead creating the gameplay while I worked on multiplayer and UI functionality.
+</p>
+<p>
+    A rather unique part of the gameplay is when the VR player moves around they see buildings, walls, and other obstacles generate across the map periodically in a wave.
+    This is neat because you may be ducking behind cover only to find it disappear and leave you wide open for attack.
+    Alternatively you may be chasing down an enemy AI and find yourself inside a building that just popped up.
+    There was a brief concern about AI pathfinding since the map was dynamic, but Unity's nav mesh handled this no problem.
+    The only limitation was not being able to have dynamically created objects which the AI could move on, such as a ramp or staircase.
+</p>
+<p>
+    Player movement was accomplished using a nifty Unity package called <a href="https://www.assetstore.unity3d.com/en/#!/content/67602">Arm Swinger</a>.
+    You literally just swing your arms as if you're running and the player moves forward.
+    Feels awesome, works well, and we highly recommend using it in your VR game.
+</p>
+<img src="/img/portfolio/sine-1.png" />
+<span class="image-description">
+    VR player view, being chased and shot at by the enemy AI.
+</span>
+<p>
+    I decided to give <a href="https://unity3d.com/services/multiplayer">Unity's new multiplayer service (UNet)</a> a try.
+    I had extensively used their legacy multiplayer service, but UNet is more robust and a major departure from their legacy system.
+    I've also used <a href="https://www.photonengine.com">Photon</a> networking with a few games in the past and I highly recommend it!
+    But I was looking to learn something new and figured it couldn't hurt to try UNet.
+</p>
+<p>
+    It was difficult to find a list of UNet features, which I wanted to see to varify it would suit our needs.
+    The service website doesn't break down this information and the multiplayer dashboard offers very little.
+    My local (up-to-date) Unity docs offered different info than the live docs too; I recommend using the live documentation.
+    If you're searching for that info, the Unity Manual for <a href="https://docs.unity3d.com/Manual/UNetOverview.html">Multiplayer and Networking</a> is what you want.
+    Take note the docs start by mentioning <a href="https://docs.unity3d.com/Manual/UnityMultiplayerIntegratingOverview.html">three approaches to integrate UNet</a>:
+</p>
+<ul>
+    <li>using <strong>NetworkManagerHUD</strong>. (simplest, requires no scripting)</li>
+    <li>using <strong>NetworkServer and NetworkClient</strong>. (high-level, simpler scripting)</li>
+    <li>using <strong>NetworkTransport</strong> directly. (low-Level, more complex scripting)</li>
+</ul>
+<a href="https://www.assetstore.unity3d.com/en/#!/content/46213">
+    <img src="/img/posts/tanks-demo.jpg" />
+</a>
+<span class="image-description">
+    TANKS! Networking Demo, created by Unity Technologies.
+</span>
+<p>
+    If you like to learn by example then I recommend checking out Unity's <a href="https://www.assetstore.unity3d.com/en/#!/content/46213">TANKS! Networking Demo</a>.
+    You can see UNet in action, complete with a robust lobby system using the high-level methods.
+    I found it difficult to understand how some features were being accomplished,
+    as much of the functionality is hidden within the <a href="https://docs.unity3d.com/Manual/UNetManager.html">Network Manager Component</a>.
+    Unfortunately the documentation heavily references using Network Manager, to the point where it seems to just assume you're always using it.
+    I concluded that most games will want to go beyond the flexibilities of the as-is Network Manager and will require understanding how to override its functionality or build their own entirely.
+</p>
+<h2>Saturday</h2>
+<p>
+    On Saturday I decided to use UNet's high-level methods since I expected it to be the most similar to Photon and their legacy service.
+    I made long strides with this and was able to catch up to Brent's gameplay mechanics.
+    Once the multiplayer code was merged into the project it became apparent that RPC calls aren't as offline-friendly in UNet as they were in the legacy system or Photon.
+    For example, if an RPC method is called while offline, an error will occur and the method is not called.
+    In Photon and the legacy multiplayer service you could build a game for offline and online and not have to worry too much about checking networking.
+    So with UNet I found myself writing 3 methods for networked functions; the main method which checked connectivity, and then the offline and online (RPC) methods which are called by the main method.
+    There is likely a better solution to handle offline/online functionality, but in the heat of the moment during the jam this was my approach.
+</p>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">void</span> <span class="nf">PressWeaponTrigger</span> <span class="p">(</span><span class="kt">bool</span> <span class="n">isLeftHand</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">NetworkMode</span><span class="p">.</span><span class="nf">IsOnline</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nf">CmdPressWeaponTrigger</span><span class="p">(</span><span class="n">isLeftHand</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">DoPressWeaponTrigger</span><span class="p">(</span><span class="n">isLeftHand</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="na">[Command]</span>
+<span class="k">void</span> <span class="nf">CmdPressWeaponTrigger</span> <span class="p">(</span><span class="kt">bool</span> <span class="n">isLeftHand</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nf">DoPressWeaponTrigger</span><span class="p">(</span><span class="n">isLeftHand</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">void</span> <span class="nf">DoPressWeaponTrigger</span> <span class="p">(</span><span class="kt">bool</span> <span class="n">isLeftHand</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">weapon</span> <span class="p">=</span> <span class="n">isLeftHand</span> <span class="p">?</span> <span class="n">equippedLeftWeapon</span> <span class="p">:</span> <span class="n">equippedRightWeapon</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">weapon</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">weapon</span><span class="p">.</span><span class="nf">TriggerPressed</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+<p>
+    I finished the networking code but several aspects of it remains untested since testing was difficult and time consuming.
+    We decided it was more important to get the core of the game built so we would have something to show off Sunday afternoon.
+    I created UI menus for selecting single or two player modes, offline or online.
+</p>
+<h2>Sunday</h2>
+<p>
+    On Sunday I focused on the non-VR player experience (second player).
+    While it wasn't shaping up to be what we originally invisioned, I figured we might as well have them do <em>something</em>.
+    So I created the bird's eye camera view, added visuals to the VR player which could only be seen from above, and gave the non-VR player the ability to click on the VR player.
+    Since there was little time remaining I tapped into the health system Brent had created and made it so clicking the VR player made their health go down.
+    Then I made it so when the VR player defeats an enemy, they gain health.
+    This created some urgency to the VR player's experience, encouraging them to defeat enemies quickly.
+</p>
+<img src="/img/portfolio/sine-4.png" />
+<span class="image-description">
+    Non-VR view used by player 2 on the PC, controlling with mouse. Red sphere represents VR player.
+</span>
+<p>
+    The last thing I worked on was adding a health UI in-world for the VR player to see.
+    After some quick experimenting it seemed best to put the health meter right on the back of the guns.
+    This was the first time I had used uGUI to make a world-space UI, and it was incredibly simple.
+</p>
+<p>
+    Some interesting questions arrised throughout our development.
+    Since we were using one computer for both a VR player and a keyboard/mouse user, we encountered issues such as having multiple audio listeners.
+    After thinking about it, any Unity-made VR game we've played which used this same two player setup often just had music or ambience for the computer player.
+    Not having two audio listeners prevents one of the players from hearing sounds unique to their own experience.
+    Another issue, which was quickly solved, is how Unity by default shows the VR player's camera view in the editor while playing.
+    You can fix this by setting the <a href="https://docs.unity3d.com/ScriptReference/Camera-stereoTargetEye.html">Target Eye property</a> on the non-VR camera to be the main screen.
+</p>
+<h2>Conclusions</h2>
+<p>
+    I haven't given UNet enough of a chance yet, but my first impression is that Photon networking is simpler to use and can accomplish just as much or more.
+    Multiplayer VR is fun, as is mixing it with non-VR players, but be prepared to face new technical challenges and constraints.
+    And finally, it's not the best idea to work on a VR game without a VR rig, especially during a game jam!
+</p>
+<p>
+    You can <a href="http://ggj.s3.amazonaws.com/games/2017/01/22/1449/sineshooter_a04.zip">download</a> the game for <em>Windows only</em>.
+    It requires the HTC Vive or Oculus Rift with motion controllers.
+</p>
+
+
+        </div>
+    </article>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com/2017/01/23/Sine-Shooter-Global-Game-Jam/';
+                this.page.identifier = 'Sine Shooter (Global Game Jam)';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
+
+</div>
+            </main>
+        </div>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-15714823-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

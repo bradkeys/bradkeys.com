@@ -258,7 +258,7 @@ main a:hover {
 
 #blog .content, #portfolio p {
     text-align: left;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 #blog .excerpt img {
@@ -269,7 +269,7 @@ main a:hover {
 }
 
 #blog .excerpt p {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 #blog-post h1 {
@@ -288,6 +288,25 @@ main a:hover {
 
 #blog-post .content a:hover {
     text-decoration: none;
+}
+
+#blog-post .content img {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    padding: 0;
+    display: block;
+    max-width: 100%;
+    max-height: 500px;
+}
+
+#blog-post .image-description {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #AAA;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
 }
 
 /* Bootstrap Buttons */
