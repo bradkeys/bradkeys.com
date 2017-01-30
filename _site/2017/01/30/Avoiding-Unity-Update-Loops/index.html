@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!-- Fun Stuff! -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta name="google-site-verification" content="p1mSsTQKTBPCQYTaiKcwBJ9t8n9sgQ1g2lQ--ozQhtM" />
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="/css/main.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/public/favicon.ico">
+
+    <!-- Javascript -->
+    <script src="/js/modernizr.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- SEO -->
+    <title>Avoiding Unity Update Loops &middot; Brad Keys</title>
+	<meta name="author" content="Brad Keys" />
+	<meta name="copyright" content="&copy; 2017 Brad Keys" />
+	<meta name="description" content="Game development blog &amp; portfolio." />
+	<meta name="keywords" content="programming, programmer, Lumos, analytics, Unity3d, Unity, Brad Keys,
+	Bradley Keys, Game Design, VFS, rebel hippo, rebelhippo, just pretend, orbert, canada,
+	ontario, kitchener, waterloo, toronto, velocity, contract, consulting, consultant, game industry,
+	virtual reality, vr, augmented reality, ar"
+	/>
+</head>
+
+    <body>
+        <div id="header-wrapper">
+            <div id="header">
+                <div id="logo">
+                    <a href="/">
+                        <span id="logo-title">Brad Keys</span>
+                        <span id="logo-subtitle">Game Designer | Programmer</span>
+                    </a>
+                </div>
+                <nav>
+                    <div id="social-links">
+                        <a class="hvr-grow" href="http://twitter.com/bradkeys">
+                            <img src="/img/icon_twitter.png" />
+                        </a>
+                        <a class="hvr-grow" href="http://www.linkedin.com/in/bradkeys">
+                            <img src="/img/icon_linkedin.png" />
+                        </a>
+                        <a class="hvr-grow" href="http://www.rebelhippo.com/">
+                            <img src="/img/icon_rebelhippo.png" />
+                        </a>
+                    </div>
+                    <div id="nav-links">
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/">Blog</a>
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/portfolio/">Portfolio</a>
+                        <a class="btn btn-sharp btn-sm hvr-push" href="/contact/">Contact</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div id="main-wrapper">
+            <main>
+                <div id="blog">
+    <div id="blog-post">
+    <article>
+        <h1>
+            Avoiding Unity Update Loops
+            <time datetime="2017/01/30">30 Jan 2017</time>
+        </h1>
+        <div class="content">
+            <p>
+    The <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a> loop
+    is the most commonly used function to implement any kind of game behaviour, according to Unity's documentation.
+    As such it's important to address the performance impact it has on your game since logic in the Update function runs <em>every frame</em>.
+    Update is convenient and time-saving because it requires little planning to use and provides immediate results, but this allure can be an issue as your codebase grows.
+    It's especially problematic if you have many characters or smart objects within your game world constantly checking for conditions or executing complex logic.
+    I'll demonstrate how to avoid the Update loop using either <strong>Events</strong>, <strong>Callbacks</strong>, <strong>Coroutines</strong>,
+    or the <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Invoke.html">Invoke</a> function.
+</p>
+<p>
+    Before diving into programming techniques you should first understand when it's appropriate to use the Update function.
+    For me to maintain a performance-based mindset, I generally consider the Update function a bad thing and avoid it when possible.
+    Logic in any of the Update functions should be simple; if something does not need to be calculated every frame then do it elsewhere.
+</p>
+<ul>
+    <li>Use Update for Input and Movement</li>
+    <li>Use <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html">FixedUpdate</a> for continuous physics related logic</li>
+    <li>Use <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.LateUpdate.html">LateUpdate</a> for camera movement/rotation</li>
+</ul>
+<p>
+    Usually anything else doesn't need to be in the Update loops and comes down to being handled by an appropriate technique, at an appropriate time.
+    The techniques listed below cover most cases I've encountered where an Update loop could be optimized.
+</p>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#events">
+                    Custom Events
+                </a>
+            </h4>
+        </div>
+        <div id="events" class="panel-collapse collapse">
+            <div class="panel-body">
+                <h2>Events</h2>
+                <p>
+                   Events are my go-to solution when an action occurs and something (often many) needs to know about it.
+                   For example if the player gains money then the UI should be updated to reflect the new total.
+                   If the money is gained while browsing a store, some items may need to change state (not purchasable => purchasable).
+                   Rather than having the UI constantly check the player's money in an Update loop,
+                   or having messy logic where a bunch of methods are called on interested objects, you can instead use an event.
+                </p>
+                <p>
+                    In your IDE (MonoDevelop, Visual Studio, etc) an event is typically associated with an icon of the letter 'E' or a sweet lightning bolt.
+                    An event is essentially a list of methods who have subscribed to it, and when the event is raised it iterates through the list, calling each subscribed method.
+                    Creating and using an event is accomplished in a few short steps as shown in the below code with comments.
+                </p>
+                <h3>Defining and Raising an Event</h3>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Inventory</span>
+<span class="p">{</span>
+	<span class="c1">// The total amount of money this inventory contains
+</span>	<span class="kt">int</span> <span class="n">money</span><span class="p">;</span>
+
+	<span class="c1">// Defines the type of function and parameters your event requires
+</span>	<span class="c1">// Only define parameters you believe will provide useful information related to the event
+</span>	<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">OnMoneyUpdatedHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">currentMoney</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amountChanged</span><span class="p">);</span>
+
+	<span class="c1">// The event which other objects can subscribe to
+</span>	<span class="c1">// Uses the function defined above as its type
+</span>	<span class="k">public</span> <span class="k">event</span> <span class="n">OnMoneyUpdatedHandler</span> <span class="n">OnMoneyUpdated</span><span class="p">;</span>
+
+	<span class="c1">/// &lt;summary&gt;
+</span>	<span class="c1">/// Updates the current total money by Amount.
+</span>	<span class="c1">/// &lt;/summary&gt;
+</span>	<span class="c1">/// &lt;param name="amount"&gt;Amount to alter the current money total by.&lt;/param&gt;
+</span>	<span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateMoney</span> <span class="p">(</span><span class="kt">int</span> <span class="n">amount</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="c1">// Redundancy check
+</span>		<span class="k">if</span> <span class="p">(</span><span class="n">amount</span> <span class="p">!=</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// Tally up the new money total
+</span>			<span class="n">money</span> <span class="p">+=</span> <span class="n">amount</span><span class="p">;</span>
+
+			<span class="c1">// Raise the OnMoneyUpdated event if it contains subscriptions.
+</span>			<span class="c1">// An event with no subscribers is null, always do this check.
+</span>			<span class="k">if</span> <span class="p">(</span><span class="n">OnMoneyUpdated</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nf">OnMoneyUpdated</span><span class="p">(</span><span class="n">money</span><span class="p">,</span> <span class="n">amount</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+                <h3>Subscribing to Events</h3>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HUD</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+	<span class="c1">// The UI Text on the HUD which displays the current money in the inventory
+</span>	<span class="p">[</span><span class="n">SerializeField</span><span class="p">]</span>
+	<span class="n">Text</span> <span class="n">moneyLabel</span><span class="p">;</span>
+
+	<span class="c1">// Reference to the player's inventory, assume it has been assigned
+</span>	<span class="n">Inventory</span> <span class="n">inventory</span><span class="p">;</span>
+
+	<span class="k">void</span> <span class="nf">Start</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">// Subscribes our OnMoneyUpdated function to the inventory's OnMoneyUpdated event
+</span>		<span class="c1">// You only need to subscribe once.
+</span>		<span class="c1">// You can unsubscribe the same way but using a minus (-) sign.
+</span>		<span class="n">inventory</span><span class="p">.</span><span class="n">OnMoneyUpdated</span> <span class="p">+=</span> <span class="n">OnMoneyUpdated</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="c1">/// &lt;summary&gt;
+</span>	<span class="c1">/// Matches the function defined by OnMoneyUpdatedHandler in Inventory.cs
+</span>	<span class="c1">/// It must match in order to subscribe to the event.
+</span>	<span class="c1">/// Subscribes to the OnMoneyUpdated event in the Start method above.
+</span>	<span class="c1">/// Called when the OnMoneyUpdated event is raised in Inventory.cs
+</span>	<span class="c1">/// &lt;/summary&gt;
+</span>	<span class="c1">/// &lt;param name="totalMoney"&gt;New total amount of money in the inventory.&lt;/param&gt;
+</span>	<span class="c1">/// &lt;param name="amountChanged"&gt;Amount changed during this event.&lt;/param&gt;
+</span>	<span class="k">void</span> <span class="nf">OnMoneyUpdated</span> <span class="p">(</span><span class="kt">int</span> <span class="n">totalMoney</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amountChanged</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">moneyLabel</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">totalMoney</span><span class="p">.</span><span class="nf">ToString</span><span class="p">();</span>
+
+		<span class="c1">// TODO: Effect displaying the amount changed (ie. +/- amountChanged)
+</span>	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+                <p>
+                    You can unsubscribe from an event using the minus sign (<em>inventory.OnMoneyUpdated -= OnMoneyUpdated</em>).
+                    I usually see this with static events since they are not reset with scene loads and can reference a method on a destroyed object.
+                    Try to avoid this situation as it unnecessarily complicates your codebase.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#callbacks">
+                    Callback Functions
+                </a>
+            </h4>
+        </div>
+        <div id="callbacks" class="panel-collapse collapse">
+            <div class="panel-body">
+                <h2>Callback Functions</h2>
+                <p>
+                    I believe callbacks were first seen in the Unity API when they introduced their <a href="https://docs.unity3d.com/ScriptReference/Social.html">Social API</a>.
+                    They accomplish a similar task as events, but serve only a single subscription rather than many, and are <em>usually</em> called just once.
+                    Those who've used JavaScript and JQuery should be familiar with the concept of callbacks.
+                </p>
+                <p>
+                    When calling FunctionA, you can pass another FunctionB as a parameter, usually with the assumption that FunctionB is called once FunctionA has completed its task.
+                    This is especially useful when the task you're waiting on may take multiple frames to complete, like a web request to a server, which is why callbacks are seen throughout examples in the Social API.
+                    So rather than continuously checking for a server response in an Update loop, use a callback function.
+                </p>
+                <h3>Callback Example</h3>
+                <p>
+                    Here you see a method which accepts a callback parameter and uses it later.
+                </p>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Timer</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+	<span class="c1">/// &lt;summary&gt;
+</span>	<span class="c1">/// Helper method which starts the DoCallAfterTime coroutine.
+</span>	<span class="c1">/// Notice System.Action represents a void function with no parameters.
+</span>	<span class="c1">/// &lt;/summary&gt;
+</span>	<span class="c1">/// &lt;param name="time"&gt;The amount of time to wait.&lt;/param&gt;
+</span>	<span class="c1">/// &lt;param name="callback"&gt;The callback method called after waiting.&lt;/param&gt;
+</span>	<span class="k">public</span> <span class="k">void</span> <span class="nf">CallbackAfterTime</span> <span class="p">(</span><span class="kt">float</span> <span class="n">time</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Action</span> <span class="n">callback</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">DoCallbackAfterTime</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">callback</span><span class="p">));</span>
+	<span class="p">}</span>
+
+	<span class="c1">/// &lt;summary&gt;
+</span>	<span class="c1">/// Calls the given callback method after waiting a given amount of time.
+</span>	<span class="c1">/// &lt;/summary&gt;
+</span>	<span class="c1">/// &lt;param name="time"&gt;The amount of time to wait.&lt;/param&gt;
+</span>	<span class="c1">/// &lt;param name="callback"&gt;The callback method called after waiting.&lt;/param&gt;
+</span>	<span class="n">IEnumerator</span> <span class="nf">DoCallbackAfterTime</span> <span class="p">(</span><span class="kt">float</span> <span class="n">time</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Action</span> <span class="n">callback</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">yield</span> <span class="k">return</span> <span class="k">new</span> <span class="nf">WaitForSeconds</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+		<span class="nf">callback</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+                <p>
+                    While in this example you see the callback method defined and passed as a parameter.
+                </p>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CallbackExample</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+	<span class="c1">// Reference to the timer, assume it's assigned
+</span>	<span class="n">Timer</span> <span class="n">timer</span><span class="p">;</span>
+
+	<span class="k">void</span> <span class="nf">Start</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Starting callback flow at: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+
+		<span class="c1">// Calling a method which accepts a method parameter described as a callback
+</span>		<span class="c1">// Assume the method we send will be called once CallbackAfterTime completes
+</span>		<span class="n">timer</span><span class="p">.</span><span class="nf">CallbackAfterTime</span><span class="p">(</span><span class="m">3f</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">DoSomething</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="c1">/// &lt;summary&gt;
+</span>	<span class="c1">/// Callback method
+</span>	<span class="c1">/// &lt;/summary&gt;
+</span>	<span class="k">void</span> <span class="nf">DoSomething</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Callback flow completed at: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+                <p>
+                    Callback methods can also have parameters.
+                </p>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">void</span> <span class="nf">MyMethod</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">[</span><span class="k">]&gt;</span> <span class="n">callback</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="nf">callback</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[]</span> <span class="p">{</span> <span class="s">"callbacks"</span><span class="p">,</span> <span class="s">"are"</span><span class="p">,</span> <span class="s">"cool"</span> <span class="p">});</span>
+<span class="p">}</span></code></pre></figure>
+                <h3>Callbacks via Lambda Expressions</h3>
+                <p>
+                    Often times using anonymous functions is the go-to approach for callbacks, as you may have even noticed in Unity's Social API examples.
+                    They save the need to define a function in your class while keeping logic contained and easier to follow at a glance.
+                    These are unnamed functions with named parameters that automatically match the types defined in the callback.
+                    The lamda expression <em>=></em> is used to create a local function, with parameters on the left and the statement block on the right.
+                    Here's the first example from above rewritten with a lambda function.
+                </p>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CallbackExample</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+	<span class="c1">// Reference to the timer, assume it's assigned
+</span>	<span class="n">Timer</span> <span class="n">timer</span><span class="p">;</span>
+
+	<span class="k">void</span> <span class="nf">Start</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Starting callback flow at: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+
+		<span class="c1">// The delegate method is represented () =&gt; {}
+</span>		<span class="n">timer</span><span class="p">.</span><span class="nf">CallbackAfterTime</span><span class="p">(</span><span class="m">3f</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+			<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Callback flow completed at: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+		<span class="p">});</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+                <p>
+                    And here is an example using callback parameters.
+                </p>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CallbackExampleTwo</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="k">void</span> <span class="nf">MyMethod</span> <span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Action</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">[</span><span class="k">]&gt;</span> <span class="n">callback</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="nf">callback</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[]</span> <span class="p">{</span> <span class="s">"callbacks"</span><span class="p">,</span> <span class="s">"are"</span><span class="p">,</span> <span class="s">"cool"</span> <span class="p">});</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">LambdaExample</span>
+<span class="p">{</span>
+	<span class="n">CallbackExampleTwo</span> <span class="n">example</span><span class="p">;</span>
+
+	<span class="k">void</span> <span class="nf">DoExample</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">// Gets the int &amp; string values returned from CallbackExampleTwo.MyMethod
+</span>		<span class="n">example</span><span class="p">.</span><span class="nf">MyMethod</span><span class="p">((</span><span class="n">number</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+			<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">number</span><span class="p">);</span> <span class="c1">// 42
+</span>		<span class="p">});</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+            <p>
+                You can also create a class property that is a delegate function and assign it for use as a callback.
+                You can simply assign an appropriate function as the delegate callback to be used until otherwise assigned.
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#coroutines">
+                    Coroutine Loops
+                </a>
+            </h4>
+        </div>
+        <div id="coroutines" class="panel-collapse collapse">
+            <div class="panel-body">
+                <h2>Using Coroutines/IEnumerators as Update Loops</h2>
+                <p>
+                    Coroutines are common place in Unity games, so I'll assume you have some experience with them already.
+                    What you may not have considered though is creating your own form of Update loop using a coroutine.
+                    It's not a common use-case, but it can be useful when wanting something to update frequently, but less frequently than every frame.
+                    For example you could create a function that runs every 10 frames, or every half-second, or even at a random interval.
+                    This can be useful for AI decisions or something that can afford to be a bit 'choppy' such as retro-style character movement.
+                </p>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CustomLoop</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+	<span class="k">const</span> <span class="kt">float</span> <span class="n">maxTimeInterval</span> <span class="p">=</span> <span class="m">3f</span><span class="p">;</span>
+	<span class="k">const</span> <span class="kt">float</span> <span class="n">minTimeInterval</span> <span class="p">=</span> <span class="m">0.25f</span><span class="p">;</span>
+	<span class="k">const</span> <span class="kt">float</span> <span class="n">defaultTimeInterval</span> <span class="p">=</span> <span class="m">0.5f</span><span class="p">;</span>
+	<span class="k">const</span> <span class="kt">int</span> <span class="n">frameInterval</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+
+	<span class="k">void</span> <span class="nf">Start</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">TimedUpdateRoutine</span><span class="p">());</span>
+		<span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">FrameDelayedUpdateRoutine</span><span class="p">());</span>
+		<span class="nf">StartCoroutine</span><span class="p">(</span><span class="nf">RandomTimedUpdateRoutine</span><span class="p">());</span>
+	<span class="p">}</span>
+
+	<span class="k">void</span> <span class="nf">TimedUpdate</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Time update: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">void</span> <span class="nf">FrameDelayedUpdate</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Frame update: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">void</span> <span class="nf">RandomUpdate</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">// Your logic here
+</span>		<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Random update: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="c1">/// &lt;summary&gt;
+</span>	<span class="c1">/// A contiuous loop which executes logic after waiting for an amount of time to pass.
+</span>	<span class="c1">/// &lt;/summary&gt;
+</span>	<span class="n">IEnumerator</span> <span class="nf">TimedUpdateRoutine</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">yield</span> <span class="k">return</span> <span class="k">new</span> <span class="nf">WaitForSeconds</span><span class="p">(</span><span class="n">defaultTimeInterval</span><span class="p">);</span>
+			<span class="nf">TimedUpdate</span><span class="p">();</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="c1">/// &lt;summary&gt;
+</span>	<span class="c1">/// A continuous loop which executes logic after waiting for an amount of frames to pass.
+</span>	<span class="c1">/// &lt;/summary&gt;
+</span>	<span class="n">IEnumerator</span> <span class="nf">FrameDelayedUpdateRoutine</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">// Always run
+</span>		<span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">frameInterval</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span> <span class="p">{</span>
+				<span class="k">yield</span> <span class="k">return</span> <span class="k">new</span> <span class="nf">WaitForEndOfFrame</span><span class="p">();</span>
+			<span class="p">}</span>
+
+			<span class="nf">FrameDelayedUpdate</span><span class="p">();</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="c1">/// &lt;summary&gt;
+</span>	<span class="c1">/// A continuous loop which executes logic after waiting a random amount of time.
+</span>	<span class="c1">/// &lt;/summary&gt;
+</span>	<span class="n">IEnumerator</span> <span class="nf">RandomTimedUpdateRoutine</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">// Always run
+</span>		<span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kt">float</span> <span class="n">randomInterval</span> <span class="p">=</span> <span class="n">Random</span><span class="p">.</span><span class="nf">Range</span><span class="p">(</span><span class="n">minTimeInterval</span><span class="p">,</span> <span class="n">maxTimeInterval</span><span class="p">);</span>
+			<span class="k">yield</span> <span class="k">return</span> <span class="k">new</span> <span class="nf">WaitForSeconds</span><span class="p">(</span><span class="n">randomInterval</span><span class="p">);</span>
+			<span class="nf">RandomUpdate</span><span class="p">();</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+            <p>
+                You can also stop these coroutine loops using the <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopCoroutine.html">StopCoroutine</a> function.
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#invoke">
+                    Invoke &amp; Invoke Repeating
+                </a>
+            </h4>
+        </div>
+        <div id="invoke" class="panel-collapse collapse">
+            <div class="panel-body">
+                <h2>Invoke &amp; InvokeRepeating</h2>
+                <p>
+                    The Invoke function is neat tool to have at your disposal.
+                    You pass a method name as a string argument and it calls that method after a specified amount of time.
+                    Think of it as an alternative to using time-based coroutines, with built-in logic to avoid edge cases your coroutines might miss,
+                    such as dealing with <a href="https://docs.unity3d.com/ScriptReference/Time-timeScale.html">Time.timeScale</a>.
+                    It can also be useful (but potentially insecure!) in online multiplayer development where only
+                    <a href="https://msdn.microsoft.com/en-us/library/aa711900(v=vs.71).aspx">primitive types</a> are used as RPC arguments,
+                    allowing string methods to be invoked in situations you can't account for, such as user-made mods.
+                </p>
+                <p>
+                    <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.InvokeRepeating.html">InvokeRepeating</a> is what we'll focus on today though,
+                    as it can accomplish the same thing as the Update loop.
+                    Basically it's the same solution as explained in the Coroutines section above, except it only deals with time.
+                    You specify a function to be called repeatedly with a specified delay between each call.
+                    You can also stop it from repeating using the <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.CancelInvoke.html">CancelInvoke</a> function.
+                </p>
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">CustomLoop</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+	<span class="k">void</span> <span class="nf">Start</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="c1">// Call TimedUpdate immediately, repeat every 0.1 seconds
+</span>		<span class="nf">InvokeRepeating</span><span class="p">(</span><span class="s">"TimedUpdate"</span><span class="p">,</span> <span class="m">0f</span><span class="p">,</span> <span class="m">0.1f</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">void</span> <span class="nf">TimedUpdate</span> <span class="p">()</span>
+	<span class="p">{</span>
+		<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Time update: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </article>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+                this.page.url = 'http://www.bradkeys.com/2017/01/30/Avoiding-Unity-Update-Loops/';
+                this.page.identifier = 'Avoiding Unity Update Loops';
+            };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+            s.src = '//bradkeys.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <script type="text/javascript">
+        $('pre').addClass("prettyprint");
+    </script>
+</div>
+
+</div>
+            </main>
+        </div>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-15714823-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>

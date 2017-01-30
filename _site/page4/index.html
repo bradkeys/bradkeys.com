@@ -65,6 +65,19 @@
 
     <article>
         <h1>
+            <a href="/2011/01/06/Creating-Links-in-Unity/">Creating Links in Unity</a>
+            <time datetime="2011/01/06">06 Jan 2011</time>
+        </h1>
+        <div class="excerpt">
+            
+                This is extremely simple to do but may not be obvious at first. For my purposes I wanted a clickable label that opened my website. To do this you need to create a button and change it's GUIStyle to use your label's GUIStyle. Then use Unity's Application.OpenURL function to actually open a web page. if (GUILayout.Button("\nCreated by\nwww.bradkeys.com", GUI.skin.label)) { Application.OpenURL("http://bradkeys.com/"); } This works great in most cases but my Facebook app used an iFrame to display its content. When I used Application.OpenURL it loaded my website inside of Facebook and looked awful. Thankfully Unity can execute custom JavaScript from the...
+            
+        </div>
+        <a class="btn btn-sharp btn-sm hvr-push" href="/2011/01/06/Creating-Links-in-Unity/">Read More</a>
+    </article>
+
+    <article>
+        <h1>
             <a href="/2010/12/09/Hip-Ship/">Hip Ship</a>
             <time datetime="2010/12/09">09 Dec 2010</time>
         </h1>
@@ -137,19 +150,6 @@
             
         </div>
         <a class="btn btn-sharp btn-sm hvr-push" href="/2010/07/14/MondoCloud/">Read More</a>
-    </article>
-
-    <article>
-        <h1>
-            <a href="/2010/05/23/New-Development-Blog/">New Development Blog</a>
-            <time datetime="2010/05/23">23 May 2010</time>
-        </h1>
-        <div class="excerpt">
-            
-                For the past few months I've been slowly transforming this site into a development blog. Articles can be linked to individually, the main feed is now paginated, and most recently I added an RSS Feed. From now on I'll be posting about my game design and programming experiences and opinions. My current job has put me through a lot of challenges with Unity3D, Flash, and other technologies like PHP, JavaScript, databases, and Unix based operations. All of which have been in some shape or form tied into making social games for Facebook and other social networks. I have a unique...
-            
-        </div>
-        <a class="btn btn-sharp btn-sm hvr-push" href="/2010/05/23/New-Development-Blog/">Read More</a>
     </article>
 
 <!-- Pagination links -->

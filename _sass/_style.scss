@@ -587,6 +587,30 @@ main a:hover {
     position: absolute;
 }
 
+.panel-group {
+    margin-top: 25px;
+}
+
+.panel-body {
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.panel {
+    border-style: none;
+}
+
+.panel-title a {
+    text-decoration: none !important;
+    color: black !important;
+    text-transform: uppercase;
+}
+
+.panel-title a:hover {
+    text-decoration: underline !important;
+}
+
 /* mobile scaling */
 
 @media all and (max-width: 1154px)  {

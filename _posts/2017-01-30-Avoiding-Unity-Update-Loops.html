@@ -1,0 +1,437 @@
+---
+layout: post
+title: Avoiding Unity Update Loops
+image: /img/posts/unity_events.png
+---
+
+<p>
+    The <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html">Update</a> loop
+    is the most commonly used function to implement any kind of game behaviour, according to Unity's documentation.
+    As such it's important to address the performance impact it has on your game since logic in the Update function runs <em>every frame</em>.
+    Update is convenient and time-saving because it requires little planning to use and provides immediate results, but this allure can be an issue as your codebase grows.
+    It's especially problematic if you have many characters or smart objects within your game world constantly checking for conditions or executing complex logic.
+    I'll demonstrate how to avoid the Update loop using either <strong>Events</strong>, <strong>Callbacks</strong>, <strong>Coroutines</strong>,
+    or the <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.Invoke.html">Invoke</a> function.
+</p>
+<p>
+    Before diving into programming techniques you should first understand when it's appropriate to use the Update function.
+    For me to maintain a performance-based mindset, I generally consider the Update function a bad thing and avoid it when possible.
+    Logic in any of the Update functions should be simple; if something does not need to be calculated every frame then do it elsewhere.
+</p>
+<ul>
+    <li>Use Update for Input and Movement</li>
+    <li>Use <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html">FixedUpdate</a> for continuous physics related logic</li>
+    <li>Use <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.LateUpdate.html">LateUpdate</a> for camera movement/rotation</li>
+</ul>
+<p>
+    Usually anything else doesn't need to be in the Update loops and comes down to being handled by an appropriate technique, at an appropriate time.
+    The techniques listed below cover most cases I've encountered where an Update loop could be optimized.
+</p>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#events">
+                    Custom Events
+                </a>
+            </h4>
+        </div>
+        <div id="events" class="panel-collapse collapse">
+            <div class="panel-body">
+                <h2>Events</h2>
+                <p>
+                   Events are my go-to solution when an action occurs and something (often many) needs to know about it.
+                   For example if the player gains money then the UI should be updated to reflect the new total.
+                   If the money is gained while browsing a store, some items may need to change state (not purchasable => purchasable).
+                   Rather than having the UI constantly check the player's money in an Update loop,
+                   or having messy logic where a bunch of methods are called on interested objects, you can instead use an event.
+                </p>
+                <p>
+                    In your IDE (MonoDevelop, Visual Studio, etc) an event is typically associated with an icon of the letter 'E' or a sweet lightning bolt.
+                    An event is essentially a list of methods who have subscribed to it, and when the event is raised it iterates through the list, calling each subscribed method.
+                    Creating and using an event is accomplished in a few short steps as shown in the below code with comments.
+                </p>
+                <h3>Defining and Raising an Event</h3>
+{% highlight c# %}
+using UnityEngine;
+
+public class Inventory
+{
+	// The total amount of money this inventory contains
+	int money;
+
+	// Defines the type of function and parameters your event requires
+	// Only define parameters you believe will provide useful information related to the event
+	public delegate void OnMoneyUpdatedHandler(int currentMoney, int amountChanged);
+
+	// The event which other objects can subscribe to
+	// Uses the function defined above as its type
+	public event OnMoneyUpdatedHandler OnMoneyUpdated;
+
+	/// <summary>
+	/// Updates the current total money by Amount.
+	/// </summary>
+	/// <param name="amount">Amount to alter the current money total by.</param>
+	public void UpdateMoney (int amount)
+	{
+		// Redundancy check
+		if (amount != 0) {
+			// Tally up the new money total
+			money += amount;
+
+			// Raise the OnMoneyUpdated event if it contains subscriptions.
+			// An event with no subscribers is null, always do this check.
+			if (OnMoneyUpdated != null) {
+				OnMoneyUpdated(money, amount);
+			}
+		}
+	}
+}
+{% endhighlight %}
+                <h3>Subscribing to Events</h3>
+{% highlight c# %}
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HUD : MonoBehaviour
+{
+	// The UI Text on the HUD which displays the current money in the inventory
+	[SerializeField]
+	Text moneyLabel;
+
+	// Reference to the player's inventory, assume it has been assigned
+	Inventory inventory;
+
+	void Start ()
+	{
+		// Subscribes our OnMoneyUpdated function to the inventory's OnMoneyUpdated event
+		// You only need to subscribe once.
+		// You can unsubscribe the same way but using a minus (-) sign.
+		inventory.OnMoneyUpdated += OnMoneyUpdated;
+	}
+
+	/// <summary>
+	/// Matches the function defined by OnMoneyUpdatedHandler in Inventory.cs
+	/// It must match in order to subscribe to the event.
+	/// Subscribes to the OnMoneyUpdated event in the Start method above.
+	/// Called when the OnMoneyUpdated event is raised in Inventory.cs
+	/// </summary>
+	/// <param name="totalMoney">New total amount of money in the inventory.</param>
+	/// <param name="amountChanged">Amount changed during this event.</param>
+	void OnMoneyUpdated (int totalMoney, int amountChanged)
+	{
+		moneyLabel.text = totalMoney.ToString();
+
+		// TODO: Effect displaying the amount changed (ie. +/- amountChanged)
+	}
+}
+{% endhighlight %}
+                <p>
+                    You can unsubscribe from an event using the minus sign (<em>inventory.OnMoneyUpdated -= OnMoneyUpdated</em>).
+                    I usually see this with static events since they are not reset with scene loads and can reference a method on a destroyed object.
+                    Try to avoid this situation as it unnecessarily complicates your codebase.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#callbacks">
+                    Callback Functions
+                </a>
+            </h4>
+        </div>
+        <div id="callbacks" class="panel-collapse collapse">
+            <div class="panel-body">
+                <h2>Callback Functions</h2>
+                <p>
+                    I believe callbacks were first seen in the Unity API when they introduced their <a href="https://docs.unity3d.com/ScriptReference/Social.html">Social API</a>.
+                    They accomplish a similar task as events, but serve only a single subscription rather than many, and are <em>usually</em> called just once.
+                    Those who've used JavaScript and JQuery should be familiar with the concept of callbacks.
+                </p>
+                <p>
+                    When calling FunctionA, you can pass another FunctionB as a parameter, usually with the assumption that FunctionB is called once FunctionA has completed its task.
+                    This is especially useful when the task you're waiting on may take multiple frames to complete, like a web request to a server, which is why callbacks are seen throughout examples in the Social API.
+                    So rather than continuously checking for a server response in an Update loop, use a callback function.
+                </p>
+                <h3>Callback Example</h3>
+                <p>
+                    Here you see a method which accepts a callback parameter and uses it later.
+                </p>
+{% highlight c# %}
+using System.Collections;
+using UnityEngine;
+
+public class Timer : MonoBehaviour
+{
+	/// <summary>
+	/// Helper method which starts the DoCallAfterTime coroutine.
+	/// Notice System.Action represents a void function with no parameters.
+	/// </summary>
+	/// <param name="time">The amount of time to wait.</param>
+	/// <param name="callback">The callback method called after waiting.</param>
+	public void CallbackAfterTime (float time, System.Action callback)
+	{
+		StartCoroutine(DoCallbackAfterTime(time, callback));
+	}
+
+	/// <summary>
+	/// Calls the given callback method after waiting a given amount of time.
+	/// </summary>
+	/// <param name="time">The amount of time to wait.</param>
+	/// <param name="callback">The callback method called after waiting.</param>
+	IEnumerator DoCallbackAfterTime (float time, System.Action callback)
+	{
+		yield return new WaitForSeconds(time);
+		callback();
+	}
+}
+{% endhighlight %}
+                <p>
+                    While in this example you see the callback method defined and passed as a parameter.
+                </p>
+{% highlight c# %}
+using UnityEngine;
+
+public class CallbackExample : MonoBehaviour
+{
+	// Reference to the timer, assume it's assigned
+	Timer timer;
+
+	void Start ()
+	{
+		Debug.Log("Starting callback flow at: " + Time.realtimeSinceStartup);
+
+		// Calling a method which accepts a method parameter described as a callback
+		// Assume the method we send will be called once CallbackAfterTime completes
+		timer.CallbackAfterTime(3f, this.DoSomething);
+	}
+
+	/// <summary>
+	/// Callback method
+	/// </summary>
+	void DoSomething ()
+	{
+		Debug.Log("Callback flow completed at: " + Time.realtimeSinceStartup);
+	}
+}
+{% endhighlight %}
+                <p>
+                    Callback methods can also have parameters.
+                </p>
+{% highlight c# %}
+public void MyMethod (System.Action<int, string[]> callback)
+{
+	callback(42, new string[] { "callbacks", "are", "cool" });
+}
+{% endhighlight %}
+                <h3>Callbacks via Lambda Expressions</h3>
+                <p>
+                    Often times using anonymous functions is the go-to approach for callbacks, as you may have even noticed in Unity's Social API examples.
+                    They save the need to define a function in your class while keeping logic contained and easier to follow at a glance.
+                    These are unnamed functions with named parameters that automatically match the types defined in the callback.
+                    The lamda expression <em>=></em> is used to create a local function, with parameters on the left and the statement block on the right.
+                    Here's the first example from above rewritten with a lambda function.
+                </p>
+{% highlight c# %}
+using UnityEngine;
+
+public class CallbackExample : MonoBehaviour
+{
+	// Reference to the timer, assume it's assigned
+	Timer timer;
+
+	void Start ()
+	{
+		Debug.Log("Starting callback flow at: " + Time.realtimeSinceStartup);
+
+		// The delegate method is represented () => {}
+		timer.CallbackAfterTime(3f, () => {
+			Debug.Log("Callback flow completed at: " + Time.realtimeSinceStartup);
+		});
+	}
+}
+{% endhighlight %}
+                <p>
+                    And here is an example using callback parameters.
+                </p>
+{% highlight c# %}
+using System;
+using UnityEngine;
+
+public class CallbackExampleTwo
+{
+	public void MyMethod (System.Action<int, string[]> callback)
+	{
+		callback(42, new string[] { "callbacks", "are", "cool" });
+	}
+}
+
+public class LambdaExample
+{
+	CallbackExampleTwo example;
+
+	void DoExample ()
+	{
+		// Gets the int & string values returned from CallbackExampleTwo.MyMethod
+		example.MyMethod((number, message) => {
+			Debug.Log(number); // 42
+		});
+	}
+}
+{% endhighlight %}
+            <p>
+                You can also create a class property that is a delegate function and assign it for use as a callback.
+                You can simply assign an appropriate function as the delegate callback to be used until otherwise assigned.
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#coroutines">
+                    Coroutine Loops
+                </a>
+            </h4>
+        </div>
+        <div id="coroutines" class="panel-collapse collapse">
+            <div class="panel-body">
+                <h2>Using Coroutines/IEnumerators as Update Loops</h2>
+                <p>
+                    Coroutines are common place in Unity games, so I'll assume you have some experience with them already.
+                    What you may not have considered though is creating your own form of Update loop using a coroutine.
+                    It's not a common use-case, but it can be useful when wanting something to update frequently, but less frequently than every frame.
+                    For example you could create a function that runs every 10 frames, or every half-second, or even at a random interval.
+                    This can be useful for AI decisions or something that can afford to be a bit 'choppy' such as retro-style character movement.
+                </p>
+{% highlight c# %}
+using System.Collections;
+using UnityEngine;
+
+public class CustomLoop : MonoBehaviour
+{
+	const float maxTimeInterval = 3f;
+	const float minTimeInterval = 0.25f;
+	const float defaultTimeInterval = 0.5f;
+	const int frameInterval = 10;
+
+	void Start ()
+	{
+		StartCoroutine(TimedUpdateRoutine());
+		StartCoroutine(FrameDelayedUpdateRoutine());
+		StartCoroutine(RandomTimedUpdateRoutine());
+	}
+
+	void TimedUpdate ()
+	{
+		Debug.Log("Time update: " + Time.realtimeSinceStartup);
+	}
+
+	void FrameDelayedUpdate ()
+	{
+		Debug.Log("Frame update: " + Time.realtimeSinceStartup);
+	}
+
+	void RandomUpdate ()
+	{
+		// Your logic here
+		Debug.Log("Random update: " + Time.realtimeSinceStartup);
+	}
+
+	/// <summary>
+	/// A contiuous loop which executes logic after waiting for an amount of time to pass.
+	/// </summary>
+	IEnumerator TimedUpdateRoutine ()
+	{
+		while (true) {
+			yield return new WaitForSeconds(defaultTimeInterval);
+			TimedUpdate();
+		}
+	}
+
+	/// <summary>
+	/// A continuous loop which executes logic after waiting for an amount of frames to pass.
+	/// </summary>
+	IEnumerator FrameDelayedUpdateRoutine ()
+	{
+		// Always run
+		while (true) {
+			for (int i = 0; i < frameInterval; i++) {
+				yield return new WaitForEndOfFrame();
+			}
+
+			FrameDelayedUpdate();
+		}
+	}
+
+	/// <summary>
+	/// A continuous loop which executes logic after waiting a random amount of time.
+	/// </summary>
+	IEnumerator RandomTimedUpdateRoutine ()
+	{
+		// Always run
+		while (true) {
+			float randomInterval = Random.Range(minTimeInterval, maxTimeInterval);
+			yield return new WaitForSeconds(randomInterval);
+			RandomUpdate();
+		}
+	}
+}
+{% endhighlight %}
+            <p>
+                You can also stop these coroutine loops using the <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.StopCoroutine.html">StopCoroutine</a> function.
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#invoke">
+                    Invoke &amp; Invoke Repeating
+                </a>
+            </h4>
+        </div>
+        <div id="invoke" class="panel-collapse collapse">
+            <div class="panel-body">
+                <h2>Invoke &amp; InvokeRepeating</h2>
+                <p>
+                    The Invoke function is neat tool to have at your disposal.
+                    You pass a method name as a string argument and it calls that method after a specified amount of time.
+                    Think of it as an alternative to using time-based coroutines, with built-in logic to avoid edge cases your coroutines might miss,
+                    such as dealing with <a href="https://docs.unity3d.com/ScriptReference/Time-timeScale.html">Time.timeScale</a>.
+                    It can also be useful (but potentially insecure!) in online multiplayer development where only
+                    <a href="https://msdn.microsoft.com/en-us/library/aa711900(v=vs.71).aspx">primitive types</a> are used as RPC arguments,
+                    allowing string methods to be invoked in situations you can't account for, such as user-made mods.
+                </p>
+                <p>
+                    <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.InvokeRepeating.html">InvokeRepeating</a> is what we'll focus on today though,
+                    as it can accomplish the same thing as the Update loop.
+                    Basically it's the same solution as explained in the Coroutines section above, except it only deals with time.
+                    You specify a function to be called repeatedly with a specified delay between each call.
+                    You can also stop it from repeating using the <a href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.CancelInvoke.html">CancelInvoke</a> function.
+                </p>
+{% highlight c# %}
+using UnityEngine;
+
+public class CustomLoop : MonoBehaviour
+{
+	void Start ()
+	{
+		// Call TimedUpdate immediately, repeat every 0.1 seconds
+		InvokeRepeating("TimedUpdate", 0f, 0.1f);
+	}
+
+	void TimedUpdate ()
+	{
+		Debug.Log("Time update: " + Time.realtimeSinceStartup);
+	}
+}
+{% endhighlight %}
+            </div>
+        </div>
+    </div>
+</div>
+
