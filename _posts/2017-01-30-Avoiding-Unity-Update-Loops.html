@@ -60,8 +60,8 @@ public class Inventory
 	// The total amount of money this inventory contains
 	int money;
 
-	// Defines the type of function and parameters your event requires
-	// Only define parameters you believe will provide useful information related to the event
+	// Defines the function and parameters your event requires
+	// (optional) Define parameters that provide information related to the event
 	public delegate void OnMoneyUpdatedHandler(int currentMoney, int amountChanged);
 
 	// The event which other objects can subscribe to
@@ -71,7 +71,7 @@ public class Inventory
 	/// <summary>
 	/// Updates the current total money by Amount.
 	/// </summary>
-	/// <param name="amount">Amount to alter the current money total by.</param>
+	/// <param name="amount">Amount to alter the money total by.</param>
 	public void UpdateMoney (int amount)
 	{
 		// Redundancy check
@@ -79,8 +79,8 @@ public class Inventory
 			// Tally up the new money total
 			money += amount;
 
-			// Raise the OnMoneyUpdated event if it contains subscriptions.
-			// An event with no subscribers is null, always do this check.
+			// Raise OnMoneyUpdated event if it contains subscriptions.
+			// An event with no subscribers is null, always check.
 			if (OnMoneyUpdated != null) {
 				OnMoneyUpdated(money, amount);
 			}
@@ -104,7 +104,7 @@ public class HUD : MonoBehaviour
 
 	void Start ()
 	{
-		// Subscribes our OnMoneyUpdated function to the inventory's OnMoneyUpdated event
+		// Subscribes OnMoneyUpdated to the inventory's OnMoneyUpdated event
 		// You only need to subscribe once.
 		// You can unsubscribe the same way but using a minus (-) sign.
 		inventory.OnMoneyUpdated += OnMoneyUpdated;
@@ -116,7 +116,7 @@ public class HUD : MonoBehaviour
 	/// Subscribes to the OnMoneyUpdated event in the Start method above.
 	/// Called when the OnMoneyUpdated event is raised in Inventory.cs
 	/// </summary>
-	/// <param name="totalMoney">New total amount of money in the inventory.</param>
+	/// <param name="totalMoney">New amount of money in the inventory.</param>
 	/// <param name="amountChanged">Amount changed during this event.</param>
 	void OnMoneyUpdated (int totalMoney, int amountChanged)
 	{
@@ -203,8 +203,8 @@ public class CallbackExample : MonoBehaviour
 	{
 		Debug.Log("Starting callback flow at: " + Time.realtimeSinceStartup);
 
-		// Calling a method which accepts a method parameter described as a callback
-		// Assume the method we send will be called once CallbackAfterTime completes
+		// Our method, DoSomething, is sent as a parameter
+		// DoSomething is later called by CallbackAfterTime once it completes
 		timer.CallbackAfterTime(3f, this.DoSomething);
 	}
 
@@ -248,7 +248,7 @@ public class CallbackExample : MonoBehaviour
 
 		// The delegate method is represented () => {}
 		timer.CallbackAfterTime(3f, () => {
-			Debug.Log("Callback flow completed at: " + Time.realtimeSinceStartup);
+			Debug.Log("completed at: " + Time.realtimeSinceStartup);
 		});
 	}
 }
@@ -274,7 +274,7 @@ public class LambdaExample
 
 	void DoExample ()
 	{
-		// Gets the int & string values returned from CallbackExampleTwo.MyMethod
+		// Gets int & string values returned by CallbackExampleTwo.MyMethod
 		example.MyMethod((number, message) => {
 			Debug.Log(number); // 42
 		});
@@ -341,7 +341,7 @@ public class CustomLoop : MonoBehaviour
 	}
 
 	/// <summary>
-	/// A contiuous loop which executes logic after waiting for an amount of time to pass.
+	/// A loop which executes logic after waiting for an amount of time to pass.
 	/// </summary>
 	IEnumerator TimedUpdateRoutine ()
 	{
@@ -352,7 +352,7 @@ public class CustomLoop : MonoBehaviour
 	}
 
 	/// <summary>
-	/// A continuous loop which executes logic after waiting for an amount of frames to pass.
+	/// A loop which executes logic after waiting for an amount of frames to pass.
 	/// </summary>
 	IEnumerator FrameDelayedUpdateRoutine ()
 	{
@@ -367,7 +367,7 @@ public class CustomLoop : MonoBehaviour
 	}
 
 	/// <summary>
-	/// A continuous loop which executes logic after waiting a random amount of time.
+	/// A loop which executes logic after waiting a random amount of time.
 	/// </summary>
 	IEnumerator RandomTimedUpdateRoutine ()
 	{

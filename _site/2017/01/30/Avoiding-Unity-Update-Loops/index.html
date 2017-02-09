@@ -123,8 +123,8 @@
 	<span class="c1">// The total amount of money this inventory contains
 </span>	<span class="kt">int</span> <span class="n">money</span><span class="p">;</span>
 
-	<span class="c1">// Defines the type of function and parameters your event requires
-</span>	<span class="c1">// Only define parameters you believe will provide useful information related to the event
+	<span class="c1">// Defines the function and parameters your event requires
+</span>	<span class="c1">// (optional) Define parameters that provide information related to the event
 </span>	<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">OnMoneyUpdatedHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">currentMoney</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amountChanged</span><span class="p">);</span>
 
 	<span class="c1">// The event which other objects can subscribe to
@@ -134,7 +134,7 @@
 	<span class="c1">/// &lt;summary&gt;
 </span>	<span class="c1">/// Updates the current total money by Amount.
 </span>	<span class="c1">/// &lt;/summary&gt;
-</span>	<span class="c1">/// &lt;param name="amount"&gt;Amount to alter the current money total by.&lt;/param&gt;
+</span>	<span class="c1">/// &lt;param name="amount"&gt;Amount to alter the money total by.&lt;/param&gt;
 </span>	<span class="k">public</span> <span class="k">void</span> <span class="nf">UpdateMoney</span> <span class="p">(</span><span class="kt">int</span> <span class="n">amount</span><span class="p">)</span>
 	<span class="p">{</span>
 		<span class="c1">// Redundancy check
@@ -142,8 +142,8 @@
 			<span class="c1">// Tally up the new money total
 </span>			<span class="n">money</span> <span class="p">+=</span> <span class="n">amount</span><span class="p">;</span>
 
-			<span class="c1">// Raise the OnMoneyUpdated event if it contains subscriptions.
-</span>			<span class="c1">// An event with no subscribers is null, always do this check.
+			<span class="c1">// Raise OnMoneyUpdated event if it contains subscriptions.
+</span>			<span class="c1">// An event with no subscribers is null, always check.
 </span>			<span class="k">if</span> <span class="p">(</span><span class="n">OnMoneyUpdated</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
 				<span class="nf">OnMoneyUpdated</span><span class="p">(</span><span class="n">money</span><span class="p">,</span> <span class="n">amount</span><span class="p">);</span>
 			<span class="p">}</span>
@@ -165,7 +165,7 @@
 
 	<span class="k">void</span> <span class="nf">Start</span> <span class="p">()</span>
 	<span class="p">{</span>
-		<span class="c1">// Subscribes our OnMoneyUpdated function to the inventory's OnMoneyUpdated event
+		<span class="c1">// Subscribes OnMoneyUpdated to the inventory's OnMoneyUpdated event
 </span>		<span class="c1">// You only need to subscribe once.
 </span>		<span class="c1">// You can unsubscribe the same way but using a minus (-) sign.
 </span>		<span class="n">inventory</span><span class="p">.</span><span class="n">OnMoneyUpdated</span> <span class="p">+=</span> <span class="n">OnMoneyUpdated</span><span class="p">;</span>
@@ -177,7 +177,7 @@
 </span>	<span class="c1">/// Subscribes to the OnMoneyUpdated event in the Start method above.
 </span>	<span class="c1">/// Called when the OnMoneyUpdated event is raised in Inventory.cs
 </span>	<span class="c1">/// &lt;/summary&gt;
-</span>	<span class="c1">/// &lt;param name="totalMoney"&gt;New total amount of money in the inventory.&lt;/param&gt;
+</span>	<span class="c1">/// &lt;param name="totalMoney"&gt;New amount of money in the inventory.&lt;/param&gt;
 </span>	<span class="c1">/// &lt;param name="amountChanged"&gt;Amount changed during this event.&lt;/param&gt;
 </span>	<span class="k">void</span> <span class="nf">OnMoneyUpdated</span> <span class="p">(</span><span class="kt">int</span> <span class="n">totalMoney</span><span class="p">,</span> <span class="kt">int</span> <span class="n">amountChanged</span><span class="p">)</span>
 	<span class="p">{</span>
@@ -260,8 +260,8 @@
 	<span class="p">{</span>
 		<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Starting callback flow at: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
 
-		<span class="c1">// Calling a method which accepts a method parameter described as a callback
-</span>		<span class="c1">// Assume the method we send will be called once CallbackAfterTime completes
+		<span class="c1">// Our method, DoSomething, is sent as a parameter
+</span>		<span class="c1">// DoSomething is later called by CallbackAfterTime once it completes
 </span>		<span class="n">timer</span><span class="p">.</span><span class="nf">CallbackAfterTime</span><span class="p">(</span><span class="m">3f</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">DoSomething</span><span class="p">);</span>
 	<span class="p">}</span>
 
@@ -301,7 +301,7 @@
 
 		<span class="c1">// The delegate method is represented () =&gt; {}
 </span>		<span class="n">timer</span><span class="p">.</span><span class="nf">CallbackAfterTime</span><span class="p">(</span><span class="m">3f</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-			<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"Callback flow completed at: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
+			<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="s">"completed at: "</span> <span class="p">+</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">);</span>
 		<span class="p">});</span>
 	<span class="p">}</span>
 <span class="p">}</span></code></pre></figure>
@@ -325,7 +325,7 @@
 
 	<span class="k">void</span> <span class="nf">DoExample</span> <span class="p">()</span>
 	<span class="p">{</span>
-		<span class="c1">// Gets the int &amp; string values returned from CallbackExampleTwo.MyMethod
+		<span class="c1">// Gets int &amp; string values returned by CallbackExampleTwo.MyMethod
 </span>		<span class="n">example</span><span class="p">.</span><span class="nf">MyMethod</span><span class="p">((</span><span class="n">number</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 			<span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span><span class="p">(</span><span class="n">number</span><span class="p">);</span> <span class="c1">// 42
 </span>		<span class="p">});</span>
@@ -390,7 +390,7 @@
 	<span class="p">}</span>
 
 	<span class="c1">/// &lt;summary&gt;
-</span>	<span class="c1">/// A contiuous loop which executes logic after waiting for an amount of time to pass.
+</span>	<span class="c1">/// A loop which executes logic after waiting for an amount of time to pass.
 </span>	<span class="c1">/// &lt;/summary&gt;
 </span>	<span class="n">IEnumerator</span> <span class="nf">TimedUpdateRoutine</span> <span class="p">()</span>
 	<span class="p">{</span>
@@ -401,7 +401,7 @@
 	<span class="p">}</span>
 
 	<span class="c1">/// &lt;summary&gt;
-</span>	<span class="c1">/// A continuous loop which executes logic after waiting for an amount of frames to pass.
+</span>	<span class="c1">/// A loop which executes logic after waiting for an amount of frames to pass.
 </span>	<span class="c1">/// &lt;/summary&gt;
 </span>	<span class="n">IEnumerator</span> <span class="nf">FrameDelayedUpdateRoutine</span> <span class="p">()</span>
 	<span class="p">{</span>
@@ -416,7 +416,7 @@
 	<span class="p">}</span>
 
 	<span class="c1">/// &lt;summary&gt;
-</span>	<span class="c1">/// A continuous loop which executes logic after waiting a random amount of time.
+</span>	<span class="c1">/// A loop which executes logic after waiting a random amount of time.
 </span>	<span class="c1">/// &lt;/summary&gt;
 </span>	<span class="n">IEnumerator</span> <span class="nf">RandomTimedUpdateRoutine</span> <span class="p">()</span>
 	<span class="p">{</span>
