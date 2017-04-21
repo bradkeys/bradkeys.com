@@ -1,0 +1,47 @@
+---
+layout: post
+title: Optimizing Games by Using Font Icons
+image: /img/posts/font-icons.png
+---
+
+<img src="/img/posts/font-icons.png" />
+
+<p>
+    For a couple of years now I've been using custom font packages to render generic iconography in my Unity games.
+    My most obvious example is <a href="/portfolio/orbert/">Orbert</a>, which has a minimalist design and allowed me to get away with quite a few font icons.
+    It's very simple to do and has many benefits:
+</p>
+<ul>
+    <li>Optimizes game file size (less textures)</li>
+    <li>Optimizes memory consumption (less textures)</li>
+    <li>TrueType Fonts can scale to any size you need</li>
+    <li>There are tons of great <em>free</em> icons available for almost any scenario</li>
+</ul>
+<h2>1) Create a TrueType Font</h2>
+<p>
+    The first thing you'll need to do is create a font containing the icons you wish to use.
+    There are a number of great websites out there for doing this, I recommend <a href="http://fontello.com">http://fontello.com</a>.
+    Select the icons you want and then map each icon to a letter.
+    On <em>Fontello</em> this is done under the 'Customize Code' tab and the letter goes in the top input box on each icon.
+    For example you might want a <em>Home</em> icon, so maybe it makes sense to map it to the letter 'h'.
+    Once you've mapped them all out you can download the package and import the TrueType Font into Unity.
+</p>
+<h2>2) Render Your Icons</h2>
+<p>
+    In Unity create a <em>UI Canvas</em> and create a child object containing a <em>UIText</em> component.
+    On the component set the <em>Font</em> to your newly created icon font.
+    Now under the <em>Text</em> field type in a letter corresponding to a code you chose to represent one of your icons.
+    Going back to the example above, we would use 'h' to make the home icon appear.
+</p>
+<img src="/img/posts/font-icons-example.png" />
+<h2>Tips</h2>
+<p>
+    I often find myself requiring additional icons throughout development.
+    This means having to generate the same font again with the new icons added into it.
+    Take care to ensure your letters map exactly the same way or else your icons could change to text or the wrong icon.
+    If the website you're using has a way to save fonts you've created, I highly recommend doing so!
+</p>
+<p>
+    I also recommend adding a readme file to your project and including a bit about each icon and its corresponding letter it maps to.
+    This will save you from frustration later and allow other contributors to understand the font without needing to go through the entire ASCII chart to figure out the codes!
+</p>
