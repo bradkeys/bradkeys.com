@@ -133,48 +133,38 @@
     <div id="project-story">
         <h4>EXPERIENCE</h4>
         <p>
-    Orbert was originally created by <a href="http://www.matthewminer.com">Matthew Miner</a> and I in 2013 while we were looking for contract work.
-    Matthew designed and programmed the game and I designed and created many of the levels.
+    Orbert was created by <a href="http://www.matthewminer.com">Matthew Miner</a> and I in 2013 while we were looking for contract work.
+    Matthew designed and programmed the initial game, and I designed and created many of the levels.
     It was released for Android on Google Play in Canada during Spring 2013.
-    Players had the first 10 levels unlocked for free, while the rest had to be purchased.
-</p>
-<p>
-    The game features 100 levels, ranging from easy difficulty to extremely challenging.
-    It's a one-button game where the player taps and holds to orbit around a moon, and releases the tap to send Orbert flying.
-    The timing of the player's tapping is very important as it dictactes movement direction and speed.
 </p>
 <p>
     Orbert received great positive feedback amongst our friends and family.
-    To our amazement, a decent amount of players actually beat all 100 levels, some of which seem almost impossible to complete!
-    This praise led me to revisit Orbert in 2016.
-</p>
-<p>
-    The 2016 version gained the following <em>major</em> improvements, amongst many other small improvements:
+    To our amazement a decent amount of players actually beat all 100 levels, some of which seem almost impossible to complete!
+    This praise led me to revisit Orbert by myself in 2016 where I made the following improvements:
 </p>
 <ul>
-    <li>Overhauled UI, abondoning Unity's legacy UI for their new system</li>
+    <li>Overhauled UI, abondoning Unity's legacy UI for their new uGUI system</li>
     <li>New level organization, grouping by difficulty, showing level previews and various stats</li>
-    <li>Difficulties now have their own colour scheme, used as the background colour of levels</li>
+    <li>Difficulties have their own colour scheme, now used as the background colour of levels</li>
     <li>Released the game on iOS</li>
-    <li>Added support for Leaderboards and Achievements</li>
+    <li>Added support for Leaderboards and Achievements (Game Center and Google Play)</li>
     <li>Added survival mode</li>
-    <li>Added level replays which can be shared via Everyplay</li>
+    <li>Added level replays which can be shared and viewed via <a href="https://everyplay.com/orbert/videos">Everyplay</a></li>
     <li>The first 50 levels are now free</li>
 </ul>
 <p>
 	Notably the game features a very cool level editor tool which Matthew created.
-	I'll briefly describe it, but <a href="http://matthewminer.com/2015/05/11/level-editing-off-the-beaten-path.html">I highly recommend reading his blog post about it</a>.
-	Levels are actually designed in Photoshop using a 64x64 image and only the colours black (obstacles), white (open space), green (moons), and blue (spawn point).
-	The images are converted to text files in the Unity editor.
-	The text files are loaded at runtime to generate levels on the fly, reducing the file size of the game.
-	This allowed us to create over 100 levels in under a month.
-	You can see a more in-depth look at the level creation process via <a href="https://forum.unity3d.com/threads/free-ios-android-orbert.433363/">this post I made on the Unity Forum</a>.
+	I highly recommend reading <a href="http://matthewminer.com/2015/05/11/level-editing-off-the-beaten-path.html">his blog post about it</a>.
+	Levels are designed in Photoshop using a 64x64 pixel image and only the colours black (obstacles), white (open space), green (moons), and blue (spawn point).
+	The images are converted to text files via an editor tool in the Unity editor.
+	The text files are loaded at runtime to generate levels on the fly, which reduces the file size of the game since we don't have a scene for each level.
+	This pipeline allowed us to create over 100 levels in under a month and can be used on future projects.
 </p>
 <p>
     Level previews are also automatically generated via an editor tool I created which loads each level and saves a screenshot of it.
 </p>
 <p>
-    Orbert is a pretty cool little game and will hopefully be released on more platforms when I have time.
+    Orbert is a cool game and will hopefully be released on more platforms when I have time.
     A WebGL version is in the works which I plan to release on Kongregate.
     I may also create a tvOS version for Apple TV users, mostly for the learning experience.
 </p>
