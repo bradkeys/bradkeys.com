@@ -29,13 +29,13 @@ title: Game Dev Blog
     </article>
 {% endfor %}
 <!-- Pagination links -->
-<div class="pagination">
+<div id="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="prev hvr-push">&#8249;</a>
+    <a id="prev" href="{{ paginator.previous_page_path }}" class="hvr-push">&#8249;</a>
   {% endif %}
-  <span class="page_number">{{ paginator.page }} of {{ paginator.total_pages }}</span>
+  <span id="page_number">{{ paginator.page }} of {{ paginator.total_pages }}</span>
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next hvr-push">&#8250;</a>
+    <a id="next" href="{{ paginator.next_page_path }}" class="hvr-push">&#8250;</a>
   {% endif %}
 </div>
 
