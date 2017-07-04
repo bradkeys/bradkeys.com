@@ -775,6 +775,10 @@ html {
 }
 
 @media all and (max-width: 600px)  {
+    body {
+        line-height: unset !important;
+    }
+
     main {
         #project-list {
             .project {
@@ -804,6 +808,18 @@ html {
             }
         }
 
+        #blog {
+            h1 {
+                font-size: 1.5em !important;
+            }
+
+            #pagination {
+                #page-number {
+                    width: 75% !important;
+                }
+            }
+        }
+
         article {
             code {
                 font-size: 0.5em;
@@ -812,6 +828,8 @@ html {
     }
 
     nav {
+        font-size: 10px !important;
+
         #logo-title {
             font-size: 3em;
         }
@@ -820,10 +838,20 @@ html {
         	font-size: 1.3em;
         }
 
-        #social-links img {
-            width: 48px;
-            border-radius: 50%;
-            margin-bottom: 5px;
+        #nav-links {
+            margin-bottom: 0 !important;
+        }
+
+        #social-links {
+            a {
+                margin: 0px 3px !important;
+
+                img {
+                    width: 48px;
+                    border-radius: 50%;
+                    margin-bottom: 5px;
+                }
+            }
         }
     }
 }
