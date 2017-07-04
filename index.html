@@ -6,36 +6,46 @@ title: Game Dev Blog
 <!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
     <article>
-        <h1>
-            <a href="{{ post.url }}">{{ post.title }}</a>
-            <time datetime="{{ post.date | date: "%Y/%m/%d" }}">{{ post.date  | date_to_string }}</time>
-        </h1>
-        <div class="excerpt">
-            {% if post.image %}
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="{{ post.url }}">
-                        <img src="{{ post.image }}" />
-                    </a>
+        <div class="row">
+            <div class="col-md-3">
+                <time datetime="{{ post.date | date: "%Y/%m/%d" }}">{{ post.date  | date_to_string }}</time>
+                {% if post.image %}
+                <a class="hvr-grow" href="{{ post.url }}">
+                    <img src="{{ post.image }}" />
+                </a>
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                <h1>
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h1>
+                <div class="excerpt">
+                    <p>{{ post.content | strip_html | truncatewords:75 }}</p>
+                    <a class="btn btn-sharp btn-sm hvr-push" href="{{ post.url }}">Read More</a>
                 </div>
-                <div class="col-md-9">
-                    {{ post.content | strip_html | truncatewords:75 }}
-                </div>
-            {% else %}
-                {{ post.content | strip_html | truncatewords:100 }}
-            {% endif %}
+            </div>
         </div>
-        <a class="btn btn-sharp btn-sm hvr-push" href="{{ post.url }}">Read More</a>
     </article>
 {% endfor %}
 <!-- Pagination links -->
-<div id="pagination">
-  {% if paginator.previous_page %}
-    <a id="prev" href="{{ paginator.previous_page_path }}" class="hvr-push">&#8249;</a>
-  {% endif %}
-  <span id="page_number">{{ paginator.page }} of {{ paginator.total_pages }}</span>
-  {% if paginator.next_page %}
-    <a id="next" href="{{ paginator.next_page_path }}" class="hvr-push">&#8250;</a>
-  {% endif %}
-</div>
+<div id="pagination-wrapper">
+    <div id="pagination">
+        {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}">
+            <span id="prev" class="hvr-sweep-to-left">&#8249;</span>
+        </a>
+        {% else %}
+        <span id="prev">&nbsp;</span>
+        {% endif %}
 
+        <span id="page-number">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+
+        {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}">
+            <span id="next" class="hvr-sweep-to-right">&#8250;</span>
+        </a>
+        {% else %}
+        <span id="next">&nbsp;</span>
+        {% endif %}
+    </div>
+</div>
