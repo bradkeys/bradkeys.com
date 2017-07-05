@@ -32,17 +32,19 @@ title: Game Dev Blog
     <div id="pagination">
         {% if paginator.previous_page %}
         <a href="{{ paginator.previous_page_path }}">
-            <span id="prev" class="hvr-sweep-to-left">&#8249;</span>
+            <span id="prev" class="can-page">&#8249;</span>
         </a>
         {% else %}
         <span id="prev">&nbsp;</span>
         {% endif %}
 
-        <span id="page-number">{{ paginator.page }} / {{ paginator.total_pages }}</span>
+        <span id="page-number">
+            <span id="current-page">{{ paginator.page }}</span> of {{ paginator.total_pages }}
+        </span>
 
         {% if paginator.next_page %}
         <a href="{{ paginator.next_page_path }}">
-            <span id="next" class="hvr-sweep-to-right">&#8250;</span>
+            <span id="next" class="can-page">&#8250;</span>
         </a>
         {% else %}
         <span id="next">&nbsp;</span>

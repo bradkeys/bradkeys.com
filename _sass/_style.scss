@@ -192,6 +192,7 @@ html {
                             box-shadow: 0px 0px 10px white;
                             margin-top: 10px;
                             margin-bottom: 15px;
+                            border-radius: 5px;
                         }
 
                         .excerpt {
@@ -238,14 +239,18 @@ html {
                             }
 
                             #page-number {
-                                font-size: 80px;
+                                font-size: 50px;
                                 line-height: 2;
                                 width: 78%;
                                 height: 100%;
                                 display: inline-block;
                                 background-color: #111;
-                                color: #CCC;
+                                color: white;
                                 text-shadow: 1px 1px 3px #666, 3px 3px 0px #444;
+
+                                #current-page {
+                                    font-size: 80px;
+                                }
                             }
 
                             a {
@@ -256,7 +261,7 @@ html {
                                 display: inline-block;
                                 width: 10%;
                                 height: 138%;
-                                background-color: #CCC;
+                                background-color: white;
                                 color: black;
                                 text-decoration: none;
                                 font-weight: bold;
@@ -264,9 +269,17 @@ html {
                                 line-height: 1.5;
                             }
 
-                            .hvr-sweep-to-right:before, .hvr-sweep-to-left:before {
-                                background: white;
+                            #prev {
+                                border-radius: 5px 0 5px 0;
                             }
+
+                            #next {
+                                border-radius: 0 5px 0 5px;
+                            }
+
+                            .can-page:hover {
+                                box-shadow: 0px 0px 10px white;
+                            };
                         }
                     }
                 }
@@ -815,7 +828,11 @@ html {
 
             #pagination {
                 #page-number {
-                    width: 75% !important;
+                    width: 65% !important;
+                }
+
+                #next, #prev {
+                    width: 15% !important;
                 }
             }
         }
@@ -853,5 +870,12 @@ html {
                 }
             }
         }
+    }
+}
+
+@media all and (max-width: 325px)  {
+    #header {
+        margin-right: 0 !important;
+        margin-left: 1% !important;
     }
 }
