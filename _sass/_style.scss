@@ -1,4 +1,45 @@
 
+/* Bootstrap Buttons */
+
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+
+    &:hover,
+    &:focus {
+        background: #33a6cc;
+    }
+
+    &:active, .active {
+        background: #007299;
+        box-shadow: none;
+    }
+}
+
+.open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+
+.btn-sharp {
+    border-radius: 2;
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+
+    &:hover {
+        color: white;
+        background-color: black;
+    }
+}
+
+.gravatar {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+
 /* Main Styles*/
 html {
     height: 100%;
@@ -89,6 +130,19 @@ html {
                         text-align: center;
                         vertical-align: top;
                         white-space: nowrap;
+
+                        .btn {
+                            padding: 14px 24px;
+                            border: 1px solid black;
+                            font-weight: 700;
+                            letter-spacing: 1px;
+                            text-transform: uppercase;
+                            text-decoration: none;
+                        }
+
+                        .btn:focus, .btn:active:focus, .btn.active:focus {
+                            outline: 0 none;
+                        }
 
                         a {
                             background-color: white;
@@ -391,6 +445,23 @@ html {
                     #contact-form {
                         max-width: 500px;
                         margin-left: auto;
+
+                        .btn {
+                            padding: 14px 24px;
+                            letter-spacing: 1px;
+                            text-transform: uppercase;
+                            text-decoration: none;
+                            color: black;
+                            font-size: 13px;
+                            font-weight: 700;
+                            font-family: Arial, Helvetica, sans-serif;
+
+                            &:hover {
+                                background-color: black;
+                                color: white;
+                                border: 1px solid white;
+                            }
+                        }
                     }
 
                     .info {
@@ -613,59 +684,6 @@ html {
         } // main-wrapper
     } // body
 } // html
-
-/* Bootstrap Buttons */
-.btn {
-    padding: 14px 24px;
-    border: 0 none;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-
-.btn:focus, .btn:active:focus, .btn.active:focus {
-    outline: 0 none;
-}
-
-.btn-primary {
-    background: #0099cc;
-    color: #ffffff;
-
-    &:hover,
-    &:focus {
-        background: #33a6cc;
-    }
-
-    &:active, .active {
-        background: #007299;
-        box-shadow: none;
-    }
-}
-
-.open > .dropdown-toggle.btn-primary {
-    background: #33a6cc;
-}
-
-.btn-sharp {
-    border-radius: 2;
-    background-color: white;
-    border: 2px solid black;
-    color: black;
-
-    &:hover {
-        color: white;
-        background-color: black;
-    }
-}
-
-.gravatar {
-    margin: 0 auto;
-    margin-bottom: 15px;
-    border-radius: 50%;
-    border: 2px solid white;
-}
-
 
 /* mobile scaling */
 
