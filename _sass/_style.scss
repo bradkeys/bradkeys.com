@@ -458,15 +458,17 @@ html {
                             letter-spacing: 1px;
                             text-transform: uppercase;
                             text-decoration: none;
-                            color: black;
+                            background-color: black;
+                            border: 1px solid white;
+                            color: white;
                             font-size: 13px;
                             font-weight: 700;
                             font-family: Arial, Helvetica, sans-serif;
 
                             &:hover {
-                                background-color: black;
-                                color: white;
-                                border: 1px solid white;
+                                background-color: white;
+                                color: black;
+                                border: 1px solid black;
                             }
                         }
                     }
