@@ -160,19 +160,19 @@ html {
 
                         h1 {
                             font-size: 2em;
-                            text-align: left;
+                            text-align: center;
+                            padding: 5px;
+                            border-radius: 5px;
                             margin-top: 0;
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
+                            background: #222;
+                            background: linear-gradient(to bottom right, #BBF, white); /* Standard syntax */
 
                             a {
                                 color: white;
-                                text-decoration: underline;
-
-                                &:hover {
-                                    text-decoration: none;
-                                };
+                                text-shadow: 1px 1px 3px black, 3px 3px 0px #c6c6c6;
                             }
                         }
 
@@ -288,22 +288,34 @@ html {
                     article {
                         padding: 5px;
                         margin: 0 auto;
+                        margin-bottom: 25px;
                         font-size: 1.2em;
                         max-width: 1000px;
 
-                        h1 {
-                            text-transform: uppercase;
-                            color: white;
-                            text-shadow: 1px 1px 3px #666, 3px 3px 0px #444;
-                            font-size: 2.5em;
-                            margin-bottom: 25px;
-                        }
+                        #article-header {
+                            width: 100%;
+                            padding: 2px;
+                            border-radius: 5px;
+                            margin-bottom: 35px;
+                            background: #222; /* For browsers that do not support gradients */
+                            background: linear-gradient(to bottom right, #BBF, white); /* Standard syntax */
 
-                        time {
-                            display: inline-block;
-                            float: right;
-                            font-size: 0.7em;
-                            font-style: italic;
+                            h1 {
+                                text-transform: uppercase;
+                                color: white;
+                                font-size: 2.5em;
+                                font-weight: bold;
+                                text-shadow: 1px 1px 3px black, 3px 3px 0px #c6c6c6;
+                            }
+
+                            time {
+                                display: block;
+                                font-size: 1.5em;
+                                text-align: center;
+                                font-style: italic;
+                                margin-bottom: 5px;
+                                text-shadow: 1px 1px 3px black, 3px 3px 0px #c6c6c6;
+                            }
                         }
 
                         .content {
@@ -328,6 +340,8 @@ html {
                                 display: block;
                                 max-width: 100%;
                                 max-height: 500px;
+                                border-radius: 5px;
+                                box-shadow: 0px 0px 10px white;
                             }
 
                             .image-description {
@@ -744,129 +758,156 @@ html {
 }
 
 @media all and (max-width: 904px)  {
-    main {
-        #project-list {
-            .project {
-                .project-title {
-                    font-size: 2em;
+    html {
+        body {
+            #header-wrapper {
+                #header {
+                    nav {
+                        #logo-title {
+                            font-size: 4em;
+                        }
+
+                        #logo-subtitle {
+                        	font-size: 1.7em;
+                        }
+                    }
                 }
+            }
 
-                .project-date {
-                    font-size: 1.5em;
+            #main-wrapper {
+                main {
+                    #project-list {
+                        .project {
+                            .project-title {
+                                font-size: 2em;
+                            }
+
+                            .project-date {
+                                font-size: 1.5em;
+                            }
+                        }
+
+                        .project, .project img, .project-info {
+                            max-width: 400px;
+                            max-height: 200px;
+                            width: 100%;
+                        }
+                    }
+
+                    #contact {
+                        #contact-form, .info {
+                            margin: 0 auto;
+                        }
+                    }
+
+                    article {
+                        code {
+                            font-size: 0.7em;
+                        }
+                    }
                 }
             }
-
-            .project, .project img, .project-info {
-                max-width: 400px;
-                max-height: 200px;
-                width: 100%;
-            }
-        }
-
-        #contact {
-            #contact-form, .info {
-                margin: 0 auto;
-            }
-        }
-
-        article {
-            code {
-                font-size: 0.7em;
-            }
-        }
-    }
-
-    nav {
-        #logo-title {
-            font-size: 4em;
-        }
-
-        #logo-subtitle {
-        	font-size: 1.7em;
         }
     }
 }
 
 @media all and (max-width: 600px)  {
-    body {
-        line-height: unset !important;
-    }
+    html {
+        body {
+            line-height: unset;
 
-    main {
-        #project-list {
-            .project {
-                .project-title {
-                    font-size: 1.5em;
-                }
+            #header-wrapper {
+                #header {
+                    nav {
+                        font-size: 10px;
 
-                .project-date {
-                    font-size: 1.3em;
-                }
-            }
+                        #logo-title {
+                            font-size: 3em;
+                        }
 
-            .project, .project img, .project-info {
-                max-width: 300px;
-                max-height: 150px;
-                width: 100%;
-            }
-        }
+                        #logo-subtitle {
+                        	font-size: 1.3em;
+                        }
 
-        #contact {
-            #contact-form, .info {
-                margin: 0 auto;
-            }
+                        #nav-links {
+                            margin-bottom: 0;
+                        }
 
-            .info {
-                margin-top: 50px;
-            }
-        }
+                        #social-links {
+                            a {
+                                margin: 0px 3px;
 
-        #blog {
-            h1 {
-                font-size: 1.5em !important;
-            }
-
-            #pagination {
-                #page-number {
-                    width: 65% !important;
-                }
-
-                #next, #prev {
-                    width: 15% !important;
+                                img {
+                                    width: 48px;
+                                    border-radius: 50%;
+                                    margin-bottom: 5px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
-        }
 
-        article {
-            code {
-                font-size: 0.5em;
-            }
-        }
-    }
+            #main-wrapper {
+                main {
+                    #project-list {
+                        .project {
+                            .project-title {
+                                font-size: 1.5em;
+                            }
 
-    nav {
-        font-size: 10px !important;
+                            .project-date {
+                                font-size: 1.3em;
+                            }
+                        }
 
-        #logo-title {
-            font-size: 3em;
-        }
+                        .project, .project img, .project-info {
+                            max-width: 300px;
+                            max-height: 150px;
+                            width: 100%;
+                        }
+                    }
 
-        #logo-subtitle {
-        	font-size: 1.3em;
-        }
+                    #contact {
+                        #contact-form, .info {
+                            margin: 0 auto;
+                        }
 
-        #nav-links {
-            margin-bottom: 0 !important;
-        }
+                        .info {
+                            margin-top: 50px;
+                        }
+                    }
 
-        #social-links {
-            a {
-                margin: 0px 3px !important;
+                    #blog {
+                        article {
+                            h1 {
+                                white-space: normal;
+                                overflow: visible;
+                                text-overflow: clip;
+                            }
 
-                img {
-                    width: 48px;
-                    border-radius: 50%;
-                    margin-bottom: 5px;
+                            img {
+                                display: none;
+                            }
+                        }
+                        #pagination-wrapper {
+                            #pagination {
+                                #page-number {
+                                    width: 65%;
+                                }
+
+                                #next, #prev {
+                                    width: 15%;
+                                }
+                            }
+                        }
+                    }
+
+                    article {
+                        code {
+                            font-size: 0.5em;
+                        }
+                    }
                 }
             }
         }
@@ -874,8 +915,14 @@ html {
 }
 
 @media all and (max-width: 325px)  {
-    #header {
-        margin-right: 0 !important;
-        margin-left: 1% !important;
+    html {
+        body {
+            #header-wrapper {
+                #header {
+                    margin-right: 0;
+                    margin-left: 1%;
+                }
+            }
+        }
     }
 }
