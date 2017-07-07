@@ -309,6 +309,13 @@ html {
 
                             a {
                                 text-decoration: none;
+
+                                &:active {
+                                    #prev, #next {
+                                        background-color: black;
+                                        color: white;
+                                    }
+                                }
                             }
 
                             #next, #prev {
@@ -333,7 +340,7 @@ html {
 
                             .can-page:hover {
                                 box-shadow: 0px 0px 10px white;
-                            };
+                            }
                         }
                     }
                 }
