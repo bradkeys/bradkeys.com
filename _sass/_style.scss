@@ -254,13 +254,20 @@ html {
                                 font-size: 1em;
                             }
 
-                            .btn-sharp {
+                            .btn {
                                 margin-top: 15px;
                                 color: white;
                                 background-color: black;
                                 border: 1px solid white;
                                 display: block;
                                 width: 200px;
+                                padding: 14px 24px;
+                                letter-spacing: 1px;
+                                text-transform: uppercase;
+                                text-decoration: none;
+                                font-size: 13px;
+                                font-weight: 700;
+                                font-family: Arial, Helvetica, sans-serif;
 
                                 &:hover {
                                     color: black;
