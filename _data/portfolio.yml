@@ -45,6 +45,7 @@ Orbert:
     platforms:
       "Google Play": "https://play.google.com/store/apps/details?id=com.RebelHippo.Orbert"
       "iOS": "https://itunes.apple.com/us/app/orbert/id845310880?ls=1&mt=8"
+      "Web": "http://www.kongregate.com/games/RebelHippo/orbert"
     website: "http://www.playorbert.com"
     video: "https://www.youtube.com/embed/H8DMQPQ2hzU"
     summary: "A 2D physics-based mobile arcade game with 100 levels, made with Unity. Players swing the character around levels to collect moons while avoiding obstacles."
