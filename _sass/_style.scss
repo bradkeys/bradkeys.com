@@ -889,21 +889,27 @@ html {
 
             #main-wrapper {
                 main {
-                    #project-list {
-                        .project {
-                            .project-title {
-                                font-size: 1.5em;
+                    h1 {
+                        font-size: 3em;
+                    }
+
+                    #portfolio {
+                        #project-list {
+                            .project {
+                                .project-title {
+                                    font-size: 1.5em;
+                                }
+
+                                .project-date {
+                                    font-size: 1.3em;
+                                }
                             }
 
-                            .project-date {
-                                font-size: 1.3em;
+                            .project, .project img, .project-info {
+                                max-width: 300px;
+                                max-height: 150px;
+                                width: 100%;
                             }
-                        }
-
-                        .project, .project img, .project-info {
-                            max-width: 300px;
-                            max-height: 150px;
-                            width: 100%;
                         }
                     }
 
@@ -953,6 +959,25 @@ html {
     }
 }
 
+@media all and (max-width: 400px)  {
+    html {
+        body {
+
+            #main-wrapper {
+                main {
+                   #portfolio {
+                       #project-list {
+                           margin-left: 7%;
+                       }
+                   }
+                }
+            }
+        }
+    }
+}
+
+
+
 @media all and (max-width: 325px)  {
     html {
         body {
@@ -960,6 +985,16 @@ html {
                 #header {
                     margin-right: 0;
                     margin-left: 1%;
+                }
+            }
+
+            #main-wrapper {
+                main {
+                   #portfolio {
+                       #project-list {
+                           margin-left: -1%;
+                       }
+                   }
                 }
             }
         }
