@@ -1,0 +1,64 @@
+---
+layout: portfolio
+title: GemQuest Casino
+---
+<p>
+    I was the main developer on the GemQuest web client and assisted with some backend API development. 
+    It was my first experience with 
+    <a href="https://en.wikipedia.org/wiki/Angular_(application_platform)">Angular2</a>, 
+    <a href="https://en.wikipedia.org/wiki/TypeScript">TypeScript</a>, 
+    <a href="https://en.wikipedia.org/wiki/NativeScript">NativeScript</a>, 
+    <a href="https://en.wikipedia.org/wiki/Node.js">Node.js</a>, and 
+    <a href="https://en.wikipedia.org/wiki/Socket.IO">SocketIO</a>; 
+    so it required significant learning for me. 
+</p>
+<p>
+    Our goal was to create a slots game using a single codebase that could deploy to multiple platforms, especially web and mobile. 
+    Naturally I explored Unity as an option, but ultimately went with Angular2 + NativeScript. 
+    The game took about 8 months to launch in beta with a Facebook Canvas version and a standalone website version. 
+    Development continues alongside Boom's flagship product <a href="https://boomgaming.com/">Boom Gaming</a> (Bingo). 
+</p>
+<p>
+    Angular was a very different web development experience compared to my past endeavours. 
+    Its highly organized structure and use of TypeScript often made me forget this was a JavaScript application. 
+    The site can load new pages and content incredibly fast since its only loading in components as-required rather than doing full page loads. 
+    Combined with SocketIO, various elements on the page are updated when events are received from the backend or in response to user interactions. 
+</p>
+<p>
+    For NativeScript (NS), the Angular logic is shared with NS UI templates to generate native mobile builds for Android and iOS. 
+    This allowed us to write logic once, and UI twice (web, mobile). 
+</p>
+<p>
+    It was also my first time heavily utilizing <a href="https://en.wikipedia.org/wiki/Sass_(stylesheet_language)">SASS/SCSS</a> and CSS3. 
+    SASS sped up development time, reduced code, and greatly helped prevent styling rules from clashing with each other. 
+    CSS3 animations and transitions allowed me to completely avoid JQuery and brought the app alive, while rules like <em>flex</em> and <em>grid</em> made well-organized layouts with excellent responsive behaviour. 
+</p>
+<p>
+    GemQuest utilizes the Facebook SDK for login, in-app purchases, sending/receiving gifts to friends, displaying your profile photo, and sharing moments to your FB timeline. 
+    It had been a while since I really used a Facebook SDK, but the Graph API was a real breeze. 
+</p>
+<p>
+    The standalone website (off Facebook canvas) uses PayPal for in-app purchases. 
+    On the client it was fairly straightforward to integrate PayPal. 
+    There wasn't much flexibility in the look and feel of PayPal buttons, but we made do. 
+</p>
+<p>
+    Some initial performance issues with PayPal helped me realize big optimizations I could make to the entire app.
+    I utilized Angular's <em>ChangeDetectionStrategy.OnPush</em>, which made views update only when told rather than updating many times per second. 
+    I also discovered the <em>trackBy</em> attribute for <em>*ngFor</em> (loops), which prevented DOM elements from being destroyed and recreated unnecessarily.
+</p>
+<p>
+    Another large component of the app is the integration with <a href="https://www.playngo.com/games">Play'N Go</a> (PnG) games. 
+    They provide all their slots games in both mobile and web formats. 
+    GemQuest launches the appropriate format of game via an iFrame, and communicates with the game through a JavaScript API. 
+    For example the user can toggle the mute button on GemQuest and it will mute the game's volume, or vice-versa. 
+    PnG integration was tricky at times because they aren't as well documented as public APIs, and sometimes required reading their source code to accomplish our needs. 
+</p>
+<p>
+    Behind the scenes GemQuest is also using Google's <a href="https://firebase.google.com/">Firebase</a> service for authentication. 
+    In addition to simplifying our authentication process, it could allow the game to expand to other sign-in options (such as Google) in the future. 
+</p>
+<p>
+    I find advancements in web technology especially interesting, and this project has really given me an appreciation for how far the web has come in the past 10 years of my career. 
+    I can't help but look forward to what the next 10 years has in store!
+</p>

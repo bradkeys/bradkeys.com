@@ -1,3 +1,21 @@
+GemQuest Casino:
+    company: Boom Digital Media Group
+    role: Web Developer
+    year: 2018
+    thumbnail: gemquest-banner.jpg
+    filename: gemquest
+    images:
+      - gemquest-1.jpg
+      - gemquest-2.jpg
+      - gemquest-3.jpg
+      - gemquest-4.png
+      - gemquest-5.png
+    platforms:
+      "Facebook": "https://apps.facebook.com/gemquest"
+    website: "https://www.gemquestcasino.com"
+    video: "https://www.youtube.com/embed/634P8O28olc"
+    summary: "A play-for-fun casino slots app built with Angular2. Try your luck playing a wide variety of slot machine games as you complete quests, level-up, compete on the leaderboards, and unlock new slots games to play."
+
 Just Pretend:
     company: Rebel Hippo Inc.
     role: Game Designer &amp; Unity Developer
