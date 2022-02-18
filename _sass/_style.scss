@@ -170,19 +170,20 @@ html {
             margin-bottom: 50px;
 
             main {
-                position: relative;
                 margin-top: 50px;
                 padding: 0px 15px;
                 min-height: 850px;
                 overflow: hidden;
                 background-color: black;
                 color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
 
                 h1 {
                     text-align: center;
-                    text-transform: uppercase;
                     color: white;
-                    text-shadow: 1px 1px 3px #666, 3px 3px 0px #444;
                     font-size: 4em;
                 }
 
@@ -203,30 +204,30 @@ html {
                 #blog {
                     margin-top: 15px;
                     width: 100%;
+                    max-width: 1000px;
                     margin-bottom: 200px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
 
                     article {
                         padding: 5px;
                         margin: 0 auto;
                         margin-bottom: 50px;
                         font-size: 1.2em;
-                        max-width: 1000px;
 
                         h1 {
                             font-size: 2em;
-                            text-align: center;
                             padding: 5px;
-                            border-radius: 5px;
                             margin-top: 0;
                             white-space: nowrap;
                             overflow: hidden;
+                            text-align: left;
                             text-overflow: ellipsis;
-                            background: #222;
-                            background: linear-gradient(to bottom right, #BBF, white); /* Standard syntax */
 
                             a {
                                 color: white;
-                                text-shadow: 1px 1px 3px black, 3px 3px 0px #c6c6c6;
                             }
                         }
 
@@ -243,7 +244,6 @@ html {
 
                         img {
                             width: 200px;
-                            box-shadow: 0px 0px 10px white;
                             margin-top: 10px;
                             margin-bottom: 15px;
                             border-radius: 5px;
@@ -278,39 +278,26 @@ html {
                     }
 
                     #pagination-wrapper {
-                        position: absolute;
-                        bottom: 0;
-                        left: 50%;
                         width: 100%;
+                        margin-top: 20px;
 
                         #pagination {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
                             width: 100%;
-                            height: 150px;
-                            max-width: 1000px;
-                            margin: 0 auto;
-                            display: block;
-                            text-align: center;
-                            position: relative;
-                            left: -50%;
-
-                            &:after {
-                                content: "";
-                                display: table;
-                                clear: both;
-                            }
+                            height: 100px;
 
                             #page-number {
-                                font-size: 50px;
-                                line-height: 2;
-                                width: 78%;
+                                font-size: 2em;
+                                text-align: center;
+                                width: 100%;
                                 height: 100%;
-                                display: inline-block;
-                                background-color: #111;
                                 color: white;
-                                text-shadow: 1px 1px 3px #666, 3px 3px 0px #444;
 
                                 #current-page {
-                                    font-size: 80px;
+                                    font-size: 150%;
                                 }
                             }
 
@@ -327,14 +314,12 @@ html {
 
                             #next, #prev {
                                 display: inline-block;
-                                width: 10%;
-                                height: 138%;
-                                background-color: white;
+                                width: 50px;
+                                background-color: #0005;
                                 color: black;
                                 text-decoration: none;
                                 font-weight: bold;
-                                font-size: 100px;
-                                line-height: 1.5;
+                                font-size: 4em;
                             }
 
                             #prev {
@@ -343,10 +328,6 @@ html {
 
                             #next {
                                 border-radius: 0 5px 0 5px;
-                            }
-
-                            .can-page:hover {
-                                box-shadow: 0px 0px 10px white;
                             }
                         }
                     }
@@ -365,15 +346,11 @@ html {
                             padding: 2px;
                             border-radius: 5px;
                             margin-bottom: 35px;
-                            background: #222; /* For browsers that do not support gradients */
-                            background: linear-gradient(to bottom right, #BBF, white); /* Standard syntax */
 
                             h1 {
-                                text-transform: uppercase;
                                 color: white;
                                 font-size: 2.5em;
                                 font-weight: bold;
-                                text-shadow: 1px 1px 3px black, 3px 3px 0px #c6c6c6;
                             }
 
                             time {
@@ -382,7 +359,6 @@ html {
                                 text-align: center;
                                 font-style: italic;
                                 margin-bottom: 5px;
-                                text-shadow: 1px 1px 3px black, 3px 3px 0px #c6c6c6;
                             }
                         }
 
@@ -409,7 +385,6 @@ html {
                                 max-width: 100%;
                                 max-height: 500px;
                                 border-radius: 5px;
-                                box-shadow: 0px 0px 10px white;
                             }
 
                             .image-description {
@@ -624,15 +599,7 @@ html {
                                 display: inline-block;
                                 color: white;
                                 font-weight: bold;
-                                text-shadow: 1px 1px 4px #444, 3px 3px 0px #000;
-                                margin: 0px 20px 20px 0px;
-
-                                &:hover {
-                                    img {
-                                        filter: brightness(100%);
-                                        box-shadow: 0px 0px 10px white;
-                                    }
-                                }
+                                margin: 0 20px 20px 0;
 
                                 img {
                                     display: inline;
@@ -640,7 +607,6 @@ html {
                                     left: 0;
                                     width: 400px;
                                     height: 200px;
-                                    filter: brightness(85%);
                                 }
 
                                 .project-info {
@@ -648,8 +614,11 @@ html {
                                     position: absolute;
                                     left: 0;
                                     width: 400px;
-                                    margin: 5px;
+                                    padding: 5px;
                                     text-align: left;
+                                    opacity: 0;
+                                    background-color: #0005;
+                                    transition: 0.5s ease-in-out;
 
                                     .project-title {
                                         font-size: 2em;
@@ -663,14 +632,18 @@ html {
                                         margin-right: 15px;
                                         margin-bottom: 15px;
                                         font-size: 1.5em;
-                                        color: black;
-                                        text-shadow: 0px 0px 2px #DDD, 2px 2px 4px #FFF;
                                     }
 
                                     .project-role {
                                         font-size: 1.2em;
                                     }
                                 } // .project-info
+
+                                &:hover {
+                                  .project-info {
+                                    opacity: 100%;
+                                  }
+                                }
                             } // .project
                         } // #project-list a
                     } // #project-list
