@@ -174,7 +174,6 @@ html {
                 color: white;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
                 align-items: center;
 
                 h1 {
@@ -420,11 +419,15 @@ html {
                 } // #blog-post
 
                 #contact {
-                    margin: 0 auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
                     margin-top: 50px;
+                    width: 100%;
 
                     #contact-form {
-                        max-width: 500px;
+                        width: 400px;
                         margin-left: auto;
 
                         .btn {
@@ -448,8 +451,8 @@ html {
                     }
 
                     .info {
-                        margin: 15px 0px;
-                        margin-right: auto;
+                        padding: 20px;
+                        width: 340px;
 
                         a {
                             color: white;
