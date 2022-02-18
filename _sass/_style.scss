@@ -58,16 +58,12 @@ html {
             background-color: white;
 
             #header {
-                background-color: white;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                margin-left: 25px;
-                margin-right: 25px;
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: -webkit-flex;
-                display: -moz-box;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 20px;
                 display: flex;
+                justify-content: center;
+                align-items: center;
 
                 #logo {
                 	-webkit-flex-grow: 1;
@@ -217,7 +213,7 @@ html {
                         font-size: 1.2em;
 
                         h1 {
-                            font-size: 2em;
+                            font-size: 1.5em;
                             padding: 5px;
                             margin-top: 0;
                             white-space: nowrap;
@@ -235,10 +231,7 @@ html {
                         }
 
                         time {
-                            display: block;
-                            font-size: 1.5em;
-                            font-style: italic;
-                            color: #ccc;
+                            font-size: 1em;
                         }
 
                         img {
