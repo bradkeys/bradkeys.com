@@ -1,3 +1,17 @@
+Ghostlight:
+    company: Global Game Jam
+    role: Game Designer & Unity Developer
+    year: 2021
+    thumbnail: ghostlight-banner.jpg
+    filename: ghostlight
+    images:
+      - ghostlight-1.jpg
+      - ghostlight-2.jpg
+      - ghostlight-3.jpg
+      - ghostlight-4.jpg
+      - ghostlight-5.jpg
+    summary: "Created with Unity during Global Game Jam 2021. An isometric 3D game where players control a relic hunter exploring a haunted mansion for artifacts while a murderous invisible ghost chases them."
+
 Spellchopper:
     company: TOJam
     role: Unity Developer
