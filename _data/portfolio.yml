@@ -1,3 +1,19 @@
+Dungeon, With Friends!:
+    company: Global Game Jam
+    role: Game Designer & Unity Developer
+    year: 2022
+    thumbnail: dungeon-with-friends-banner.png
+    filename: dungeon-with-friends
+    images:
+      - dungeon-with-friends-1.png
+      - dungeon-with-friends-2.png
+      - dungeon-with-friends-3.png
+      - dungeon-with-friends-4.png
+      - dungeon-with-friends-5.png
+    platforms:
+      "Web": "/ggj2022"
+    summary: "Created with Unity during Global Game Jam 2022. A top-down cooperative 2D game where 2 players communicate with each other to escape their own version of the same dungeon."
+
 Ghostlight:
     company: Global Game Jam
     role: Game Designer & Unity Developer

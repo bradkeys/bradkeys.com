@@ -1,0 +1,40 @@
+---
+layout: portfolio
+title: Dungeon, With Friends!
+---
+
+<p>
+    I kicked off 2022 by participating in another Global Game Jam, this time with ex-colleague (Encircle) Chris Bogie and my good pal <a href="https://matthewminer.com/">Matthew Miner</a>. 
+    This jam was fully remote and the theme, "duality", was announced a couple of days early which allowed us to brainstorm ideas in advance. 
+</p>
+<p>
+    Initially it was just Matthew and I working on this project. 
+    Inspired by Jackbox Games we played together during the COVID-19 pandemic, we wanted to incorporate a game code that acts as a <a href="https://en.wikipedia.org/wiki/Random_seed">random seed</a> to create a shared randomly generated world. 
+    From past jams we knew online multiplayer was a lot to develop in a weekend, and since we were working remotely it also meant local multiplayer would be annoying. 
+    So we leaned on the random seed idea and expanded it so the player (P1) who initially creates the randomly generated world would experience it one way, 
+    while the other player (P2) who inputs the shared code experiences it a slightly different way. 
+    Together they have all the information they need to succeed, but they must communicate well (ie. voice chat or phone call) to share the information unique to them so they can both succeed. 
+</p>
+<p>
+    We used Google Docs to brainstorm ideas, Github as a code repository and issue tracker, and Discord for drop-in style voice chat throughout the weekend. 
+    Chris Bogie joined us Saturday and Sunday, primarily contributing to the world generation logic.
+</p>
+<p>
+    Together we created <strong>Dungeon, With Friends!</strong>, a top-down 2D game where two players must each explore and escape their version of the same randomly generated maze-like world. 
+    Players must avoid monsters and traps while moving throughout the land, some of which are only visible in their friend's version of the world. 
+    To escape, each player must unlock the exit by using a secret combination of glyphs that can only be discovered in their friend's version of the world.
+</p>
+<p>
+    I primarily worked on the UI for this game, which was my first time using Unity's <a href="https://unity.com/features/ui-toolkit">UI Toolkit</a>, an HTML/CSS insprired UI framework that I've been using exclusively since. 
+    This game relied more heavily on UI due to the required shared game code, instructions, and the complexity of the secret glyph input mechanic. 
+    As someone who has done plenty of modern web development it was a bit strange learning UI Toolkit, but by the end of the weekend I was whipping up new screens in no time. 
+    In the end I was completely avoiding the visual editor and building UI elements purely in code, which was such a welcome change.  
+</p>
+<p>
+    Aside from the UI, I was also responsible for all of the audio logic and sourcing assets. 
+    We heavily relied on a website called <a href="https://www.kenney.nl/">www.kenney.nl</a> for sprites, audio, and fonts. 
+    I highly recommend it for prototyping and game jams.
+</p>
+<p>
+    This is my favourite game jam project that I've contributed to and I hope to make more use of the game code feature going forward.
+</p>
