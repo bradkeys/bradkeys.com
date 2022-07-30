@@ -1,3 +1,16 @@
+Spellchopper:
+    company: TOJam
+    role: Unity Developer
+    year: 2020
+    thumbnail: spellchopper-banner.jpg
+    filename: spellchopper
+    images:
+      - spellchopper-1.jpg
+      - spellchopper-2.jpg
+      - spellchopper-3.jpg
+      - spellchopper-4.jpg
+    summary: "Created with Unity during TOJam 2020. An isometric 3D game where players control a helicopter full of wizards trying to perform as many heroic actions in a chaotic environment to score points in a limited amount of time."
+
 GemQuest Casino:
     company: Boom Digital Media Group
     role: Web Developer
