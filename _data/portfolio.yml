@@ -12,6 +12,8 @@ Dungeon, With Friends!:
       - dungeon-with-friends-5.png
     platforms:
       "Web": "/ggj2022"
+    blog-posts:
+      "Remote Game Jams": "/2022/07/30/Remote-Game-Jams/"
     summary: "Created with Unity during Global Game Jam 2022. A top-down cooperative 2D game where 2 players communicate with each other to escape their own version of the same dungeon."
 
 Ghostlight:
@@ -26,6 +28,8 @@ Ghostlight:
       - ghostlight-3.jpg
       - ghostlight-4.jpg
       - ghostlight-5.jpg
+    blog-posts:
+      "Remote Game Jams": "/2022/07/30/Remote-Game-Jams/"
     summary: "Created with Unity during Global Game Jam 2021. An isometric 3D game where players control a relic hunter exploring a haunted mansion for artifacts while a murderous invisible ghost chases them."
 
 Spellchopper:
@@ -39,6 +43,8 @@ Spellchopper:
       - spellchopper-2.jpg
       - spellchopper-3.jpg
       - spellchopper-4.jpg
+    blog-posts:
+      "Remote Game Jams": "/2022/07/30/Remote-Game-Jams/"
     summary: "Created with Unity during TOJam 2020. An isometric 3D game where players control a helicopter full of wizards trying to perform as many heroic actions in a chaotic environment to score points in a limited amount of time."
 
 GemQuest Casino:
