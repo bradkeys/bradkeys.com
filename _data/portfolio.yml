@@ -32,6 +32,7 @@ Ghostlight:
       "Web": "/ggj2021"
     blog-posts:
       "Remote Game Jams": "/2022/07/30/Remote-Game-Jams/"
+    video: "https://www.youtube.com/embed/wrX9Dhrhuvw"
     summary: "Created with Unity during Global Game Jam 2021. An isometric 3D game where players control a relic hunter exploring a haunted mansion for artifacts while a murderous invisible ghost chases them."
 
 Spellchopper:
