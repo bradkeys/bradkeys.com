@@ -28,6 +28,8 @@ Ghostlight:
       - ghostlight-3.jpg
       - ghostlight-4.jpg
       - ghostlight-5.jpg
+    platforms:
+      "Web": "/ggj2021"
     blog-posts:
       "Remote Game Jams": "/2022/07/30/Remote-Game-Jams/"
     summary: "Created with Unity during Global Game Jam 2021. An isometric 3D game where players control a relic hunter exploring a haunted mansion for artifacts while a murderous invisible ghost chases them."
