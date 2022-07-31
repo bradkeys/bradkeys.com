@@ -14,6 +14,7 @@ Dungeon, With Friends!:
       "Web": "/ggj2022"
     blog-posts:
       "Remote Game Jams": "/2022/07/30/Remote-Game-Jams/"
+    video: "https://www.youtube.com/embed/ixZaHr57Kno"
     summary: "Created with Unity during Global Game Jam 2022. A top-down cooperative 2D game where 2 players communicate with each other to escape their own version of the same dungeon."
 
 Ghostlight:
