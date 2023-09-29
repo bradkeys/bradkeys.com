@@ -14,7 +14,7 @@ Encircle:
       "Web": "https://encircleapp.com/login"
       "Google Play": "https://play.google.com/store/apps/details?id=com.encircle"
       "iOS": "https://apps.apple.com/ca/app/encircle/id604527488"
-    video: "https://www.youtube.com/embed/yOjEfdo323I"
+    video: "https://www.youtube.com/embed/KfKJGsY6Uw0?si=yODFtf95bOZTuRh3"
     summary: "A collaborative web (React) and mobile solution for restoration contractors to document their insurance work."
 
 Dungeon, With Friends!:
@@ -84,7 +84,7 @@ GemQuest Casino:
       - gemquest-5.png
     platforms:
       "Facebook": "https://apps.facebook.com/gemquest"
-    website: "https://www.gemquestcasino.com"
+    website: "https://boomgaming.com/"
     video: "https://www.youtube.com/embed/634P8O28olc"
     summary: "A play-for-fun casino slots app built with Angular2. Try your luck playing a wide variety of slot machine games as you complete quests, level-up, compete on the leaderboards, and unlock new slots games to play."
 
@@ -155,7 +155,7 @@ Lawren Harris - Where the Universe Sings AR:
     platforms:
       "iOS": "https://itunes.apple.com/ca/app/lawren-harris-where-universe/id1145080236?mt=8"
       "Google Play": "https://play.google.com/store/apps/details?id=com.secretlocation.lawrenharris&hl=en"
-    website: "https://www.wheretheuniversesings.com"
+    website: "https://www.imdb.com/title/tt6467298/"
     summary: "An augmented reality app for iOS and Android, made with Unity. Users can scan select paintings by artist Lawren Harris and watch videos of his work coming to life with audio from Lawren himself."
 
 Modbox:
