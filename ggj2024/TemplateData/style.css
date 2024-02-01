@@ -48,3 +48,10 @@ a {
 a:hover {
     color: black;
 }
+
+@media screen and (orientation:landscape) {
+    #unity-canvas {
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+}
