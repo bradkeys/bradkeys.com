@@ -1,0 +1,74 @@
+---
+layout: portfolio
+title: Huedini
+---
+
+<p>
+    I collaborated with <a href="https://matthewminer.com/">Matthew Miner</a> to bring this game to life during the 2024 Global Game Jam. 
+    The theme, "Make me laugh," didn't directly influence our game mechanics, but we infused it with a select few elements you may notice.
+</p>
+<p>
+    Our journey began on a Thursday night when we used Discord and a Google Doc to brainstorm ideas and share interests in technologies.
+    Our past jam experiences guided us towards simplicity to ensure a complete game within our tight timeframe. 
+    This decision eliminated many ideas, but our proven process allowed us to revisit prior brainstorming documents, leading us to a cool concept we still believed had potential. 
+</p>
+<p>
+    The inspiration for our game dates back to a 2014 game jam project called <a href="https://bradkeys.com/portfolio/bursting-with-colour/">Bursting With Colour</a>. 
+    It featured toggling pairs of colours to navigate a procedurally generated platformer level, a mechanic that was an absolute blast and easy to grasp. 
+    In 2020, we reimagined this concept at another game jam, focusing more on the puzzle element, but didn't choose it. 
+    It was inspired by the movement of the enemy <a href="https://www.mariowiki.com/Hothead">Hothead</a> from Super Mario World, which I combined with colour-toggling blocks to create a casual mechanic suitable for mobile. 
+</p>
+<video controls>
+    <source src="/video/huedini-early.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<p>
+    Once we settled on the game idea, we used <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects">Github Projects</a> to divide tasks throughout the jam. 
+    This helped us stay organized, especially since we were jamming remotely from different time zones. 
+    Clear task assignments made it easier to track progress, and is a helpful reference if we revisit the project in the future.
+</p>
+<p>
+    On Friday, I focused on programming the game's architecture, using a framework inspired by prior jams. 
+    I created the level selection screen, gameplay UI, and win/lose modals using UI Toolkit. 
+    I delved deeper into UI Toolkit, learning how to implement looping animations which can be seen in the level selection and victory screens.
+</p>
+<video controls>
+    <source src="/video/huedini-animations.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<p>
+    Matthew tackled character movement and level architecture. 
+    Unity's <a href="https://docs.unity3d.com/2023.3/Documentation/Manual/class-Tilemap.html">Tilemap component</a> made level building a breeze, while character movement required more intricate work. 
+    By the end of the day, Matt had implemented clockwise-only movement, gravity with vertical screen wrapping, and more. 
+    Legend. 
+</p>
+<p>
+    Saturday I unfortunately had other plans, but I managed to design a level, which ended up being level 7 in the final build. 
+    Of our small selection of eight levels, it's the one I'm most proud of because it's likely the most challenging puzzle and also features a timing challenge. 
+    Due to time constraints, the remaining levels had simpler puzzles. 
+    Matt continued his work on character movement and implemented our art assets using a free online resource. 
+</p>
+<video controls>
+    <source src="/video/huedini-level-design.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<p>
+    Sunday I was back in action. 
+    With Matthew's code refactor I was able to easily implement a "squish detection" when the character is occupying a space that has a coloured tile enabled, which triggers the lose modal. 
+    I implemented similar logic to detect if the character had reached the exit tile, which triggers the win modal.
+    I made the UI scale with many aspect ratios and spruced it up some with animations, maybe getting a little carried away. 
+    I added SFX and music from free online resources, and recorded two unique SFX that can be heard when being squished and when completing a level. 
+</p>
+<p>
+    Matthew further enhanced character movement, enabling counter-clockwise movement, which was essential for level design. 
+    He also improved squish detection, reattachment after falling, implemented keyboard controls, and ensured the camera zoomed to fit each level's size. 
+    Our game loop was complete. 
+</p>
+<p>
+    Monday was my bouns make-up day for missing Saturday. 
+    I fixed a number of UI related issues, designed 7 more levels, and lost hair creating a WebGL build so that I could share our project with friends the following day.
+</p>
+<p>
+    Together we created <strong>Huedini</strong>, a game with a name <a href="https://en.wikipedia.org/wiki/Hue">too</a> <a href="https://en.wikipedia.org/wiki/Harry_Houdini">clever</a> for its time. 
+    Player feedback has been positive so far and I'm tempted to continue developing this as a mobile game with more levels and mechanics!
+</p>
