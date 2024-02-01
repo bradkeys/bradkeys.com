@@ -12,7 +12,7 @@ Huedini:
       - huedini-5.png
     platforms:
       "Web": "/ggj2024"
-    summary: "Created with Unity during Global Game Jam 2024. A 2D platformer game where you toggle coloured blocks on/off to escape each level."
+    summary: "Created with Unity during Global Game Jam 2024. A 2D platformer game for WebGL where you toggle coloured blocks on/off to escape each level."
 
 Encircle:
     company: Encircle Inc.
