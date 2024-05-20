@@ -1,3 +1,19 @@
+Boomjets:
+    company: TOJam
+    role: Game Designer & Unity Developer
+    year: 2024
+    thumbnail: boomjets-banner.jpg
+    filename: boomjets
+    images:
+      - boomjets-1.jpg
+      - boomjets-2.jpg
+      - boomjets-3.jpg
+      - boomjets-4.jpg
+    platforms:
+      "Web": "/tojam2024"
+    video: "https://www.youtube.com/embed/Gs9tFLoZoqQ"
+    summary: "Created with Unity during TOJam, Toronto's annual 48-hour game jam. A 3D platformer game for WebGL where you frantically explore bomb-riddled caverns to earn the most explosive score possible!"
+
 Huedini:
     company: Global Game Jam
     role: Game Designer & Unity Developer

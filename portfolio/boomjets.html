@@ -1,0 +1,89 @@
+---
+layout: portfolio
+title: Boomjets
+---
+
+<p>
+    I teamed up with friends <a href="https://matthewminer.com/">Matthew Miner</a> and <a href="https://www.linkedin.com/in/brentgmitchell/">Brent Mitchell</a> to participate in Toronto's 48-hour game jam, <a href="https://www.tojam.ca">TOJam</a>. 
+    The theme was <em>"That's supposed to happen"</em>, and together we created <em>Boomjets</em>, a 3D side-scrolling arcade game featuring a jetpack-wearing, pickaxe-wielding lizard man navigating a bomb-riddled cavern to collect artifacts and escape. 
+    Despite being in different time zones, with up to 8 hours difference, we successfully collaborated remotely to bring this game to life. 
+</p>
+<h5>PLANNING</h5>
+<p>
+    Our brainstorming began a week before the game jam using a shared Google Doc. 
+    The theme was announced the day before the jam, and we aimed to have a solid game design vision agreed upon by then. 
+    I had recently been playing <a href="https://en.wikipedia.org/wiki/Animal_Well">Animal Well</a> and shared an inspiring moment from the game where an unexpected explosion opened up part of the map. 
+    We all agreed that explosions are fun and decided to build a game around the idea of carefully exploring a cave filled with hidden explosives that could potentially trigger chain reactions. 
+    With our significant time zone differences, we needed to decide on something concrete quickly to ensure no one was blocked once the jam started.
+</p>
+<h5>SETUP</h5>
+<p>
+    Brent brought an arsenal of assets from the <a href="https://assetstore.unity.com">Unity Asset Store</a> to the table, including the <a href="https://corgi-engine.moremountains.com">Corgi Engine</a>, which provides common functionality for creating 3D and 2D platforming games. 
+    Although none of us had used it before, we saw potential for quick wins in setting up the game, allowing us to focus on level design and the explosion mechanics. 
+    We committed to using Corgi Engine and kicked off the jam on Friday evening.
+</p>
+<p>
+    We used <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects">Github Projects</a> to divide tasks throughout the jam. 
+    My main responsibilities included UI, scene loading, and leaderboard/scoring integration.
+</p>
+<h5>UI</h5>
+<p>
+    Despite our recent preference for `UIToolkit`, I opted for the older <em>UnityEngine.UI</em> system because Corgi Engine has nice prefabs using it. 
+    This decision led to more merge conflicts due to changes in our scene hierarchy, but overall, the implementation was straightforward and fast.  
+</p>
+<h5>SCENE LOADING</h5>
+<img src="/img/portfolio/boomjets-loading.gif" width="100%" />
+<p>
+    Corgi Engine offered useful tools for scene loading, including a quick transition effect where the camera fades to black and back in to reveal new scenes. 
+    Initially, we had a fancy loading screen between scenes from Corgi Engine, but we removed it as it was unnecessary and wasted the player's time. 
+    Our final scenes included:
+</p>
+<ul>
+    <li>Main menu</li>
+    <li>A single level</li>
+    <li>Game over</li>
+    <li>Level complete</li>
+</ul>
+<p>
+    We intended to have at least three levels, with cumulative scores and an online leaderboard. 
+    However, due to time constraints, we only managed to create one level, which loops after completion. 
+    If the player runs out of time or health, they encounter the game over screen.
+</p>
+<h5>LEADERBOARD INTEGRATION</h5>
+<img src="/img/portfolio/boomjets-leaderboards.png" width="100%" />
+<p>
+    Implementing the leaderboard was a great experience. 
+    Brent desired an online leaderboard, and Matthew recommended checking out Unity's <a href="https://unity.com/products/leaderboards">Leaderboards</a> service. 
+    Integrating it into our game was straightforward, thanks to the comprehensive documentation. 
+</p>
+<p>
+    Corgi Engine is namespaced, so to enable our leaderboard scripts to communicate with Corgi Engine scripts, I extended Corgi Engine to have additional events for leaderboards. 
+    Custom player names for the leaderboard was accomplished using annonymous sign-in and a <em>`name`</em> field in each score entry's metadata. 
+    The Leaderboards service offers a number of authentication options (Google, Steam, etc) but those would have required creating OAuth apps, which is really not within game jam territory. 
+    I later learned that Unity's Authentication service lets you set the player name, so my "clever" metadata workaround made the integration more complex than it should have been. 
+</p>
+<h5>GAMEPLAY</h5>
+<img src="/img/portfolio/boomjets-gameplay.gif" width="100%" />
+<p>
+    Matthew and Brent focused on gameplay functionality, art, and FX, leveraging Corgi Engine components. 
+    Matthew implemented a unique level timer using Unity's <a href="https://docs.unity3d.com/Packages/com.unity.splines@2.6/api/UnityEngine.Splines.SplineExtrude.html">Splines package</a>, creating a visual bomb-fuse framing the gameplay. 
+    This configurable timer added an exciting dynamic to the game.
+</p>
+<p>
+    In the final hours, we realized our in-game bombs didn't cause damage yet. 
+    We had spent too much time on aesthetics rather than the core mechanic of chain-reacting explosions. 
+    I tackled this using Corgi Engine components, making platforms with Health components and bombs that instantiate a damage area with a circle collider. 
+    Tweaking the explosion radius resulted in some thrilling, chaotic gameplay, confirming that explosions are indeed fun!
+</p>
+<h5>CONCLUSION</h5>
+<p>
+    Despite the challenges and time constraints, we created a minimal yet exciting game. 
+    The collaboration, even across different time zones, was a testament to our teamwork and dedication. 
+    I would highly recommend using Unity's Leaderboards service. 
+    Corgi Engine is neat and I think it can be quite good for certain use-cases, but for this project, and likely most 3D projects, I can't help but wonder if it slowed us down in the end. 
+</p>
+<p>
+    We're proud of what we accomplished in such a short time and look forward to exploring the explosive mechanics and level design further. 
+    It's one of our best looking game jam projects, especially thanks to the superb concept art provided by Joanna Kowalick. 
+    You can play a WebGL version of the game right here in your desktop browser.
+</p>
