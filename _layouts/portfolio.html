@@ -19,7 +19,7 @@ layout: default
     <div id="screenshots">
         {% for image in project.images %}
     	    <a class="hvr-grow swipebox" href="/img/portfolio/{{ image }}">
-        		<img src="/img/portfolio/{{ image }}" loading="lazy" decoding="async" />
+        		{% capture shot %}/img/portfolio/{{ image }}{% endcapture %}<img src="{{ shot }}" {% include img-size.html src=shot %} loading="lazy" decoding="async" />
         	</a>
     	{% endfor %}
     </div>
@@ -37,11 +37,11 @@ layout: default
                 {% if platform[0] == 'iOS' %}
                     <img src="/img/badges/iOS.svg" />
                 {% elsif platform[0] == 'Google Play' %}
-                    <img src="/img/badges/GooglePlay.png" />
+                    <img src="/img/badges/GooglePlay.png" {% include img-size.html src="/img/badges/GooglePlay.png" %} />
                 {% elsif platform[0] == 'Web' %}
-                    <img src="/img/badges/web.png" />
+                    <img src="/img/badges/web.png" {% include img-size.html src="/img/badges/web.png" %} />
                 {% elsif platform[0] == 'Steam' %}
-                    <img src="/img/badges/steam.png" />
+                    <img src="/img/badges/steam.png" {% include img-size.html src="/img/badges/steam.png" %} />
                 {% endif %}
             </a>
         {% endfor %}
