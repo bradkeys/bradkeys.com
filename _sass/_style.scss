@@ -4,27 +4,6 @@ img {
     height: auto;
 }
 
-/* Bootstrap Buttons */
-
-.btn-primary {
-    background: #0099cc;
-    color: #ffffff;
-
-    &:hover,
-    &:focus {
-        background: #33a6cc;
-    }
-
-    &:active, .active {
-        background: #007299;
-        box-shadow: none;
-    }
-}
-
-.open > .dropdown-toggle.btn-primary {
-    background: #33a6cc;
-}
-
 .btn-sharp {
     border-radius: 2;
     background-color: white;
@@ -36,14 +15,6 @@ img {
         background-color: black;
     }
 }
-
-.gravatar {
-    margin: 0 auto;
-    margin-bottom: 15px;
-    border-radius: 50%;
-    border: 2px solid white;
-}
-
 
 /* Main Styles*/
 html {
@@ -432,30 +403,6 @@ html {
                     margin-top: 50px;
                     width: 100%;
 
-                    #contact-form {
-                        width: 400px;
-                        margin-left: auto;
-
-                        .btn {
-                            padding: 14px 24px;
-                            letter-spacing: 1px;
-                            text-transform: uppercase;
-                            text-decoration: none;
-                            background-color: black;
-                            border: 1px solid white;
-                            color: white;
-                            font-size: 13px;
-                            font-weight: 400;
-                            font-family: Arial, Helvetica, sans-serif;
-
-                            &:hover {
-                                background-color: white;
-                                color: black;
-                                border: 1px solid black;
-                            }
-                        }
-                    }
-
                     .info {
                         padding: 20px;
                         width: 340px;
@@ -713,12 +660,6 @@ html {
 }
 
 @media all and (max-width: 990px)  {
-    .hide-on-mobile {
-        visibility: hidden;
-        clear: both;
-        display: none;
-    }
-
     main {
         h1 {
             text-align: center;
@@ -816,7 +757,7 @@ html {
                     }
 
                     #contact {
-                        #contact-form, .info {
+                        .info {
                             margin: 0 auto;
                         }
                     }
@@ -900,7 +841,7 @@ html {
                     }
 
                     #contact {
-                        #contact-form, .info {
+                        .info {
                             margin: 0 auto;
                         }
 
