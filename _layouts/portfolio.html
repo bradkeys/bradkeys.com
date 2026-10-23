@@ -12,14 +12,14 @@ layout: default
     {% if project.video %}
         <div id="video-outer">
             <div id="video-inner">
-                <iframe src="{{ project.video }}" frameborder="0" allowfullscreen></iframe>
+                <iframe src="{{ project.video }}" frameborder="0" loading="lazy" allowfullscreen></iframe>
             </div>
         </div>
     {% endif %}
     <div id="screenshots">
         {% for image in project.images %}
     	    <a class="hvr-grow swipebox" href="/img/portfolio/{{ image }}">
-        		<img src="/img/portfolio/{{ image }}" />
+        		<img src="/img/portfolio/{{ image }}" loading="lazy" decoding="async" />
         	</a>
     	{% endfor %}
     </div>
@@ -74,9 +74,11 @@ layout: default
     {% endif%}
 </div>
 
-<script src="/js/jquery.swipebox.min.js"></script>
+<!-- jQuery is only needed for the Swipebox lightbox, so it's only loaded here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" defer></script>
+<script src="/js/jquery.swipebox.min.js" defer></script>
 <script type="text/javascript">
-;( function( $ ) {
-	$( '.swipebox' ).swipebox();
-} )( jQuery );
+document.addEventListener( 'DOMContentLoaded', function() {
+	jQuery( '.swipebox' ).swipebox();
+} );
 </script>

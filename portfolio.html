@@ -22,7 +22,7 @@ title: Portfolio
             {% assign project = project_info[1] %}
             <a href="/portfolio/{{ project.filename }}/">
                 <div class="project hvr-grow">
-                    <img src="/img/portfolio/{{ project.thumbnail }}" />
+                    <img src="/img/portfolio/{{ project.thumbnail }}" loading="lazy" decoding="async" />
                     <div class="transbox"></div>
                     <div class="project-info">
                         <span class="project-title">{{ project_info[0] }}</span>
