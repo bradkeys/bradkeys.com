@@ -4,6 +4,9 @@
 permalink:           pretty
 relative_permalinks: false
 
+exclude:
+   - script
+
 plugins:
    - jekyll-paginate
 
