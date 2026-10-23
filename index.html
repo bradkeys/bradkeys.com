@@ -11,7 +11,7 @@ title: Game Dev Blog
                 <time datetime="{{ post.date | date: "%Y/%m/%d" }}">{{ post.date  | date_to_string }}</time>
                 {% if post.image %}
                 <a class="hvr-grow" href="{{ post.url }}">
-                    <img src="{{ post.image }}" {% include img-size.html src=post.image %} loading="lazy" decoding="async" />
+                    <img src="{{ post.image }}" alt="{{ post.title | escape }}" loading="lazy" decoding="async" />
                 </a>
                 {% endif %}
             </div>

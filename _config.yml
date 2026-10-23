@@ -12,7 +12,10 @@ plugins:
 
 # Setup
 title: Brad Keys
+url: https://bradkeys.com
+description: Game developer and designer with 15+ years of Unity experience. Game dev blog and portfolio of Brad Keys.
 highlighter: rouge
 paginate: 999  # I am not actively blogging enough to need this
 sass:
   style: compressed
+  sourcemap: never
