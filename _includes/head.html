@@ -1,7 +1,12 @@
+{% assign page_title = page.title | default: site.title %}
+{% if page.url == '/' %}{% assign full_title = "Brad Keys – Unity Game Developer & Designer" %}{% else %}{% assign full_title = page_title | append: " · " | append: site.title %}{% endif %}
+{% if page.description %}{% assign page_desc = page.description %}{% elsif page.layout == 'portfolio' %}{% assign project = site.data.portfolio[page.title] %}{% assign page_desc = page.title | append: ' – ' | append: project.role | append: ' at ' | append: project.company | append: ' (' | append: project.year | append: '). A game by Brad Keys.' %}{% elsif page.layout == 'post' %}{% assign page_desc = content | split: '<div class="content">' | last | strip_html | strip_newlines | normalize_whitespace | truncate: 160 %}{% endif %}
+{% if page_desc == nil or page_desc == "" %}{% assign page_desc = site.description %}{% endif %}
+{% assign canonical = site.url | append: page.url | replace: 'index.html', '' %}
+{% assign og_image = nil %}{% if page.image %}{% if page.image contains '://' %}{% assign og_image = page.image %}{% else %}{% assign og_image = site.url | append: page.image %}{% endif %}{% elsif page.layout == 'portfolio' %}{% assign project = site.data.portfolio[page.title] %}{% if project.images.first %}{% assign og_image = site.url | append: '/img/portfolio/' | append: project.images.first %}{% endif %}{% endif %}
 <head>
-    <!-- Fun Stuff! -->
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta name="google-site-verification" content="p1mSsTQKTBPCQYTaiKcwBJ9t8n9sgQ1g2lQ--ozQhtM" />
 
 	<!-- Styles -->
@@ -11,13 +16,45 @@
     <link rel="shortcut icon" href="/public/favicon.ico">
 
     <!-- SEO -->
-    <title>{{ page.title }} &middot; {{ site.title }}</title>
+    <title>{{ full_title | escape }}</title>
 	<meta name="author" content="Brad Keys" />
-	<meta name="copyright" content="&copy; {{ site.time | date: '%Y' }} Brad Keys" />
-	<meta name="description" content="Game development blog &amp; portfolio." />
-	<meta name="keywords" content="programming, programmer, Lumos, analytics, Unity3d, Unity, Brad Keys,
-	Bradley Keys, Game Design, VFS, rebel hippo, rebelhippo, just pretend, orbert, canada,
-	ontario, kitchener, waterloo, toronto, velocity, contract, consulting, consultant, game industry,
-	virtual reality, vr, augmented reality, ar"
-	/>
+	<meta name="description" content="{{ page_desc | escape }}" />
+	<link rel="canonical" href="{{ canonical }}" />
+
+	<meta property="og:site_name" content="{{ site.title }}" />
+	<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
+	<meta property="og:title" content="{{ full_title | escape }}" />
+	<meta property="og:description" content="{{ page_desc | escape }}" />
+	<meta property="og:url" content="{{ canonical }}" />
+	{% if og_image %}<meta property="og:image" content="{{ og_image }}" />{% endif %}
+	<meta name="twitter:card" content="{% if og_image %}summary_large_image{% else %}summary{% endif %}" />
+	<meta name="twitter:title" content="{{ full_title | escape }}" />
+	<meta name="twitter:description" content="{{ page_desc | escape }}" />
+	{% if og_image %}<meta name="twitter:image" content="{{ og_image }}" />{% endif %}
+
+	{% if page.layout == 'post' %}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": {{ page.title | jsonify }},
+		"description": {{ page_desc | jsonify }},
+		"datePublished": "{{ page.date | date_to_xmlschema }}",
+		{% if og_image %}"image": "{{ og_image }}",{% endif %}
+		"mainEntityOfPage": "{{ canonical }}",
+		"author": { "@type": "Person", "name": "Brad Keys", "url": "{{ site.url }}/" }
+	}
+	</script>
+	{% elsif page.url == '/' %}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Brad Keys",
+		"url": "{{ site.url }}/",
+		"jobTitle": "Game Developer",
+		"sameAs": ["https://www.linkedin.com/in/bradkeys", "https://github.com/bradkeys"]
+	}
+	</script>
+	{% endif %}
 </head>
