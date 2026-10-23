@@ -435,3 +435,17 @@ public class CustomLoop : MonoBehaviour
     </div>
 </div>
 
+<script type="text/javascript">
+// Accordion toggle (replaces Bootstrap's collapse plugin): opening a panel closes the others
+document.querySelectorAll( '#accordion [data-toggle="collapse"]' ).forEach( function( link ) {
+    link.addEventListener( 'click', function( e ) {
+        e.preventDefault();
+        var target = document.querySelector( link.getAttribute( 'href' ) );
+        var opening = !target.classList.contains( 'in' );
+        document.querySelectorAll( '#accordion .collapse.in' ).forEach( function( panel ) {
+            panel.classList.remove( 'in' );
+        } );
+        target.classList.toggle( 'in', opening );
+    } );
+} );
+</script>
