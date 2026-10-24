@@ -8,9 +8,10 @@
         "/portfolio/boomjets/index.html",
         "/2017/04/21/Optimizing-Games-by-Using-Font-Icons/index.html"
       ],
-      "numberOfRuns": 1
+      "numberOfRuns": 3
     },
     "assert": {
+      "aggregationMethod": "median",
       "assertions": {
         "categories:performance": ["error", { "minScore": 0.9 }],
         "categories:accessibility": ["error", { "minScore": 0.95 }],

@@ -12,14 +12,23 @@ layout: default
     {% if project.video %}
         <div id="video-outer">
             <div id="video-inner">
-                <iframe src="{{ project.video | replace: 'www.youtube.com', 'www.youtube-nocookie.com' }}" title="{{ page.title }} video" frameborder="0" loading="lazy" allowfullscreen></iframe>
+                {% if project.video contains 'youtube.com/embed/' %}
+                    {% comment %}Click-to-load facade: the YouTube player (about 800 KB of script) only loads when played. Without JS this is a plain link to the video.{% endcomment %}
+                    {% assign video_id = project.video | split: '/embed/' | last | split: '?' | first %}
+                    <a class="video-facade" href="https://www.youtube.com/watch?v={{ video_id }}" data-embed="https://www.youtube-nocookie.com/embed/{{ video_id }}?autoplay=1&amp;rel=0" data-title="{{ page.title }} video" aria-label="Play video: {{ page.title }}">
+                        <img src="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+                        <span class="video-play">{% include icons/play.svg %}</span>
+                    </a>
+                {% else %}
+                    <iframe src="{{ project.video | replace: 'www.youtube.com', 'www.youtube-nocookie.com' }}" title="{{ page.title }} video" frameborder="0" loading="lazy" allowfullscreen></iframe>
+                {% endif %}
             </div>
         </div>
     {% endif %}
     <div id="screenshots">
         {% for image in project.images %}
     	    <a class="hvr-grow lightbox" href="/img/portfolio/{{ image }}">
-        		{% capture shot %}/img/portfolio/{{ image }}{% endcapture %}<img alt="{{ page.title }} screenshot {{ forloop.index }}" src="{{ shot }}" {% include img-size.html src=shot %} loading="lazy" decoding="async" />
+        		{% capture shot %}/img/portfolio/thumbs/{{ image | split: '.' | first }}.jpg{% endcapture %}<img alt="{{ page.title }} screenshot {{ forloop.index }}" src="{{ shot }}" {% include img-size.html src=shot %} loading="lazy" decoding="async" />
         	</a>
     	{% endfor %}
     </div>
@@ -74,3 +83,5 @@ layout: default
 </div>
 
 <script src="/js/lightbox.js" defer></script>
+<script src="/js/autoplay-video.js" defer></script>
+<script src="/js/video-facade.js" defer></script>
