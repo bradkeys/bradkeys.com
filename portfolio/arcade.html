@@ -59,14 +59,45 @@ title: Keys Arcade
     I also have updated each game to support exiting back to the Pegasus Frontend. 
 </p>
 <h5>UNITY GAMES ON THE KEYS ARCADE</h5>
-<ul>
-    <li><a href="/portfolio/bursting-with-colour/">Bursting with Colour</a> (2014)</li>
-    <li><a href="/portfolio/orbert/">Orbert</a> (2014)</li>
-    <li><a href="/portfolio/switchit/">Switchit</a> (2015)</li>
-    <li>Wizbang (2026)</li>
-</ul>
+
+<h6><a href="/portfolio/bursting-with-colour/">Bursting with Colour</a> <small>(2014)</small></h6>
 <p>
-    Bursting with Colour was the biggest challenge to port. It was built in 2014 with Unity 4, and the oldest version
-    of Unity available to download today is Unity 5, whose license server no longer works, so the project couldn't be
-    fully opened without some extra effort.
+    The biggest port of the bunch. It was built in 2014 with Unity 4, and the oldest version of Unity available to
+    download today is Unity 5, whose license server no longer works, so the project couldn't be fully opened without
+    some extra effort. Once it was running again I upgraded it to Unity 6 and adapted it to the cabinet.
+</p>
+<ul>
+    <li>Fixed what broke in the upgrade: character animations, music and sound effects, wall collisions, and missing player labels</li>
+    <li>Reworked the camera and moved the HUD along the top to suit the cabinet's 5:3 screen</li>
+    <li>Added joystick and button input for both players, including navigable game over buttons</li>
+    <li>Added a preload scene, and the ESC key now quits back to the frontend</li>
+</ul>
+
+<h6><a href="/portfolio/orbert/">Orbert</a> <small>(2014)</small></h6>
+<p>
+    Orbert was designed for touch screens, so the arcade version needed new controls and a new goal to play for.
+</p>
+<ul>
+    <li>Arcade mode is now the default mode</li>
+    <li>Added a leaderboard, including a screen for entering your initials after a high score</li>
+    <li>The leaderboard also shows in Pegasus Frontend while browsing the game collection</li>
+    <li>Menus, settings and help are navigable with the joystick and buttons, and a button on the cabinet controls the orbit</li>
+    <li>Removed UI that doesn't make sense on an arcade machine, such as the pause button, the best score display and the how to play option</li>
+</ul>
+
+<h6><a href="/portfolio/switchit/">Switchit</a> <small>(2015)</small></h6>
+<p>
+    A local multiplayer game suits an arcade cabinet well, but it needed a lot of work to look and feel right on one.
+</p>
+<ul>
+    <li>Upgraded to Unity 6 and switched to the Universal Render Pipeline (URP)</li>
+    <li>Fixed the camera and UI to fit the cabinet's 1280x1024 screen</li>
+    <li>Overhauled the character controller so players rotate to face their movement direction</li>
+    <li>Fixed bullets colliding with the player while turning and passing through objects at higher speeds, and fixed the bomb explosion</li>
+    <li>Performance tweaks, shorter delays, and the ESC key now quits back to the frontend</li>
+</ul>
+
+<h6>Wizbang <small>(2026)</small></h6>
+<p>
+    A lightgun game created specifically for the Keys Arcade. I'll share more details on it soon.
 </p>

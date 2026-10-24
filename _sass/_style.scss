@@ -517,6 +517,18 @@ html {
                         font-weight: bold;
                     }
 
+                    h6 {
+                        text-align: left;
+                        margin: 25px 0px 10px;
+                        font-size: 1.15em;
+                        font-weight: bold;
+
+                        small {
+                            font-weight: normal;
+                            opacity: 0.7;
+                        }
+                    }
+
                     hr {
                         width: 90%;
                         max-width: 1000px;
