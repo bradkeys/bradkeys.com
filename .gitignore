@@ -7,3 +7,4 @@ _site/
 vendor/
 .editorconfig
 *.DS_STORE
+.lighthouseci/

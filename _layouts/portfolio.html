@@ -12,7 +12,7 @@ layout: default
     {% if project.video %}
         <div id="video-outer">
             <div id="video-inner">
-                <iframe src="{{ project.video }}" frameborder="0" loading="lazy" allowfullscreen></iframe>
+                <iframe src="{{ project.video | replace: 'www.youtube.com', 'www.youtube-nocookie.com' }}" title="{{ page.title }} video" frameborder="0" loading="lazy" allowfullscreen></iframe>
             </div>
         </div>
     {% endif %}
