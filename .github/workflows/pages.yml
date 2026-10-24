@@ -27,7 +27,30 @@ jobs:
       - run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      # Internal links, image references and alt text. The WebGL builds are
+      # Unity exports we don't control, so they're skipped.
+      - run: >
+          bundle exec htmlproofer ./_site
+          --disable-external --no-enforce-https
+          --ignore-files "/\/(ggj2021|ggj2022|ggj2024|tojam2024)\//"
+        env:
+          LANG: C.UTF-8
       - uses: actions/upload-pages-artifact@v3
+
+  # Guards the performance, accessibility and SEO scores (see lighthouserc.json).
+  lighthouse:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      - run: npx --yes @lhci/cli@0.14 autorun
 
   deploy:
     if: github.event_name != 'pull_request'

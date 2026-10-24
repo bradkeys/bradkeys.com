@@ -1,0 +1,45 @@
+name: Check external links
+
+on:
+  schedule:
+    - cron: "0 14 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  external-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      # Weekly rather than on every PR: external sites are flaky and old posts
+      # link to many pages that have since moved. Report-only for now: the
+      # broken links are listed in the run summary instead of failing the run.
+      # Drop continue-on-error once the old links are cleaned up.
+      - run: |
+          set -o pipefail
+          bundle exec htmlproofer ./_site \
+            --no-enforce-https --no-check-internal-hash \
+            --ignore-files "/\/(ggj2021|ggj2022|ggj2024|tojam2024)\//" \
+            --ignore-status-codes "0,403,429,999,308" \
+            --typhoeus '{"followlocation":true,"connecttimeout":15,"timeout":30}' \
+            2>&1 | tee links.txt
+        continue-on-error: true
+        env:
+          LANG: C.UTF-8
+      - if: always()
+        run: |
+          {
+            echo '## External link check'
+            echo '```'
+            grep -E '^(At |  \*|HTML-Proofer)' links.txt || echo 'No broken links.'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
