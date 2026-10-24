@@ -33,17 +33,25 @@ layout: default
     {% endif %}
     <div id="platforms">
         {% for platform in project.platforms %}
-            <a class="hvr-grow" href="{{ platform[1] }}">
+            {% comment %}A platform with no URL (e.g. the app was removed from its store) is still listed, unlinked.{% endcomment %}
+            {% assign suffix = '' %}
+            {% unless platform[1] %}{% assign suffix = ' (no longer available)' %}{% endunless %}
+            {% capture badge %}
                 {% if platform[0] == 'iOS' %}
-                    <img src="/img/badges/iOS.svg" alt="Download on the App Store" />
+                    <img src="/img/badges/iOS.svg" alt="Download on the App Store{{ suffix }}" />
                 {% elsif platform[0] == 'Google Play' %}
-                    <img src="/img/badges/GooglePlay.png" {% include img-size.html src="/img/badges/GooglePlay.png" %} alt="Get it on Google Play" />
+                    <img src="/img/badges/GooglePlay.png" {% include img-size.html src="/img/badges/GooglePlay.png" %} alt="Get it on Google Play{{ suffix }}" />
                 {% elsif platform[0] == 'Web' %}
-                    <img src="/img/badges/web.png" {% include img-size.html src="/img/badges/web.png" %} alt="Play in your browser" />
+                    <img src="/img/badges/web.png" {% include img-size.html src="/img/badges/web.png" %} alt="Play in your browser{{ suffix }}" />
                 {% elsif platform[0] == 'Steam' %}
-                    <img src="/img/badges/steam.png" {% include img-size.html src="/img/badges/steam.png" %} alt="Available on Steam" />
+                    <img src="/img/badges/steam.png" {% include img-size.html src="/img/badges/steam.png" %} alt="Available on Steam{{ suffix }}" />
                 {% endif %}
-            </a>
+            {% endcapture %}
+            {% if platform[1] %}
+                <a class="hvr-grow" href="{{ platform[1] }}">{{ badge }}</a>
+            {% else %}
+                <span class="platform-unlinked" title="No longer available">{{ badge }}</span>
+            {% endif %}
         {% endfor %}
     </div>
     {% if project.summary %}

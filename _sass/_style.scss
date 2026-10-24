@@ -500,10 +500,16 @@ html {
                     #platforms {
                         margin-bottom: 15px;
 
-                        a {
+                        a, .platform-unlinked {
                             text-decoration: none;
                             margin-right: 10px;
                             margin-top: 15px;
+                        }
+
+                        .platform-unlinked {
+                            display: inline-block;
+                            opacity: 0.45;
+                            cursor: default;
                         }
 
                         img {

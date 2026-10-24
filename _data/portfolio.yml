@@ -1,3 +1,5 @@
+# A platform with no URL (e.g. an app that has been removed from its store) is
+# still listed on the project page, shown dimmed and unlinked.
 Boomjets:
     company: TOJam
     role: Game Designer & Unity Developer
@@ -167,6 +169,7 @@ Orbert:
       - orbert_5.png
     platforms:
       "Google Play": "https://play.google.com/store/apps/details?id=com.RebelHippo.Orbert"
+      "iOS":
       "Web": "http://www.kongregate.com/games/RebelHippo/orbert"
     website: "http://www.playorbert.com"
     video: "https://www.youtube.com/embed/H8DMQPQ2hzU"
@@ -185,6 +188,7 @@ Lawren Harris - Where the Universe Sings AR:
       - lawren-harris-4.jpg
       - lawren-harris-5.jpg
     platforms:
+      "iOS":
       "Google Play": "https://play.google.com/store/apps/details?id=com.secretlocation.lawrenharris&hl=en"
     website: "https://www.imdb.com/title/tt6467298/"
     summary: "An augmented reality app for iOS and Android, made with Unity. Users can scan select paintings by artist Lawren Harris and watch videos of his work coming to life with audio from Lawren himself."
@@ -202,7 +206,8 @@ Modbox:
       - modbox-4.jpg
       - modbox-5.jpg
     platforms:
-      "Steam": "http://store.steampowered.com/app/414120/"
+      "Steam": "https://store.steampowered.com/app/414120/Modbox/"
+    website: "https://store.steampowered.com/app/414120/Modbox/"
     video: "https://www.youtube.com/embed/_TPXop3ONPk"
     summary: "An online multiplayer 3D virtual reality (HTC Vive) sandbox game, made with Unity."
 
@@ -219,6 +224,7 @@ Winston Steinburger & The Distractor Beam:
       - winston-4.jpg
       - winston-5.jpg
     platforms:
+      "iOS":
       "Google Play": "https://play.google.com/store/apps/details?id=com.eone.winstongame&hl=en"
     website: "http://www.eonefamily.com"
     video: "https://www.youtube.com/embed/tk5JZA4kTTo"
@@ -236,6 +242,8 @@ Bonk a Nerd:
       - bonk-a-nerd-3.jpg
       - bonk-a-nerd-4.jpg
       - bonk-a-nerd-5.jpg
+    platforms:
+      "iOS":
     summary: "A 2D whack-a-mole style game for iOS, made with Unity, based on the Nerds and Monsters brand."
 
 Switchit:
@@ -325,6 +333,7 @@ Frocket:
       - frocket-4.jpg
       - frocket-5.jpg
     platforms:
+      "iOS":
       "Web": "http://www.kongregate.com/games/frocketgame/frocket"
     video: "http://www.youtube.com/embed/cxeg0XKEOaY"
     blog-posts:
@@ -345,6 +354,8 @@ Amazing World Friends:
       - awf-3.jpg
       - awf-4.jpg
       - awf-5.jpg
+    platforms:
+      "iOS":
     summary: "A Flash-based Facebook game with traditional farming mechanics, complimented by hidden object games and whack-a-mole style enemy encounters. It was a spin-off of the <a href='http://www.amazingworld.com/'>Amazing World MMO</a>."
 
 Tail Towns Friends:
