@@ -4,6 +4,7 @@
 {% if page_desc == nil or page_desc == "" %}{% assign page_desc = site.description %}{% endif %}
 {% assign canonical = site.url | append: page.url | replace: 'index.html', '' %}
 {% assign og_image = nil %}{% if page.image %}{% if page.image contains '://' %}{% assign og_image = page.image %}{% else %}{% assign og_image = site.url | append: page.image %}{% endif %}{% elsif page.layout == 'portfolio' %}{% assign project = site.data.portfolio[page.title] %}{% if project.images.first %}{% assign og_image = site.url | append: '/img/portfolio/' | append: project.images.first %}{% endif %}{% endif %}
+{% unless og_image %}{% assign og_image = site.url | append: site.default_image %}{% endunless %}
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
