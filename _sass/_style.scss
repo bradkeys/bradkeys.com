@@ -21,18 +21,30 @@ img {
     background: var(--social-bg);
     color: var(--social-fg);
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s;
 
+    // The glyph takes its colour from the variables, not from the link colour,
+    // so the general a / a:hover colours elsewhere in the stylesheet can't
+    // turn it into the same colour as the circle. The rule targets the <path>
+    // because the Font Awesome SVGs set fill="currentColor" on it, which would
+    // otherwise follow the link colour.
     .platform-icon {
         width: 50%;
         height: 50%;
-        fill: currentColor;
+
+        path {
+            fill: var(--social-fg);
+            transition: fill 0.2s;
+        }
     }
 
     &:hover,
     &:focus-visible {
         background: var(--social-fg);
-        color: var(--social-bg);
+
+        .platform-icon path {
+            fill: var(--social-bg);
+        }
     }
 }
 
@@ -439,11 +451,24 @@ html {
                     margin-top: 50px;
                     width: 100%;
 
+                    .about {
+                        width: 100%;
+                        max-width: 700px;
+                        padding: 0 20px;
+                        font-size: 1.2em;
+                        line-height: 1.5;
+
+                        a {
+                            text-decoration: underline;
+                        }
+                    }
+
                     .info {
                         padding: 20px;
                         width: 340px;
 
-                        a {
+                        // Text links only: .social-icon sets its own colours (and inverts them on hover)
+                        a:not(.social-icon) {
                             color: white;
                         }
 
