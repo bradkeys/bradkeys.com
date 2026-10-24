@@ -4,8 +4,16 @@ title: Keys Arcade
 ---
 
 <p>
-    This hobby project took 13 years to initially complete! 
-    Thank you to my close friends and relatives who contributed their skills to help repurpose the cabinet and controls. 
+    I originally wanted to build a MAME cabinet, but these days I'm more interested in preserving the ability to play
+    and share the games that my friends and I have created. Otherwise they have to be maintained on storefronts, 
+    which isn't always practical. 
+    The Keys Arcade is a Linux-based arcade machine that boots straight into a simple launcher for my Unity games.
+    It lives at my home, for family and friends to play.
+</p>
+<p>
+    This hobby project took 13 years to initially complete, though only about 50 hours of that was actual work, 
+    most of it spent debugging Linux issues and finding a tech stack that gave me a streamlined setup with a simple, 
+    customizable launcher. 
     I intend to continually improve the experience, create more games for it, and experiment with new types of input 
     devices. 
 </p>
@@ -27,6 +35,11 @@ title: Keys Arcade
     added "light gun" support.
 </p>
 <p>
+    My brother and father helped cut and drill holes in the metal panel where the controls are fitted, my wife helped 
+    rig up the monitor mount, and my friends helped solder some of the wires and paint the cabinet. 
+    I wired up the controls and did all of the software.
+</p>
+<p>
     The monitor is a modern 19" 5:3 LCD monitor with IPS support. 
     The monitor is mounted to a block of wood fairly close to the glass that originally housed a CRT monitor. 
     It has black fabric draped around it to hide gaps.  
@@ -38,33 +51,41 @@ title: Keys Arcade
 </p>
 <h5>SOFTWARE</h5>
 <p>
-    The OS boots using a custom shell script that handles power management and launches a simple Python program to
-    display a "Press Start" splash screen.
+    Much of the effort went into customizing Ubuntu to boot straight into its non-GUI mode. 
+    A custom shell script handles power management and launches a simple Python program that displays a "Press Start" 
+    splash screen.
     Pressing the Player 1 button launches Pegasus Frontend, where users can select a game to play.
     Alternatively, the Python program will auto-launch Pegasus if there is no input detected for 10 minutes or so.
+    Getting Ubuntu and Pegasus Frontend to work nicely with the arcade inputs was a lot of work too, 
+    and I also made the arcade input support two-player light guns.
 </p>
 <p>
     My Unity games are in a custom Pegasus collection that I provide the artwork for.
     Each game has been built for Linux 64-bit Standalone.
-    I modified the Flixnet theme to look for custom metadata that points to a JSON file for leaderboards, then updated 
+    The collection's data file can optionally point each game to a leaderboard file, which is a JSON file stored in 
+    the game's Unity project.
+    I modified the Flixnet theme to read that file and show the leaderboard while browsing the collection, then updated 
     a few of the games to have leaderboards as a new feature. 
     The theme has also been modified to slow down repeating input so that it's easier to navigate with a joystick. 
 </p>
 <p>
-    Each Unity game that I've ported has been upgraded to Unity 6.4+ and has been modified to work with the arcade 
-    machine joystick and buttons. The oldest game I ported was a Unity 4 project, which had some interesting challenges 
-    to upgrade since Unity no longer has license servers for that version. 
+    Each Unity game that I've ported has been upgraded to Unity 6.4 and has been modified to work with the arcade 
+    machine joystick and buttons. 
     Porting to the arcade notably involved updating UI logic so that players could navigate via buttons and joystick, 
     rather than touch controls or mouse. 
     I also have updated each game to support exiting back to the Pegasus Frontend. 
+</p>
+<p>
+    Two of the games, Bursting with Colour and Switchit, started out as Unity 4 projects. 
+    Unity no longer runs license servers for those old versions, so I couldn't simply open them in a modern editor.
+    Instead I upgraded them incrementally, from Unity 4 to 5, then to 2021, and finally to Unity 6.4.
 </p>
 <h5>UNITY GAMES ON THE KEYS ARCADE</h5>
 
 <h6><a href="/portfolio/bursting-with-colour/">Bursting with Colour</a> <small>(2014)</small></h6>
 <p>
-    The biggest port of the bunch. It was built in 2014 with Unity 4, and the oldest version of Unity available to
-    download today is Unity 5, whose license server no longer works, so the project couldn't be fully opened without
-    some extra effort. Once it was running again I upgraded it to Unity 6 and adapted it to the cabinet.
+    One of the two Unity 4 projects, so it went through the full incremental upgrade before I could adapt it to the 
+    cabinet.
 </p>
 <ul>
     <li>Fixed what broke in the upgrade: character animations, music and sound effects, wall collisions, and missing player labels</li>
@@ -87,7 +108,8 @@ title: Keys Arcade
 
 <h6><a href="/portfolio/switchit/">Switchit</a> <small>(2015)</small></h6>
 <p>
-    A local multiplayer game suits an arcade cabinet well, but it needed a lot of work to look and feel right on one.
+    The other Unity 4 project. A local multiplayer game suits an arcade cabinet well, but it needed a lot of work to 
+    look and feel right on one.
 </p>
 <ul>
     <li>Upgraded to Unity 6 and switched to the Universal Render Pipeline (URP)</li>
