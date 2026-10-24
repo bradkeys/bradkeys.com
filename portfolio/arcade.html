@@ -1,0 +1,143 @@
+---
+layout: portfolio
+title: Keys Arcade
+---
+
+<p>
+    I originally wanted to build a MAME cabinet, but these days I'm more interested in preserving the ability to play
+    and share the games that my friends and I have created. Otherwise they have to be maintained on storefronts, 
+    which isn't always practical. 
+    The Keys Arcade is a Linux-based arcade machine that boots straight into a simple launcher for my Unity games.
+    It lives at my home, for family and friends to play.
+</p>
+<p>
+    This hobby project took 13 years to initially complete, though only about 50 hours of that was actual work, 
+    most of it spent debugging Linux issues and finding a tech stack that gave me a streamlined setup with a simple, 
+    customizable launcher. 
+    I intend to continually improve the experience, create more games for it, and experiment with new types of input 
+    devices. 
+</p>
+<h5>OVERVIEW</h5>
+<ul>
+    <li><u>Cabinet</u>: "Winner" by Midway (1970s)</li>
+    <li><u>Operating System:</u> Ubuntu Linux (headless)</li>
+    <li><u>Game Management:</u> <a href="https://pegasus-frontend.org">Pegasus Frontend</a></li>
+    <li><u>Theme:</u> <a href="https://github.com/mmatyas/pegasus-theme-flixnet">Flixnet</a> (modified)</li>
+    <li><u>Monitor:</u> 19" ViewSonic VG939Sm LED Monitor (1280x1024) resolution and IPS panel technology</li>
+    <li><u>Controls:</u> Ultimarc I-PAC 2 (mini), SUZOHAPP joysticks and push buttons</li>
+    <li><u>Light Gun:</u> Mayflash DolphinBar Sensor, Wii Remote Plus, Zapper</li>
+</ul>
+<h5>HARDWARE</h5>
+<p>
+    The cabinet was originally a 1970s Midway game called "Winner" which used knob inputs. 
+    I purchased it in non-working condition off a local buy and sell in 2013. 
+    With the help of friends and family, I converted it to use modern push buttons and joysticks for input, and later 
+    added "light gun" support.
+</p>
+<p>
+    My brother and father helped cut and drill holes in the metal panel where the controls are fitted, my wife helped 
+    rig up the monitor mount, and my friends helped solder some of the wires and paint the cabinet. 
+    I wired up the controls and did all of the software.
+    The cabinet's original coin door is still on the front. It has been repainted, but it isn't wired up.
+</p>
+<figure class="arcade-figure">
+    <a class="lightbox" href="/img/portfolio/arcade-origins-side.jpg"><img alt="The Midway Winner cabinet as it looked when purchased in 2013" src="/img/portfolio/arcade-origins-side.jpg" width="720" height="960" loading="lazy" decoding="async" /></a>
+    <figcaption>The cabinet as purchased in 2013, with its original knob controls.</figcaption>
+</figure>
+<p>
+    The monitor is a modern 19" 5:3 LCD monitor with IPS support. 
+    The monitor is mounted to a block of wood fairly close to the glass that originally housed a CRT monitor. 
+    It has black fabric draped around it to hide gaps.  
+</p>
+<p>
+    The computer is an ASUS gaming computer from 2015 with a GTX 970 that I had used for VR development in the past. 
+    Initially I used an Intel NUC from that same era, which is an incredibly nice form-factor. However, it wasn't 
+    able to smoothly run a newer game I made, so I swapped it for a more powerful (and much larger) computer.
+</p>
+<h5>SOFTWARE</h5>
+<p>
+    Much of the effort went into customizing Ubuntu to boot straight into its non-GUI mode. 
+    A custom shell script handles power management and launches a simple Python program that displays a "Press Start" 
+    splash screen.
+    Pressing the Player 1 button launches Pegasus Frontend, where users can select a game to play.
+    Alternatively, the Python program will auto-launch Pegasus if there is no input detected for 10 minutes or so.
+    Getting Ubuntu and Pegasus Frontend to work nicely with the arcade inputs was a lot of work too, 
+    and I also made the arcade input support two-player light guns.
+</p>
+<p>
+    My Unity games are in a custom Pegasus collection that I provide the artwork for.
+    Each game has been built for Linux 64-bit Standalone.
+    The collection's data file can optionally point each game to a leaderboard file, which is a JSON file stored in 
+    the game's Unity project.
+    I modified the Flixnet theme to read that file and show the leaderboard while browsing the collection, then updated 
+    a few of the games to have leaderboards as a new feature. 
+    The theme has also been modified to slow down repeating input so that it's easier to navigate with a joystick. 
+</p>
+<figure class="arcade-figure">
+    <a class="lightbox" href="/img/portfolio/arcade-custom-leaderboard.jpg"><img alt="Orbert in Pegasus Frontend with a top rankings list shown beside the game description" src="/img/portfolio/arcade-custom-leaderboard.jpg" width="1080" height="1440" loading="lazy" decoding="async" /></a>
+    <figcaption>Orbert's leaderboard, shown in Pegasus Frontend while browsing the collection.</figcaption>
+</figure>
+<p>
+    Each Unity game that I've ported has been upgraded to Unity 6.4 and has been modified to work with the arcade 
+    machine joystick and buttons. 
+    Some of the games were made for mobile and others for Xbox controllers, so porting notably involved reworking 
+    input and updating UI logic so that players could navigate via buttons and joystick, rather than touch controls, 
+    mouse or a gamepad. 
+    I also have updated each game to support exiting back to the Pegasus Frontend. 
+</p>
+<p>
+    Two of the games, Bursting with Colour and Switchit, started out as Unity 4 projects. 
+    Unity no longer runs license servers for those old versions, so I couldn't simply open them in a modern editor.
+    Instead I upgraded them incrementally, from Unity 4 to 5, then to 2021, and finally to Unity 6.4.
+</p>
+<h5>UNITY GAMES ON THE KEYS ARCADE</h5>
+
+<h6><a href="/portfolio/bursting-with-colour/">Bursting with Colour</a> <small>(2014)</small></h6>
+<p>
+    One of the two Unity 4 projects, so it went through the full incremental upgrade before I could adapt it to the 
+    cabinet.
+</p>
+<ul>
+    <li>Fixed what broke in the upgrade: character animations, music and sound effects, wall collisions, and missing player labels</li>
+    <li>Reworked the camera and moved the HUD along the top to suit the cabinet's 5:3 screen</li>
+    <li>Added joystick and button input for both players, including navigable game over buttons</li>
+    <li>Added a preload scene, and the ESC key now quits back to the frontend</li>
+</ul>
+
+<h6><a href="/portfolio/orbert/">Orbert</a> <small>(2014)</small></h6>
+<p>
+    Orbert was designed for touch screens, so the arcade version needed new controls and a new goal to play for.
+</p>
+<ul>
+    <li>Arcade mode is now the default mode</li>
+    <li>Added a leaderboard, including a screen for entering your initials after a high score</li>
+    <li>The leaderboard also shows in Pegasus Frontend while browsing the game collection</li>
+    <li>Menus, settings and help are navigable with the joystick and buttons, and a button on the cabinet controls the orbit</li>
+    <li>Removed UI that doesn't make sense on an arcade machine, such as the pause button, the best score display and the how to play option</li>
+</ul>
+
+<h6><a href="/portfolio/switchit/">Switchit</a> <small>(2015)</small></h6>
+<p>
+    The other Unity 4 project. A local multiplayer game suits an arcade cabinet well, but it needed a lot of work to 
+    look and feel right on one.
+</p>
+<ul>
+    <li>Upgraded to Unity 6 and switched to the Universal Render Pipeline (URP)</li>
+    <li>Fixed the camera and UI to fit the cabinet's 1280x1024 screen</li>
+    <li>Overhauled the character controller so players rotate to face their movement direction</li>
+    <li>Fixed bullets colliding with the player while turning and passing through objects at higher speeds, and fixed the bomb explosion</li>
+    <li>Performance tweaks, shorter delays, and the ESC key now quits back to the frontend</li>
+</ul>
+
+<h6>Wizbang <small>(2026)</small></h6>
+<p>
+    A lightgun game created specifically for the Keys Arcade, played with a Wii Remote and the Mayflash DolphinBar 
+    sensor. I'll share more details on it soon.
+</p>
+<h5>WHAT'S NEXT</h5>
+<ul>
+    <li>Upgrading from a Wii Remote to a proper light gun</li>
+    <li>Wiring up the coin door and finding a fun way to use it in my games</li>
+    <li>Adding leaderboards to more of the games</li>
+    <li>More games, and new types of input devices</li>
+</ul>

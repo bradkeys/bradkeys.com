@@ -1,5 +1,20 @@
 # A platform with no URL (e.g. an app that has been removed from its store) is
 # still listed on the project page, shown dimmed and unlinked.
+Keys Arcade:
+    company: Brad Keys
+    role: Unity Developer, Tinkerer
+    year: 2026
+    thumbnail: arcade-banner.jpg
+    filename: arcade
+    images:
+      - arcade-comparison.jpg
+      - arcade-final.jpg
+      - arcade-inside-cabinet-nuc.jpg
+      - arcade-orbert.jpg
+      - arcade-coloured-buttons.jpg
+    video: "https://www.youtube.com/embed/DaDHbKoDMvs"
+    summary: "A Linux-based arcade machine that I built for family and friends to play Unity games I've developed."
+
 Boomjets:
     company: TOJam
     role: Game Designer & Unity Developer
@@ -173,6 +188,7 @@ Orbert:
       "Google Play": "https://play.google.com/store/apps/details?id=com.RebelHippo.Orbert"
       "iOS":
       "Web": "http://www.kongregate.com/games/RebelHippo/orbert"
+      "Keys Arcade": "/portfolio/arcade/"
     website: "http://www.playorbert.com"
     video: "https://www.youtube.com/embed/H8DMQPQ2hzU"
     summary: "A 2D physics-based mobile arcade game with 100 levels, made with Unity. Players swing the character around levels to collect moons while avoiding obstacles."
@@ -263,6 +279,7 @@ Switchit:
     platforms:
       "Windows":
       "Mac":
+      "Keys Arcade": "/portfolio/arcade/"
     video: "https://www.youtube.com/embed/wqsgUEohncM"
     blog-posts:
       "Switchit (Global Game Jam)": "/2015/01/31/Switchit-Global-Game-Jam/"
@@ -301,6 +318,7 @@ Bursting with Colour:
     platforms:
       "Windows":
       "Mac":
+      "Keys Arcade": "/portfolio/arcade/"
     website: "http://globalgamejam.org/2014/games/bursting-colour"
     video: "https://www.youtube.com/embed/oB4R9O3RY_8"
     blog-posts:
