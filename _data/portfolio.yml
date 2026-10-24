@@ -119,6 +119,8 @@ GemQuest Casino:
       - gemquest-5.png
     platforms:
       "Facebook": "https://apps.facebook.com/gemquest"
+      "iOS":
+      "Google Play":
     website: "https://boomgaming.com/"
     video: "https://www.youtube.com/embed/634P8O28olc"
     summary: "A play-for-fun casino slots app built with Angular2. Try your luck playing a wide variety of slot machine games as you complete quests, level-up, compete on the leaderboards, and unlock new slots games to play."
@@ -355,6 +357,7 @@ Amazing World Friends:
       - awf-4.jpg
       - awf-5.jpg
     platforms:
+      "Facebook":
       "iOS":
     summary: "A Flash-based Facebook game with traditional farming mechanics, complimented by hidden object games and whack-a-mole style enemy encounters. It was a spin-off of the <a href='http://www.amazingworld.com/'>Amazing World MMO</a>."
 
@@ -425,5 +428,7 @@ Tire &amp; Brimstone:
       - TB-2.jpg
       - TB-3.jpg
       - TB-4.jpg
+    platforms:
+      "Web":
     video: "//player.vimeo.com/video/6839794"
     summary: "Tire &amp; Brimstone was an online multiplayer vehicular combat game that allowed up to 6 players to compete against (shoot) each other in a battle arena setting. It was created with Unity and deployed via the (now obsolete) Unity Web Player. I was primarily responsible for the online networking portion of the game and creating a website with backend logic allowing us to track player statistics (kills, deaths, wins, losses, etc) and display them in-game."

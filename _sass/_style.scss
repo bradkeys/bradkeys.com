@@ -512,6 +512,19 @@ html {
                             cursor: default;
                         }
 
+                        .platform-name {
+                            display: inline-block;
+                            box-sizing: border-box;
+                            width: 125px;
+                            padding: 9px 0;
+                            border: 1px solid #aaa;
+                            border-radius: 6px;
+                            font-size: 13px;
+                            font-weight: bold;
+                            color: white;
+                            text-align: center;
+                        }
+
                         img {
                             width: 125px;
                         }
