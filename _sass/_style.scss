@@ -4,6 +4,38 @@ img {
     height: auto;
 }
 
+/* Round icon links (LinkedIn, GitHub), styled like the .btn-sharp nav buttons:
+   outlined, inverting on hover. The colours are custom properties so a dark
+   page can flip them. */
+.social-icon {
+    --social-fg: black;
+    --social-bg: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    box-sizing: border-box;
+    border: 2px solid var(--social-fg);
+    border-radius: 50%;
+    background: var(--social-bg);
+    color: var(--social-fg);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+
+    .platform-icon {
+        width: 50%;
+        height: 50%;
+        fill: currentColor;
+    }
+
+    &:hover,
+    &:focus-visible {
+        background: var(--social-fg);
+        color: var(--social-bg);
+    }
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -98,15 +130,7 @@ html {
                         text-align: center;
 
                         a {
-                            text-align: center;
-                            display: inline-block;
-                            margin: 0px 5px;
-                        }
-
-                        img {
-                            width: 64px;
-                            border-radius: 50%;
-                            margin-bottom: 5px;
+                            margin: 0px 5px 5px;
                         }
                     }
 
@@ -423,10 +447,9 @@ html {
                             color: white;
                         }
 
-                        img {
-                            width: 64px;
-                            border: 2px solid white;
-                            border-radius: 50%;
+                        .social-icon {
+                            --social-fg: white;
+                            --social-bg: black;
                         }
                     }
 
@@ -885,14 +908,13 @@ html {
 
                         #social-links {
                             a {
-                                margin: 0px 3px;
-
-                                img {
-                                    width: 48px;
-                                    border-radius: 50%;
-                                    margin-bottom: 5px;
-                                }
+                                margin: 0px 3px 5px;
                             }
+                        }
+
+                        .social-icon {
+                            width: 48px;
+                            height: 48px;
                         }
                     }
                 }
