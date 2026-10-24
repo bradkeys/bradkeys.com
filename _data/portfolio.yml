@@ -1,3 +1,18 @@
+Keys Arcade:
+  company: Brad Keys
+  role: Unity Developer, Tinkerer
+  year: 2026
+  thumbnail: arcade-banner.jpg
+  filename: arcade
+  images:
+    - arcade-comparison.jpg
+    - arcade-final.jpg
+    - arcade-inside-cabinet-nuc.jpg
+    - arcade-orbert.jpg
+    - arcade-coloured-buttons.jpg
+  video: "https://youtube.com/embed/DaDHbKoDMvs"
+  summary: "A Linux-based arcade machine that I built for family and friends to play Unity games I've developed."
+
 Boomjets:
     company: TOJam
     role: Game Designer & Unity Developer

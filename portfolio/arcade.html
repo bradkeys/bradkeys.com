@@ -1,0 +1,75 @@
+---
+layout: portfolio
+title: Keys Arcade
+---
+
+<p>
+    This hobby project took 13 years to initially complete! 
+    Thank you to my close friends and relatives who contributed their skills to help repurpose the cabinet and controls. 
+    I intend to continually improve the experience, create more games for it, and experiment with new types of input 
+    devices. 
+</p>
+<h5>OVERVIEW</h5>
+<ul>
+    <li><u>Cabinet</u>: "Winner" by Midway (1970s)</li>
+    <li><u>Operating System:</u> Ubuntu Linux (headless)</li>
+    <li><u>Game Management:</u> <a href="https://pegasus-frontend.org">Pegasus Frontend</a></li>
+    <li><u>Theme:</u> <a href="https://github.com/mmatyas/pegasus-theme-flixnet">Flixnet</a> (modified)</li>
+    <li><u>Monitor:</u> 19" ViewSonic VG939Sm LED Monitor (1280x1024) resolution and IPS panel technology</li>
+    <li><u>Controls:</u> Ultimarc I-PAC 2 (mini), SUZOHAPP joysticks and push buttons</li>
+    <li><u>Light Gun:</u> Mayflash DolphinBar Sensor, Wii Remote Plus, Zapper</li>
+</ul>
+<h5>HARDWARE</h5>
+<p>
+    The cabinet was originally a 1970s Midway game called "Winner" which used knob inputs. 
+    I purchased it in non-working condition off a local buy and sell in 2013. 
+    With the help of friends and family, I converted it to use modern push buttons and joysticks for input, and later 
+    added "light gun" support.
+</p>
+<p>
+    The monitor is a modern 19" 5:3 LCD monitor with IPS support. 
+    The monitor is mounted to a block of wood fairly close to the glass that originally housed a CRT monitor. 
+    It has black fabric draped around it to hide gaps.  
+</p>
+<p>
+    The computer is an ASUS gaming computer from 2015 with a GTX 970 that I had used for VR development in the past. 
+    Initially I used an Intel NUC from that same era, which is an incredibly nice form-factor. However, it wasn't 
+    able to smoothly run a newer game I made, so I swapped it for a more powerful (and much larger) computer.
+</p>
+<h5>SOFTWARE</h5>
+<p>
+    The OS boots using a custom shell script that handles power management and launches a simple Python program to
+    display a "Press Start" splash screen.
+    Pressing the Player 1 button launches Pegasus Frontend, where users can select a game to play.
+    Alternatively, the Python program will auto-launch Pegasus if there is no input detected for 10 minutes or so.
+</p>
+<p>
+    My Unity games are in a custom Pegasus collection that I provide the artwork for.
+    Each game has been built for Linux 64-bit Standalone.
+    I modified the Flixnet theme to look for custom metadata that points to a JSON file for leaderboards, then updated 
+    a few of the games to have leaderboards as a new feature. 
+    The theme has also been modified to slow down repeating input so that it's easier to navigate with a joystick. 
+</p>
+<p>
+    Each Unity game that I've ported has been upgraded to Unity 6.4+ and has been modified to work with the arcade 
+    machine joystick and buttons. The oldest game I ported was a Unity 4 project, which had some interesting challenges 
+    to upgrade since Unity no longer has license servers for that version. 
+    Porting to the arcade notably involved updating UI logic so that players could navigate via buttons and joystick, 
+    rather than touch controls or mouse. 
+    I also have updated each game to support exiting back to the Pegasus Frontend. 
+</p>
+<h2>UNITY GAMES ON THE KEYS ARCADE</h2>
+<h5>Bursting with Colour (2014)</h5>
+<p>
+    Originally built in 2014 using Unity 4. 
+    I had to first install Unity 5, which is the oldest version of Unity currently available to download. 
+    When I first opened the project I discovered Unity 5 is no longer supported by Unity's license server and it 
+    blocked me from fully opening it. 
+    
+</p>
+<ul>
+    <li><a href="/portfolio/bursting-with-colour/">Bursting with Colour (2014)</a></li>
+    <li><a href="/portfolio/orbert/">Orbert (2014)</a></li>
+    <li><a href="/portfolio/switchit/">Switchit (2015)</a></li>
+    <li>Wizbang (2026)</li>
+</ul>
