@@ -19,7 +19,7 @@ layout: default
     <div id="screenshots">
         {% for image in project.images %}
     	    <a class="hvr-grow lightbox" href="/img/portfolio/{{ image }}">
-        		{% capture shot %}/img/portfolio/{{ image }}{% endcapture %}<img alt="{{ page.title }} screenshot {{ forloop.index }}" src="{{ shot }}" {% include img-size.html src=shot %} loading="lazy" decoding="async" />
+        		{% capture shot %}/img/portfolio/thumbs/{{ image | split: '.' | first }}.jpg{% endcapture %}<img alt="{{ page.title }} screenshot {{ forloop.index }}" src="{{ shot }}" {% include img-size.html src=shot %} loading="lazy" decoding="async" />
         	</a>
     	{% endfor %}
     </div>
@@ -74,3 +74,4 @@ layout: default
 </div>
 
 <script src="/js/lightbox.js" defer></script>
+<script src="/js/autoplay-video.js" defer></script>

@@ -1,0 +1,13 @@
+#!/bin/bash
+# Generates 320px-wide JPEG thumbnails of the portfolio screenshots into
+# img/portfolio/thumbs/ (the project pages show them at 150px and open the
+# full image in the lightbox). Only screenshots listed under `images:` in
+# _data/portfolio.yml are processed. Run after adding screenshots, then run
+# script/image-sizes. Needs macOS `sips`.
+cd "$(dirname "$0")/.."
+mkdir -p img/portfolio/thumbs
+grep -E '^      - .*\.(jpg|png)$' _data/portfolio.yml | sed -E 's/^      - //' | sort -u | while read -r f; do
+    out="img/portfolio/thumbs/${f%.*}.jpg"
+    [ "$out" -nt "img/portfolio/$f" ] && continue
+    sips -s format jpeg -s formatOptions 72 --resampleWidth 320 "img/portfolio/$f" --out "$out" >/dev/null
+done
