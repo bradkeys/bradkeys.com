@@ -33,17 +33,16 @@ layout: default
     {% endif %}
     <div id="platforms">
         {% for platform in project.platforms %}
-            <a class="hvr-grow" href="{{ platform[1] }}">
-                {% if platform[0] == 'iOS' %}
-                    <img src="/img/badges/iOS.svg" alt="Download on the App Store" />
-                {% elsif platform[0] == 'Google Play' %}
-                    <img src="/img/badges/GooglePlay.png" {% include img-size.html src="/img/badges/GooglePlay.png" %} alt="Get it on Google Play" />
-                {% elsif platform[0] == 'Web' %}
-                    <img src="/img/badges/web.png" {% include img-size.html src="/img/badges/web.png" %} alt="Play in your browser" />
-                {% elsif platform[0] == 'Steam' %}
-                    <img src="/img/badges/steam.png" {% include img-size.html src="/img/badges/steam.png" %} alt="Available on Steam" />
-                {% endif %}
-            </a>
+            {% comment %}Icons and labels come from _data/platforms.yml. A platform with no URL (e.g. the app was removed from its store) is still listed, unlinked.{% endcomment %}
+            {% assign key = platform[0] %}
+            {% assign info = site.data.platforms[key] %}
+            {% assign label = info.label | default: platform[0] %}
+            {% capture badge %}{% if info.icon %}{% include icons/{{ info.icon }}.svg %}{% endif %}<span>{{ label }}</span>{% endcapture %}
+            {% if platform[1] %}
+                <a class="platform hvr-grow" href="{{ platform[1] }}">{{ badge }}</a>
+            {% else %}
+                <span class="platform platform-unlinked" title="No longer available">{{ badge }}<span class="visually-hidden"> (no longer available)</span></span>
+            {% endif %}
         {% endfor %}
     </div>
     {% if project.summary %}
