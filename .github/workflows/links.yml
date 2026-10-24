@@ -20,19 +20,17 @@ jobs:
       - run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
-      # Weekly rather than on every PR: external sites are flaky and old posts
-      # link to many pages that have since moved. Report-only for now: the
-      # broken links are listed in the run summary instead of failing the run.
-      # Drop continue-on-error once the old links are cleaned up.
+      # Weekly rather than on every PR: external sites are flaky. Archive.org
+      # links are skipped because it rate-limits CI; they were verified when added.
       - run: |
           set -o pipefail
           bundle exec htmlproofer ./_site \
             --no-enforce-https --no-check-internal-hash \
             --ignore-files "/\/(ggj2021|ggj2022|ggj2024|tojam2024)\//" \
-            --ignore-status-codes "0,403,429,999,308" \
+            --ignore-status-codes "403,429,999,308" \
+            --ignore-urls "/web\.archive\.org/" \
             --typhoeus '{"followlocation":true,"connecttimeout":15,"timeout":30}' \
             2>&1 | tee links.txt
-        continue-on-error: true
         env:
           LANG: C.UTF-8
       - if: always()

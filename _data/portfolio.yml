@@ -167,7 +167,6 @@ Orbert:
       - orbert_5.png
     platforms:
       "Google Play": "https://play.google.com/store/apps/details?id=com.RebelHippo.Orbert"
-      "iOS": "https://itunes.apple.com/us/app/orbert/id845310880?ls=1&mt=8"
       "Web": "http://www.kongregate.com/games/RebelHippo/orbert"
     website: "http://www.playorbert.com"
     video: "https://www.youtube.com/embed/H8DMQPQ2hzU"
@@ -186,7 +185,6 @@ Lawren Harris - Where the Universe Sings AR:
       - lawren-harris-4.jpg
       - lawren-harris-5.jpg
     platforms:
-      "iOS": "https://itunes.apple.com/ca/app/lawren-harris-where-universe/id1145080236?mt=8"
       "Google Play": "https://play.google.com/store/apps/details?id=com.secretlocation.lawrenharris&hl=en"
     website: "https://www.imdb.com/title/tt6467298/"
     summary: "An augmented reality app for iOS and Android, made with Unity. Users can scan select paintings by artist Lawren Harris and watch videos of his work coming to life with audio from Lawren himself."
@@ -205,7 +203,6 @@ Modbox:
       - modbox-5.jpg
     platforms:
       "Steam": "http://store.steampowered.com/app/414120/"
-    website: "http://www.modboxgame.com"
     video: "https://www.youtube.com/embed/_TPXop3ONPk"
     summary: "An online multiplayer 3D virtual reality (HTC Vive) sandbox game, made with Unity."
 
@@ -222,7 +219,6 @@ Winston Steinburger & The Distractor Beam:
       - winston-4.jpg
       - winston-5.jpg
     platforms:
-      "iOS": "https://itunes.apple.com/ca/app/winston-steinburger-distractor/id1125529950?mt=8"
       "Google Play": "https://play.google.com/store/apps/details?id=com.eone.winstongame&hl=en"
     website: "http://www.eonefamily.com"
     video: "https://www.youtube.com/embed/tk5JZA4kTTo"
@@ -240,9 +236,6 @@ Bonk a Nerd:
       - bonk-a-nerd-3.jpg
       - bonk-a-nerd-4.jpg
       - bonk-a-nerd-5.jpg
-    platforms:
-      "iOS": "https://itunes.apple.com/us/app/nerds-and-monsters-bonk-a-nerd/id1003928997?mt=8"
-    website: "http://www.ytv.com/shows/nerds-and-monsters"
     summary: "A 2D whack-a-mole style game for iOS, made with Unity, based on the Nerds and Monsters brand."
 
 Switchit:
@@ -332,9 +325,7 @@ Frocket:
       - frocket-4.jpg
       - frocket-5.jpg
     platforms:
-      "iOS": "https://itunes.apple.com/ca/app/frocket-lite/id583081287"
       "Web": "http://www.kongregate.com/games/frocketgame/frocket"
-    website: "http://www.ganzstudios.com/our-games/mobile-games/frocket/"
     video: "http://www.youtube.com/embed/cxeg0XKEOaY"
     blog-posts:
       "Farewell Ganz": "/2013/02/26/Farewell-Ganz/"
@@ -354,9 +345,6 @@ Amazing World Friends:
       - awf-3.jpg
       - awf-4.jpg
       - awf-5.jpg
-    platforms:
-      "iOS": "https://itunes.apple.com/us/app/amazing-world-friends/id578737510"
-    website: "http://www.ganzstudios.com"
     summary: "A Flash-based Facebook game with traditional farming mechanics, complimented by hidden object games and whack-a-mole style enemy encounters. It was a spin-off of the <a href='http://www.amazingworld.com/'>Amazing World MMO</a>."
 
 Tail Towns Friends:
@@ -374,7 +362,6 @@ Tail Towns Friends:
       - ttf-6.jpg
     platforms:
       "Facebook": "http://apps.facebook.com/tailtownsfriends/"
-    website: "http://www.ganzstudios.com/our-games/tail-towns-friends/"
     summary: "A Flash-based Facebook game with traditional 'farming' and social mechanics. Tail Towns was unique in tying physical goods sold by Ganz with in-game rewards. It offered a truly artistic world to build upon, and delivered a dramatic soap-opera inspired storyline featuring humorous woodland characters."
 
 Lumos:
@@ -408,7 +395,6 @@ dimeRocker:
       - dr-3.jpg
       - dr-4.jpg
       - dr-5.jpg
-    website: "http://www.dimerocker.com"
     blog-posts:
       "Farewell dimeRocker": "/2011/04/15/Farewell-dimeRocker/"
       "Hip Ship": "/2010/12/09/Hip-Ship/"
@@ -428,6 +414,5 @@ Tire &amp; Brimstone:
       - TB-2.jpg
       - TB-3.jpg
       - TB-4.jpg
-    website: "https://projects.myvfs.com/games/Gd13_TireAndBrimstone/"
     video: "//player.vimeo.com/video/6839794"
     summary: "Tire &amp; Brimstone was an online multiplayer vehicular combat game that allowed up to 6 players to compete against (shoot) each other in a battle arena setting. It was created with Unity and deployed via the (now obsolete) Unity Web Player. I was primarily responsible for the online networking portion of the game and creating a website with backend logic allowing us to track player statistics (kills, deaths, wins, losses, etc) and display them in-game."

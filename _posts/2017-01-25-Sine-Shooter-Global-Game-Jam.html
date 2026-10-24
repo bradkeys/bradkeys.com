@@ -42,7 +42,7 @@ image: https://img.youtube.com/vi/DqQPiXFe_7U/0.jpg
     The only limitation was not being able to have dynamically created objects which the AI could move on, such as a ramp or staircase.
 </p>
 <p>
-    Player movement was accomplished using a nifty Unity package called <a href="https://www.assetstore.unity3d.com/en/#!/content/67602">Arm Swinger</a>.
+    Player movement was accomplished using a nifty Unity package called Arm Swinger.
     You literally just swing your arms as if you're running and the player moves forward.
     Feels awesome, works well, and we highly recommend using it in your VR game.
 </p>
@@ -60,25 +60,25 @@ image: https://img.youtube.com/vi/DqQPiXFe_7U/0.jpg
     It was difficult to find a list of UNet features, which I wanted to see to verify it would suit our needs.
     The service website doesn't break down this information and the multiplayer dashboard offers very little.
     My local (up-to-date) Unity docs offered different info than the live docs too; I recommend using the live documentation.
-    If you're searching for that info, the Unity Manual for <a href="https://docs.unity3d.com/Manual/UNetOverview.html">Multiplayer and Networking</a> is what you want.
-    Take note the docs start by mentioning <a href="https://docs.unity3d.com/Manual/UnityMultiplayerIntegratingOverview.html">three approaches to integrate UNet</a>:
+    If you're searching for that info, the Unity Manual for <a href="https://web.archive.org/web/20171202031436/http://docs.unity3d.com/Manual/UNetOverview.html">Multiplayer and Networking</a> is what you want.
+    Take note the docs start by mentioning <a href="https://web.archive.org/web/20181204043503/https://docs.unity3d.com/Manual/UnityMultiplayerIntegratingOverview.html">three approaches to integrate UNet</a>:
 </p>
 <ul>
     <li>using <strong>NetworkManagerHUD</strong>. (simplest, requires no scripting)</li>
     <li>using <strong>NetworkServer and NetworkClient</strong>. (high-level, simpler scripting)</li>
     <li>using <strong>NetworkTransport</strong> directly. (low-Level, more complex scripting)</li>
 </ul>
-<a href="https://www.assetstore.unity3d.com/en/#!/content/46213">
+
     <img width="516" height="389" alt="Unity TANKS! Networking Demo screenshot" src="/img/posts/tanks-demo.jpg" />
-</a>
+
 <span class="image-description">
     TANKS! Networking Demo, created by Unity Technologies.
 </span>
 <p>
-    If you like to learn by example then I recommend checking out Unity's <a href="https://www.assetstore.unity3d.com/en/#!/content/46213">TANKS! Networking Demo</a>.
+    If you like to learn by example then I recommend checking out Unity's TANKS! Networking Demo.
     You can see UNet in action, complete with a robust lobby system using the high-level methods.
     I found it difficult to understand how some features were being accomplished,
-    as much of the functionality is hidden within the <a href="https://docs.unity3d.com/Manual/UNetManager.html">Network Manager Component</a>.
+    as much of the functionality is hidden within the <a href="https://web.archive.org/web/20180202152206/http://docs.unity3d.com/Manual/UNetManager.html">Network Manager Component</a>.
     Unfortunately the documentation heavily references using Network Manager, to the point where it seems to just assume you're always using it.
     I concluded that most games will want to go beyond the flexibilities of the as-is Network Manager and will require understanding how to override its functionality or build their own entirely.
 </p>
