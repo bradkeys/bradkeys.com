@@ -1,0 +1,7 @@
+{% comment %}
+  Click-to-load YouTube embed: shows the video's thumbnail and only loads the
+  player (about 800 KB of script) when it is played; js/video-facade.js swaps
+  the iframe in. Without JS it is a plain link to the video.
+  Parameters: id (YouTube video id), title (for screen readers).
+{% endcomment %}
+<a class="video-facade" href="https://www.youtube.com/watch?v={{ include.id }}" data-embed="https://www.youtube-nocookie.com/embed/{{ include.id }}?autoplay=1&amp;rel=0" data-title="{{ include.title | escape }}" aria-label="Play video: {{ include.title | escape }}"><img class="video-thumb" src="https://i.ytimg.com/vi/{{ include.id }}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" /><span class="video-play">{% include icons/play.svg %}</span></a>

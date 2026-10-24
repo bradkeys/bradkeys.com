@@ -8,7 +8,7 @@ title: Game Dev Blog
     <article>
         <div class="row">
             <div class="col-md-3">
-                <time datetime="{{ post.date | date: "%Y/%m/%d" }}">{{ post.date  | date_to_string }}</time>
+                <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date  | date_to_string }}</time>
                 {% assign thumb = post.image | default: site.default_image %}
                 <a class="hvr-grow" href="{{ post.url }}" tabindex="-1" aria-hidden="true">
                     <img src="{{ thumb }}" alt="{% if post.image %}{{ post.title | escape }}{% endif %}" {% include img-size.html src=thumb %} loading="lazy" decoding="async" />

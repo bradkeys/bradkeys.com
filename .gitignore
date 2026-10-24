@@ -8,3 +8,6 @@ vendor/
 .editorconfig
 *.DS_STORE
 .lighthouseci/
+
+# Local Claude Code settings
+.claude/
