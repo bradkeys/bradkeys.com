@@ -13,12 +13,9 @@ layout: default
         <div id="video-outer">
             <div id="video-inner">
                 {% if project.video contains 'youtube.com/embed/' %}
-                    {% comment %}Click-to-load facade: the YouTube player (about 800 KB of script) only loads when played. Without JS this is a plain link to the video.{% endcomment %}
                     {% assign video_id = project.video | split: '/embed/' | last | split: '?' | first %}
-                    <a class="video-facade" href="https://www.youtube.com/watch?v={{ video_id }}" data-embed="https://www.youtube-nocookie.com/embed/{{ video_id }}?autoplay=1&amp;rel=0" data-title="{{ page.title }} video" aria-label="Play video: {{ page.title }}">
-                        <img src="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
-                        <span class="video-play">{% include icons/play.svg %}</span>
-                    </a>
+                    {% assign video_title = page.title | append: ' video' %}
+                    {% include youtube.html id=video_id title=video_title %}
                 {% else %}
                     <iframe src="{{ project.video | replace: 'www.youtube.com', 'www.youtube-nocookie.com' }}" title="{{ page.title }} video" frameborder="0" loading="lazy" allowfullscreen></iframe>
                 {% endif %}

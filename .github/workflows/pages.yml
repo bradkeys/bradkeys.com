@@ -35,6 +35,17 @@ jobs:
           --ignore-files "/\/(ggj2021|ggj2022|ggj2024|tojam2024)\//"
         env:
           LANG: C.UTF-8
+      # Every post needs one valid BlogPosting and the home page a valid Person;
+      # see script/check-structured-data.
+      - run: bundle exec ruby script/check-structured-data _site
+      # W3C Nu HTML Checker (errors only). Java is preinstalled on the runner.
+      - name: Validate HTML
+        run: |
+          npm install --no-save --no-audit --no-fund --prefix "$RUNNER_TEMP/vnu" vnu-jar@26.10.12
+          find _site -name '*.html' \
+            -not -path '*/ggj2021/*' -not -path '*/ggj2022/*' \
+            -not -path '*/ggj2024/*' -not -path '*/tojam2024/*' -print0 \
+            | xargs -0 java -jar "$RUNNER_TEMP/vnu/node_modules/vnu-jar/build/dist/vnu.jar" --errors-only
       - uses: actions/upload-pages-artifact@v5
 
   # Guards the performance, accessibility and SEO scores (see lighthouserc.json).

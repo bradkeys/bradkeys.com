@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+# Checks the JSON-LD structured data in the built site (default: _site).
+#
+#   bundle exec jekyll build && bundle exec ruby script/check-structured-data
+#
+# Every blog post must carry exactly one valid BlogPosting, the home page
+# exactly one valid Person, and no other page any structured data. A broken
+# block would otherwise silently drop the rich-result data in search.
+require "json"
+require "nokogiri"
+require "uri"
+
+ROOT = ARGV[0] || "_site"
+SKIP = %r{/(ggj2021|ggj2022|ggj2024|tojam2024)/} # Unity exports, not ours
+POST = %r{\A/\d{4}/\d{2}/\d{2}/[^/]+/index\.html\z}
+ISO8601 = /\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})\z/
+
+def absolute_url?(value)
+  uri = URI.parse(value.to_s)
+  %w[http https].include?(uri.scheme) && !uri.host.to_s.empty?
+rescue URI::InvalidURIError
+  false
+end
+
+def blank?(value)
+  value.nil? || value.to_s.strip.empty?
+end
+
+def check_blog_posting(item, doc, problems)
+  problems << "headline is missing" if blank?(item["headline"])
+  problems << "description is missing" if blank?(item["description"])
+  problems << "datePublished #{item["datePublished"].inspect} is not an ISO 8601 date-time" unless item["datePublished"].to_s.match?(ISO8601)
+  problems << "image #{item["image"].inspect} is not an absolute URL" if item.key?("image") && !absolute_url?(item["image"])
+  author = item["author"]
+  problems << "author needs a name and a url" unless author.is_a?(Hash) && author["@type"] == "Person" && !blank?(author["name"]) && absolute_url?(author["url"])
+  canonical = doc.at_css('link[rel="canonical"]')&.[]("href")
+  problems << "mainEntityOfPage #{item["mainEntityOfPage"].inspect} does not match the canonical URL #{canonical.inspect}" unless item["mainEntityOfPage"] == canonical
+  title = doc.at_css("article h1")&.text&.strip
+  problems << "headline #{item["headline"].inspect} does not match the page title #{title.inspect}" unless item["headline"].to_s.strip == title
+end
+
+def check_person(item, _doc, problems)
+  %w[name jobTitle].each { |key| problems << "#{key} is missing" if blank?(item[key]) }
+  problems << "url #{item["url"].inspect} is not an absolute URL" unless absolute_url?(item["url"])
+  problems << "worksFor needs a name" unless item["worksFor"].is_a?(Hash) && !blank?(item["worksFor"]["name"])
+  problems << "homeLocation needs a name" unless item["homeLocation"].is_a?(Hash) && !blank?(item["homeLocation"]["name"])
+  same_as = item["sameAs"]
+  unless same_as.is_a?(Array) && !same_as.empty? && same_as.all? { |url| absolute_url?(url) }
+    problems << "sameAs must be a non-empty list of absolute URLs"
+  end
+end
+
+failures = []
+counts = Hash.new(0)
+pages = Dir.glob("#{ROOT}/**/*.html").sort.reject { |file| file.match?(SKIP) }
+abort "No HTML files found under #{ROOT}. Build the site first." if pages.empty?
+
+pages.each do |file|
+  page = file.delete_prefix(ROOT)
+  doc = Nokogiri::HTML(File.read(file))
+  items = []
+  doc.css('script[type="application/ld+json"]').each_with_index do |block, index|
+    begin
+      items << JSON.parse(block.text)
+    rescue JSON::ParserError => e
+      failures << "#{page}: JSON-LD block #{index + 1} is not valid JSON (#{e.message[0, 70]})"
+    end
+  end
+
+  expected = if page.match?(POST) then "BlogPosting" elsif page == "/index.html" then "Person" end
+  types = items.map { |item| item["@type"] }
+  if expected
+    failures << "#{page}: expected exactly one #{expected}, found #{types.inspect}" unless types == [expected]
+  elsif !items.empty?
+    failures << "#{page}: unexpected structured data #{types.inspect}"
+  end
+
+  items.each do |item|
+    problems = []
+    problems << "@context must be https://schema.org" unless item["@context"] == "https://schema.org"
+    case item["@type"]
+    when "BlogPosting" then check_blog_posting(item, doc, problems)
+    when "Person" then check_person(item, doc, problems)
+    end
+    counts[item["@type"]] += 1
+    problems.each { |problem| failures << "#{page}: #{item["@type"]} #{problem}" }
+  end
+end
+
+if failures.empty?
+  puts "Structured data OK: #{counts.map { |type, n| "#{n} #{type}" }.join(", ")} across #{pages.length} pages."
+else
+  puts "Structured data problems (#{failures.length}):"
+  failures.each { |failure| puts "  - #{failure}" }
+  exit 1
+end
