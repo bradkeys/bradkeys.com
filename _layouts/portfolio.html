@@ -18,7 +18,7 @@ layout: default
     {% endif %}
     <div id="screenshots">
         {% for image in project.images %}
-    	    <a class="hvr-grow swipebox" href="/img/portfolio/{{ image }}">
+    	    <a class="hvr-grow lightbox" href="/img/portfolio/{{ image }}">
         		{% capture shot %}/img/portfolio/{{ image }}{% endcapture %}<img alt="{{ page.title }} screenshot {{ forloop.index }}" src="{{ shot }}" {% include img-size.html src=shot %} loading="lazy" decoding="async" />
         	</a>
     	{% endfor %}
@@ -74,11 +74,4 @@ layout: default
     {% endif%}
 </div>
 
-<!-- jQuery is only needed for the Swipebox lightbox, so it's only loaded here -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" defer></script>
-<script src="/js/jquery.swipebox.min.js" defer></script>
-<script type="text/javascript">
-document.addEventListener( 'DOMContentLoaded', function() {
-	jQuery( '.swipebox' ).swipebox();
-} );
-</script>
+<script src="/js/lightbox.js" defer></script>
