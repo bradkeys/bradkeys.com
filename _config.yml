@@ -13,6 +13,8 @@ plugins:
 # Setup
 title: Brad Keys
 url: https://bradkeys.com
+# Thumbnail and social preview image for posts and pages that have none of their own
+default_image: /img/default-thumbnail.jpg
 description: Game developer and designer with 15+ years of Unity experience. Game dev blog and portfolio of Brad Keys.
 highlighter: rouge
 paginate: 999  # I am not actively blogging enough to need this
