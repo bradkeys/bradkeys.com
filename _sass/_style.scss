@@ -500,33 +500,35 @@ html {
                     #platforms {
                         margin-bottom: 15px;
 
-                        a, .platform-unlinked {
+                        .platform {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            margin: 15px 5px 0;
+                            padding: 8px 16px;
+                            border: 1px solid #aaa;
+                            border-radius: 6px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            color: white;
                             text-decoration: none;
-                            margin-right: 10px;
-                            margin-top: 15px;
+                        }
+
+                        .platform-icon {
+                            width: 1.3em;
+                            height: 1.3em;
+                            fill: currentColor;
+                        }
+
+                        a.platform:hover,
+                        a.platform:focus-visible {
+                            border-color: white;
+                            background: #1a1a1a;
                         }
 
                         .platform-unlinked {
-                            display: inline-block;
                             opacity: 0.45;
                             cursor: default;
-                        }
-
-                        .platform-name {
-                            display: inline-block;
-                            box-sizing: border-box;
-                            width: 125px;
-                            padding: 9px 0;
-                            border: 1px solid #aaa;
-                            border-radius: 6px;
-                            font-size: 13px;
-                            font-weight: bold;
-                            color: white;
-                            text-align: center;
-                        }
-
-                        img {
-                            width: 125px;
                         }
                     }
 

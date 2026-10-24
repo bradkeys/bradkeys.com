@@ -1,0 +1,23 @@
+# How each platform key used in portfolio.yml is shown on project pages.
+# Icons are Font Awesome Free (CC BY 4.0), vendored in _includes/icons/.
+"iOS":
+  label: App Store
+  icon: app-store-ios
+"Google Play":
+  label: Google Play
+  icon: google-play
+"Web":
+  label: Web
+  icon: globe
+"Steam":
+  label: Steam
+  icon: steam
+"Windows":
+  label: Windows
+  icon: windows
+"Mac":
+  label: Mac
+  icon: apple
+"Facebook":
+  label: Facebook
+  icon: facebook

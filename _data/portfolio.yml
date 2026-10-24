@@ -118,7 +118,7 @@ GemQuest Casino:
       - gemquest-4.png
       - gemquest-5.png
     platforms:
-      "Facebook": "https://apps.facebook.com/gemquest"
+      "Facebook":
       "iOS":
       "Google Play":
     website: "https://boomgaming.com/"
@@ -260,6 +260,9 @@ Switchit:
       - switchit-3.jpg
       - switchit-4.jpg
       - switchit-5.jpg
+    platforms:
+      "Windows":
+      "Mac":
     video: "https://www.youtube.com/embed/wqsgUEohncM"
     blog-posts:
       "Switchit (Global Game Jam)": "/2015/01/31/Switchit-Global-Game-Jam/"
@@ -295,6 +298,9 @@ Bursting with Colour:
       - bursting-2.jpg
       - bursting-3.jpg
       - bursting-4.jpg
+    platforms:
+      "Windows":
+      "Mac":
     website: "http://globalgamejam.org/2014/games/bursting-colour"
     video: "https://www.youtube.com/embed/oB4R9O3RY_8"
     blog-posts:
@@ -375,7 +381,7 @@ Tail Towns Friends:
       - ttf-5.jpg
       - ttf-6.jpg
     platforms:
-      "Facebook": "http://apps.facebook.com/tailtownsfriends/"
+      "Facebook":
     summary: "A Flash-based Facebook game with traditional 'farming' and social mechanics. Tail Towns was unique in tying physical goods sold by Ganz with in-game rewards. It offered a truly artistic world to build upon, and delivered a dramatic soap-opera inspired storyline featuring humorous woodland characters."
 
 Lumos:
@@ -429,6 +435,8 @@ Tire &amp; Brimstone:
       - TB-3.jpg
       - TB-4.jpg
     platforms:
+      "Windows":
+      "Mac":
       "Web":
     video: "//player.vimeo.com/video/6839794"
     summary: "Tire &amp; Brimstone was an online multiplayer vehicular combat game that allowed up to 6 players to compete against (shoot) each other in a battle arena setting. It was created with Unity and deployed via the (now obsolete) Unity Web Player. I was primarily responsible for the online networking portion of the game and creating a website with backend logic allowing us to track player statistics (kills, deaths, wins, losses, etc) and display them in-game."
