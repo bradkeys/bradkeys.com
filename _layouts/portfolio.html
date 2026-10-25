@@ -49,19 +49,19 @@ layout: default
     </div>
     {% if project.summary %}
         <div id="project-summary">
-            <h4>SUMMARY</h4>
+            <h2>SUMMARY</h2>
             {{ project.summary }}
         </div>
     {% endif %}
     <hr />
     <div id="project-story">
-        <h4>EXPERIENCE</h4>
+        <h2>EXPERIENCE</h2>
         {{ page.content }}
     </div>
     {% if project.blog-posts %}
         <hr />
         <div id="project-blog-posts">
-            <h4>Related Blog Posts</h4>
+            <h2>Related Blog Posts</h2>
             <ul>
             {% for post in project.blog-posts %}
                 <li>

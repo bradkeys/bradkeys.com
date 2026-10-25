@@ -446,7 +446,7 @@ a.platform:focus-visible {
 #project-summary,
 #project-story,
 #project-blog-posts {
-    h4 {
+    h2 {
         margin: 28px 0 10px;
         font-size: 0.75rem;
         font-weight: 700;
@@ -455,7 +455,7 @@ a.platform:focus-visible {
         color: var(--muted);
     }
 
-    h5 {
+    h3 {
         margin: 24px 0 10px;
         font-size: 0.8rem;
         font-weight: 700;
@@ -464,7 +464,7 @@ a.platform:focus-visible {
         color: var(--text);
     }
 
-    h6 {
+    h4 {
         margin: 28px 0 10px;
         font-size: 1.15rem;
         font-weight: 700;

@@ -8,7 +8,7 @@ title: Boomjets
     The theme was <em>"That's supposed to happen"</em>, and together we created <em>Boomjets</em>, a 3D side-scrolling arcade game featuring a jetpack-wearing, pickaxe-wielding lizard man navigating a bomb-riddled cavern to collect artifacts and escape. 
     Despite being in different time zones, with up to 8 hours difference, we successfully collaborated remotely to bring this game to life. 
 </p>
-<h5>PLANNING</h5>
+<h3>PLANNING</h3>
 <p>
     Our brainstorming began a week before the game jam using a shared Google Doc. 
     The theme was announced the day before the jam, and we aimed to have a solid game design vision agreed upon by then. 
@@ -16,7 +16,7 @@ title: Boomjets
     We all agreed that explosions are fun and decided to build a game around the idea of carefully exploring a cave filled with hidden explosives that could potentially trigger chain reactions. 
     With our significant time zone differences, we needed to decide on something concrete quickly to ensure no one was blocked once the jam started.
 </p>
-<h5>SETUP</h5>
+<h3>SETUP</h3>
 <p>
     Brent brought an arsenal of assets from the <a href="https://assetstore.unity.com">Unity Asset Store</a> to the table, including the <a href="https://corgi-engine.moremountains.com">Corgi Engine</a>, which provides common functionality for creating 3D and 2D platforming games. 
     Although none of us had used it before, we saw potential for quick wins in setting up the game, allowing us to focus on level design and the explosion mechanics. 
@@ -26,12 +26,12 @@ title: Boomjets
     We used <a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects">Github Projects</a> to divide tasks throughout the jam. 
     My main responsibilities included UI, scene loading, and leaderboard/scoring integration.
 </p>
-<h5>UI</h5>
+<h3>UI</h3>
 <p>
     Despite our recent preference for `UIToolkit`, I opted for the older <em>UnityEngine.UI</em> system because Corgi Engine has nice prefabs using it. 
     This decision led to more merge conflicts due to changes in our scene hierarchy, but overall, the implementation was straightforward and fast.  
 </p>
-<h5>SCENE LOADING</h5>
+<h3>SCENE LOADING</h3>
 <video src="/img/portfolio/boomjets-loading.mp4" poster="/img/portfolio/boomjets-loading-poster.jpg" aria-label="Boomjets loading screen" width="960" height="540" style="width: 100%" controls loop muted playsinline preload="none" data-autoplay></video>
 <p>
     Corgi Engine offered useful tools for scene loading, including a quick transition effect where the camera fades to black and back in to reveal new scenes. 
@@ -49,7 +49,7 @@ title: Boomjets
     However, due to time constraints, we only managed to create one level, which loops after completion. 
     If the player runs out of time or health, they encounter the game over screen.
 </p>
-<h5>LEADERBOARD INTEGRATION</h5>
+<h3>LEADERBOARD INTEGRATION</h3>
 <img alt="Boomjets leaderboards" src="/img/portfolio/boomjets-leaderboards.png" width="1920" height="1151" style="width: 100%" />
 <p>
     Implementing the leaderboard was a great experience. 
@@ -62,7 +62,7 @@ title: Boomjets
     The Leaderboards service offers a number of authentication options (Google, Steam, etc) but those would have required creating OAuth apps, which is really not within game jam territory. 
     I later learned that Unity's Authentication service lets you set the player name, so my "clever" metadata workaround made the integration more complex than it should have been. 
 </p>
-<h5>GAMEPLAY</h5>
+<h3>GAMEPLAY</h3>
 <video src="/img/portfolio/boomjets-gameplay.mp4" poster="/img/portfolio/boomjets-gameplay-poster.jpg" aria-label="Boomjets gameplay" width="640" height="374" style="width: 100%" controls loop muted playsinline preload="none" data-autoplay></video>
 <p>
     Matthew and Brent focused on gameplay functionality, art, and FX, leveraging Corgi Engine components. 
@@ -75,7 +75,7 @@ title: Boomjets
     I tackled this using Corgi Engine components, making platforms with Health components and bombs that instantiate a damage area with a circle collider. 
     Tweaking the explosion radius resulted in some thrilling, chaotic gameplay, confirming that explosions are indeed fun!
 </p>
-<h5>CONCLUSION</h5>
+<h3>CONCLUSION</h3>
 <p>
     Despite the challenges and time constraints, we created a minimal yet exciting game. 
     The collaboration, even across different time zones, was a testament to our teamwork and dedication. 
