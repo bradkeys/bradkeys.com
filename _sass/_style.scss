@@ -237,6 +237,11 @@ a:focus-visible > .social-icon {
         top: 0;
         z-index: 50;
     }
+
+    /* Anchor targets (the hero's "See my work") land below the sticky header. */
+    #work {
+        scroll-margin-top: 76px;
+    }
 }
 
 /* ---------- Page frame ---------- */
@@ -266,6 +271,174 @@ main {
 }
 
 /* ---------- Home: portfolio grid ---------- */
+
+/* ---------- Hero (portfolio home) ---------- */
+
+#hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 44px;
+}
+
+#hero-title {
+    margin: 0 0 14px;
+    font-size: clamp(2rem, 5vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+}
+
+.hero-accent {
+    background: linear-gradient(90deg, #8ab4ff, #c39bff 60%, #6fe0d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-lede {
+    max-width: 34em;
+    margin: 0 0 22px;
+    font-size: 1.1rem;
+    color: var(--text-soft);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+}
+
+.hero-button {
+    padding: 9px 18px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--text);
+        background: var(--surface-hover);
+    }
+
+    &.primary {
+        border-color: transparent;
+        background: var(--accent);
+        color: #0b0b0d;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--accent-hover);
+            color: #0b0b0d;
+        }
+    }
+}
+
+#hero-featured {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) * 1.5);
+    background: var(--surface);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(138, 180, 255, 0.08);
+    transition: border-color 0.25s, box-shadow 0.25s;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+
+    &:hover,
+    &:focus-visible {
+        color: #fff;
+        border-color: var(--border-strong);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.6), 0 0 70px rgba(138, 180, 255, 0.16);
+
+        img {
+            transform: scale(1.04);
+        }
+
+        &::after {
+            opacity: 1;
+        }
+    }
+}
+
+.hero-featured-info {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 56px 18px 16px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.9));
+}
+
+.hero-featured-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.hero-featured-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.hero-featured-summary {
+    font-size: 0.9rem;
+    color: #ddd;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 800px) {
+    #hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    #hero-copy > * {
+        animation: hero-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+
+        @for $i from 2 through 4 {
+            &:nth-child(#{$i}) {
+                animation-delay: #{($i - 1) * 0.08}s;
+            }
+        }
+    }
+
+    #hero-featured {
+        animation: hero-rise 0.7s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    }
+}
+
+@keyframes hero-rise {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+}
 
 #about {
     max-width: var(--measure);
@@ -327,7 +500,8 @@ main {
 }
 
 /* Cursor spotlight, positioned by js/tile-effects.js through --mx/--my. */
-.project::after {
+.project::after,
+#hero-featured::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -1235,7 +1409,8 @@ body::after {
 
     /* Tilt toward the cursor (angles set by js/tile-effects.js). */
     @media (hover: hover) and (pointer: fine) {
-        .project.tilting {
+        .project.tilting,
+        #hero-featured.tilting {
             transition: transform 0.12s ease-out, border-color 0.25s, box-shadow 0.25s;
             transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-3px);
         }

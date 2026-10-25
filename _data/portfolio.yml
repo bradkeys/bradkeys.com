@@ -11,6 +11,7 @@ Keys Arcade:
     roles: ["Developer"]
     thumbnail: arcade-banner.jpg
     filename: arcade
+    featured: true
     images:
       - arcade-comparison.jpg
       - arcade-final.jpg

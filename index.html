@@ -1,9 +1,33 @@
 ---
-layout: page
+layout: default
 title: Portfolio
 ---
 
+{% assign featured = nil %}
+{% for project_info in site.data.portfolio %}{% if project_info[1].featured and featured == nil %}{% assign featured = project_info %}{% endif %}{% endfor %}
 <div id="portfolio">
+    <section id="hero" aria-labelledby="hero-title">
+        <div id="hero-copy">
+            <h1 id="hero-title">I make games, and the tools <span class="hero-accent">that make games.</span></h1>
+            <p class="hero-lede">Nearly two decades of shipping with Unity, from jam prototypes to products used by developers worldwide.</p>
+            <p class="hero-actions">
+                <a class="hero-button primary" href="#work">See my work</a>
+                <a class="hero-button" href="/contact/">Get in touch</a>
+            </p>
+        </div>
+        {% if featured %}
+        {% assign fp = featured[1] %}
+        {% capture fthumb %}/img/portfolio/{{ fp.thumbnail }}{% endcapture %}
+        <a id="hero-featured" href="/portfolio/{{ fp.filename }}/">
+            <img alt="{{ featured[0] }} thumbnail" src="{{ fthumb }}" {% include img-size.html src=fthumb %} loading="eager" decoding="async" />
+            <span class="hero-featured-info">
+                <span class="hero-featured-label">Featured project</span>
+                <span class="hero-featured-title">{{ featured[0] }}</span>
+                <span class="hero-featured-summary">{{ fp.summary }}</span>
+            </span>
+        </a>
+        {% endif %}
+    </section>
     <div id="about">
         <p>
             I live near Waterloo, Ontario, Canada, and currently work remotely as a Technical Product Manager at
@@ -17,6 +41,7 @@ title: Portfolio
             Below is a mix of projects I have worked on at studios, as a contractor, independently, as a student, and at game jams.
         </p>
     </div>
+    <div id="work"></div>
     <div id="project-filters" class="filters" hidden>
         <div class="filter-group" role="group" aria-labelledby="filter-tech-label">
             <span class="filter-label" id="filter-tech-label">Technology</span>
