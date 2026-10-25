@@ -2,6 +2,8 @@
 <html lang="en">
     {% include head.html %}
     <body>
+        <a class="skip-link" href="#main-content">Skip to content</a>
+        {% assign path = page.url %}
         <div id="header-wrapper">
             <div id="header">
                 <div id="logo">
@@ -10,21 +12,21 @@
                         <span id="logo-subtitle">Game Designer | Programmer</span>
                     </a>
                 </div>
-                <nav>
+                <nav aria-label="Main">
+                    <div id="nav-links">
+                        <a class="nav-link" href="/"{% if path == '/' or page.layout == 'portfolio' %} aria-current="page"{% endif %}>Portfolio</a>
+                        <a class="nav-link" href="/blog/"{% if path contains '/blog/' or page.layout == 'post' %} aria-current="page"{% endif %}>Blog</a>
+                        <a class="nav-link" href="/contact/"{% if path == '/contact/' %} aria-current="page"{% endif %}>Contact</a>
+                    </div>
                     <div id="social-links">
                         <a class="social-icon hvr-grow" href="https://www.linkedin.com/in/bradkeys" aria-label="LinkedIn profile" title="LinkedIn Profile">{% include icons/linkedin-in.svg %}</a>
                         <a class="social-icon hvr-grow" href="https://github.com/bradkeys" aria-label="GitHub profile" title="GitHub Profile">{% include icons/github.svg %}</a>
-                    </div>
-                    <div id="nav-links">
-                        <a class="btn btn-sharp btn-sm hvr-push" href="/">Blog</a>
-                        <a class="btn btn-sharp btn-sm hvr-push" href="/portfolio/">Portfolio</a>
-                        <a class="btn btn-sharp btn-sm hvr-push" href="/contact/">Contact</a>
                     </div>
                 </nav>
             </div>
         </div>
         <div id="main-wrapper">
-            <main>
+            <main id="main-content" tabindex="-1">
                 {{ content }}
             </main>
         </div>

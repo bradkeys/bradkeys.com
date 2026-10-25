@@ -1,0 +1,13 @@
+{%- comment -%}
+  Plain-text summary of a post, for the blog list and the meta description.
+  Uses the post's `summary` front matter if it has one; otherwise the text of
+  its first paragraph, so headings, images and lists at the top of a post
+  never end up in the summary.
+  Parameters: post (a post or page), words (truncate to this many words).
+{%- endcomment -%}
+{%- if include.post.summary -%}
+{{ include.post.summary | strip_html | normalize_whitespace | truncatewords: include.words }}
+{%- else -%}
+{%- assign paragraphs = include.post.content | split: '<p>' -%}
+{{ paragraphs[1] | split: '</p>' | first | strip_html | normalize_whitespace | truncatewords: include.words }}
+{%- endif -%}

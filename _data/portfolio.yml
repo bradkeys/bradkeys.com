@@ -1,9 +1,14 @@
 # A platform with no URL (e.g. an app that has been removed from its store) is
 # still listed on the project page, shown dimmed and unlinked.
+#
+# `tech` (Unity, Flash, SaaS) and `roles` (Game Designer, Developer, Product
+# Manager) are tags only; `role` stays the actual title held on the project.
 Keys Arcade:
     company: Brad Keys
     role: Unity Developer, Tinkerer
     year: 2026
+    tech: [Unity]
+    roles: ["Developer"]
     thumbnail: arcade-banner.jpg
     filename: arcade
     images:
@@ -19,6 +24,8 @@ Boomjets:
     company: TOJam
     role: Game Designer & Unity Developer
     year: 2024
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: boomjets-banner.jpg
     filename: boomjets
     images:
@@ -35,6 +42,8 @@ Huedini:
     company: Global Game Jam
     role: Game Designer & Unity Developer
     year: 2024
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: huedini-banner-2.png
     filename: huedini
     images:
@@ -52,6 +61,8 @@ Encircle:
     company: Encircle Inc.
     role: Full Stack Developer, Technical Product Manager
     year: 2022
+    tech: [SaaS]
+    roles: ["Developer", "Product Manager"]
     thumbnail: encircle-banner.png
     filename: encircle
     images:
@@ -71,6 +82,8 @@ Dungeon, With Friends!:
     company: Global Game Jam
     role: Game Designer & Unity Developer
     year: 2022
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: dungeon-with-friends-banner.png
     filename: dungeon-with-friends
     images:
@@ -90,6 +103,8 @@ Ghostlight:
     company: Global Game Jam
     role: Game Designer & Unity Developer
     year: 2021
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: ghostlight-banner.jpg
     filename: ghostlight
     images:
@@ -109,6 +124,8 @@ Spellchopper:
     company: TOJam
     role: Unity Developer
     year: 2020
+    tech: [Unity]
+    roles: ["Developer"]
     thumbnail: spellchopper-banner.jpg
     filename: spellchopper
     images:
@@ -124,6 +141,8 @@ GemQuest Casino:
     company: Boom Digital Media Group
     role: Web Developer
     year: 2018
+    tech: [HTML5]
+    roles: ["Developer"]
     thumbnail: gemquest-banner.jpg
     filename: gemquest
     images:
@@ -144,6 +163,8 @@ Just Pretend:
     company: Rebel Hippo Inc.
     role: Game Designer &amp; Unity Developer
     year: In Development
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: just-pretend-banner.jpg
     filename: just-pretend
     images:
@@ -160,6 +181,8 @@ Sine Shooter:
     company: Global Game Jam
     role: Game Designer &amp; Unity Developer
     year: 2017
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: sine-banner.png
     filename: sine-shooter
     images:
@@ -176,6 +199,8 @@ Orbert:
     company: Rebel Hippo Inc.
     role: Unity Developer &amp; Level Designer
     year: 2016
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: orbert-banner2.png
     filename: orbert
     images:
@@ -197,6 +222,8 @@ Lawren Harris - Where the Universe Sings AR:
     company: Secret Location
     role: Unity Developer
     year: 2016
+    tech: [Unity]
+    roles: ["Developer"]
     thumbnail: lawren-harris-banner.jpg
     filename: lawren-harris
     images:
@@ -215,6 +242,8 @@ Modbox:
     company: Alientrap
     role: Unity Developer
     year: 2016
+    tech: [Unity]
+    roles: ["Developer"]
     thumbnail: modbox-banner.jpg
     filename: modbox
     images:
@@ -233,6 +262,8 @@ Winston Steinburger & The Distractor Beam:
     company: Entertainment One
     role: Unity Developer
     year: 2015
+    tech: [Unity]
+    roles: ["Developer"]
     thumbnail: winston-banner.jpg
     filename: winston
     images:
@@ -252,6 +283,8 @@ Bonk a Nerd:
     company: Secret Location
     role: Unity Developer
     year: 2015
+    tech: [Unity]
+    roles: ["Developer"]
     thumbnail: bonk-a-nerd-banner.jpg
     filename: bonk-a-nerd
     images:
@@ -268,6 +301,8 @@ Switchit:
     company: Global Game Jam
     role: Game Designer &amp; Unity Developer
     year: 2015
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: switchit-banner.jpg
     filename: switchit
     images:
@@ -289,6 +324,8 @@ Kings of Pool:
     company: Uken Games
     role: Unity Developer
     year: 2014
+    tech: [Unity]
+    roles: ["Developer"]
     thumbnail: kop-banner.png
     filename: kings-of-pool
     images:
@@ -308,6 +345,8 @@ Bursting with Colour:
     company: Global Game Jam
     role: Game Designer &amp; Unity Developer
     year: 2014
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: bursting-banner.jpg
     filename: bursting-with-colour
     images:
@@ -329,6 +368,8 @@ Lumos Powered:
     company: Rebel Hippo Inc.
     role: Web / Unity Developer
     year: 2013
+    tech: [Unity, SaaS]
+    roles: ["Developer", "Product Manager"]
     thumbnail: lumospowered-banner2.png
     filename: lumospowered
     images:
@@ -338,7 +379,6 @@ Lumos Powered:
       - lumospowered-4.png
       - lumospowered-5.png
     website: "http://www.lumospowered.com"
-    video: "https://www.youtube.com/embed/l4FKrllkUnE"
     blog-posts:
       "Farewell Ganz": "/2013/02/26/Farewell-Ganz/"
       "See You at Unite 2011": "/2011/09/25/See-You-at-Unite-2011/"
@@ -350,6 +390,8 @@ Frocket:
     company: Ganz
     role: Lead Game Designer &amp; Unity Developer
     year: 2012
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: frocket-banner.jpg
     filename: frocket
     images:
@@ -372,6 +414,8 @@ Amazing World Friends:
     company: Ganz
     role: Lead Game Designer
     year: 2012
+    tech: [Flash]
+    roles: ["Game Designer"]
     thumbnail: awf-banner.png
     filename: amazing-world-friends
     images:
@@ -389,6 +433,8 @@ Tail Towns Friends:
     company: Ganz
     role: Technical Game Designer
     year: 2012
+    tech: [Flash]
+    roles: ["Game Designer"]
     thumbnail: ttf-banner.png
     filename: tail-towns-friends
     images:
@@ -406,6 +452,8 @@ Lumos:
     company: Rebel Hippo Inc.
     role: Web Developer
     year: 2011
+    tech: [SaaS]
+    roles: ["Developer", "Product Manager"]
     thumbnail: lumos-banner.png
     filename: lumos
     images:
@@ -425,6 +473,8 @@ dimeRocker:
     company: OverInteractive Media Inc.
     role: Lead Unity/Flash Developer, Web Developer
     year: 2010
+    tech: [Unity, Flash, SaaS]
+    roles: ["Developer"]
     thumbnail: dr-banner.png
     filename: dimerocker
     images:
@@ -445,6 +495,8 @@ Tire &amp; Brimstone:
     company: Vancouver Film School
     role: Game Designer &amp; Unity Developer
     year: 2009
+    tech: [Unity]
+    roles: ["Game Designer", "Developer"]
     thumbnail: tb-banner.png
     filename: tire-and-brimstone
     images:

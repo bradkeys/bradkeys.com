@@ -1,52 +1,48 @@
 ---
-layout: blog
-title: Game Dev Blog
+layout: page
+title: Portfolio
 ---
 
-<!-- This loops through the paginated posts -->
-{% for post in paginator.posts %}
-    <article>
-        <div class="row">
-            <div class="col-md-3">
-                <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date  | date_to_string }}</time>
-                {% assign thumb = post.image | default: site.default_image %}
-                <a class="hvr-grow" href="{{ post.url }}" tabindex="-1" aria-hidden="true">
-                    <img src="{{ thumb }}" alt="{% if post.image %}{{ post.title | escape }}{% endif %}" {% include img-size.html src=thumb %} loading="lazy" decoding="async" />
-                </a>
-            </div>
-            <div class="col-md-9">
-                <h1>
-                    <a href="{{ post.url }}">{{ post.title }}</a>
-                </h1>
-                <div class="excerpt">
-                    <p>{{ post.content | strip_html | truncatewords:75 }}</p>
-                    <a class="btn btn-sharp btn-sm hvr-push" href="{{ post.url }}">Read More<span class="visually-hidden"> about {{ post.title | escape }}</span></a>
-                </div>
-            </div>
+<div id="portfolio">
+    <div id="about">
+        <p>
+            I work in the video game industry and have a passion for learning and innovating with new technologies.
+            I have been creating games with <a href="https://unity.com">Unity</a> since 2006,
+            and have experience with mobile, social, Steam, AR (augmented reality), and VR (virtual reality) games.
+            I have also worked as a web developer, designing and creating cloud-based APIs and frontends for game services
+            such as analytics, achievements, and leaderboards.
+        </p>
+        <p>
+            Below is a mix of projects I have worked on at studios, as a contractor, independently, as a student, and at game jams.
+            Click a project to see more details and a brief account of my experience on that particular project.
+        </p>
+    </div>
+    <div id="project-filters" class="filters" hidden>
+        <div class="filter-group" role="group" aria-labelledby="filter-tech-label">
+            <span class="filter-label" id="filter-tech-label">Technology</span>
+            {% for tag in site.data.tags.tech %}<button type="button" class="filter-chip"{% if site.data.tags.titles[tag] %} title="{{ site.data.tags.titles[tag] }}"{% endif %} data-filter="tech" data-value="{{ tag | slugify }}" aria-pressed="false">{{ tag }}</button>{% endfor %}
         </div>
-    </article>
-{% endfor %}
-<!-- Pagination links -->
-<!--<div id="pagination-wrapper">-->
-<!--    <div id="pagination">-->
-<!--        {% if paginator.previous_page %}-->
-<!--        <a href="{{ paginator.previous_page_path }}">-->
-<!--            <span id="prev" class="can-page">&#8249;</span>-->
-<!--        </a>-->
-<!--        {% else %}-->
-<!--        <span id="prev">&nbsp;</span>-->
-<!--        {% endif %}-->
+        <div class="filter-group" role="group" aria-labelledby="filter-role-label">
+            <span class="filter-label" id="filter-role-label">Role</span>
+            {% for tag in site.data.tags.roles %}<button type="button" class="filter-chip" data-filter="roles" data-value="{{ tag | slugify }}" aria-pressed="false">{{ tag }}</button>{% endfor %}
+        </div>
+        <p class="filter-status" id="filter-status" aria-live="polite"></p>
+    </div>
+    <div id="project-list">
+        {% for project_info in site.data.portfolio %}
+            {% assign project = project_info[1] %}
+            {% capture thumb %}/img/portfolio/{{ project.thumbnail }}{% endcapture %}
+            <a class="project" href="/portfolio/{{ project.filename }}/" data-tech="{% for tag in project.tech %}{{ tag | slugify }} {% endfor %}" data-roles="{% for tag in project.roles %}{{ tag | slugify }} {% endfor %}">
+                <img alt="{{ project_info[0] }} thumbnail" src="{{ thumb }}" {% include img-size.html src=thumb %} loading="{% if forloop.index <= 6 %}eager{% else %}lazy{% endif %}" decoding="async" />
+                {% if project.tech.size > 0 %}<span class="tile-tags">{% for tag in project.tech %}<span class="tile-tag"{% if site.data.tags.titles[tag] %} title="{{ site.data.tags.titles[tag] }}"{% endif %}>{{ tag }}</span>{% endfor %}</span>{% endif %}
+                <span class="project-info">
+                    <span class="project-title">{{ project_info[0] }}</span>
+                    <span class="project-date">{{ project.year }}</span>
+                    <span class="project-role">{{ project.role }}</span>
+                </span>
+            </a>
+        {% endfor %}
+    </div>
+</div>
 
-<!--        <span id="page-number">-->
-<!--            <span id="current-page">{{ paginator.page }}</span> of {{ paginator.total_pages }}-->
-<!--        </span>-->
-
-<!--        {% if paginator.next_page %}-->
-<!--        <a href="{{ paginator.next_page_path }}">-->
-<!--            <span id="next" class="can-page">&#8250;</span>-->
-<!--        </a>-->
-<!--        {% else %}-->
-<!--        <span id="next">&nbsp;</span>-->
-<!--        {% endif %}-->
-<!--    </div>-->
-<!--</div>-->
+<script src="/js/project-filter.js" defer></script>

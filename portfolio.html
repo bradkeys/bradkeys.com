@@ -1,37 +1,18 @@
 ---
-layout: page
-title: Portfolio
+layout: null
+sitemap: false
 ---
-
-<div id="portfolio">
-    <div id="about" class="row">
-        <p>
-            I work in the video game industry and have a passion for learning and innovating with new technologies.
-            I have been creating games with <a href="https://unity.com">Unity</a> since 2006,
-            and have experience with mobile, social, Steam, AR (augmented reality), and VR (virtual reality) games.
-            I have also worked as a web developer, designing and creating cloud-based APIs and frontends for game services
-            such as analytics, achievements, and leaderboards.
-        </p>
-        <p>
-            Below is a mix of projects I have worked on at studios, as a contractor, independently, as a student, and at game jams.
-            Click a project to see more details and a brief account of my experience on that particular project.
-        </p>
-    </div>
-    <div id="project-list">
-        {% for project_info in site.data.portfolio %}
-            {% assign project = project_info[1] %}
-            <a href="/portfolio/{{ project.filename }}/">
-                <div class="project hvr-grow">
-                    {% capture thumb %}/img/portfolio/{{ project.thumbnail }}{% endcapture %}<img alt="{{ project_info[0] }} thumbnail" src="{{ thumb }}" {% include img-size.html src=thumb %} loading="lazy" decoding="async" />
-                    <div class="transbox"></div>
-                    <div class="project-info">
-                        <span class="project-title">{{ project_info[0] }}</span>
-                        <span class="project-date">{{ project.year }}</span>
-                        <br />
-                        <span class="project-role"><em>{{ project.role }}</em></span>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio · Brad Keys</title>
+    <link rel="canonical" href="{{ site.url }}/" />
+    <meta http-equiv="refresh" content="0; url=/" />
+    <meta name="robots" content="noindex" />
+</head>
+<body>
+    <p>The portfolio is now on the <a href="/">home page</a>.</p>
+</body>
+</html>
