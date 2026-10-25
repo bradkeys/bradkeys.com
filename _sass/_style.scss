@@ -1169,6 +1169,47 @@ a.platform:focus-visible {
 
 /* Visitors who ask their system for less motion get no hover scaling or push
    animation, and transitions finish immediately. */
+/* ---------- Page transitions ----------
+   Cross-document view transitions (Chromium, Safari 18.2+; other browsers
+   navigate normally). The header keeps its own layer so it stays put while the
+   page content fades and slides underneath it. */
+
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+
+    #header-wrapper {
+        view-transition-name: site-header;
+    }
+
+    main {
+        view-transition-name: page-content;
+    }
+
+    ::view-transition-old(page-content) {
+        animation: 0.18s ease-in both page-out;
+    }
+
+    ::view-transition-new(page-content) {
+        animation: 0.28s ease-out both page-in;
+    }
+}
+
+@keyframes page-out {
+    to {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes page-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
