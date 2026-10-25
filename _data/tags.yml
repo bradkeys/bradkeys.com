@@ -9,3 +9,7 @@ roles:
   - Game Designer
   - Developer
   - Product Manager
+
+# Shown as a tooltip wherever the tag appears. Only tags that need explaining.
+titles:
+  SaaS: Software as a Service

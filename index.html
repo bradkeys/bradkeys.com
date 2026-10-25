@@ -20,7 +20,7 @@ title: Portfolio
     <div id="project-filters" class="filters" hidden>
         <div class="filter-group" role="group" aria-labelledby="filter-tech-label">
             <span class="filter-label" id="filter-tech-label">Technology</span>
-            {% for tag in site.data.tags.tech %}<button type="button" class="filter-chip" data-filter="tech" data-value="{{ tag | slugify }}" aria-pressed="false">{{ tag }}</button>{% endfor %}
+            {% for tag in site.data.tags.tech %}<button type="button" class="filter-chip"{% if site.data.tags.titles[tag] %} title="{{ site.data.tags.titles[tag] }}"{% endif %} data-filter="tech" data-value="{{ tag | slugify }}" aria-pressed="false">{{ tag }}</button>{% endfor %}
         </div>
         <div class="filter-group" role="group" aria-labelledby="filter-role-label">
             <span class="filter-label" id="filter-role-label">Role</span>
@@ -34,7 +34,7 @@ title: Portfolio
             {% capture thumb %}/img/portfolio/{{ project.thumbnail }}{% endcapture %}
             <a class="project" href="/portfolio/{{ project.filename }}/" data-tech="{% for tag in project.tech %}{{ tag | slugify }} {% endfor %}" data-roles="{% for tag in project.roles %}{{ tag | slugify }} {% endfor %}">
                 <img alt="{{ project_info[0] }} thumbnail" src="{{ thumb }}" {% include img-size.html src=thumb %} loading="{% if forloop.index <= 6 %}eager{% else %}lazy{% endif %}" decoding="async" />
-                {% if project.tech.size > 0 %}<span class="tile-tags">{% for tag in project.tech %}<span class="tile-tag">{{ tag }}</span>{% endfor %}</span>{% endif %}
+                {% if project.tech.size > 0 %}<span class="tile-tags">{% for tag in project.tech %}<span class="tile-tag"{% if site.data.tags.titles[tag] %} title="{{ site.data.tags.titles[tag] }}"{% endif %}>{{ tag }}</span>{% endfor %}</span>{% endif %}
                 <span class="project-info">
                     <span class="project-title">{{ project_info[0] }}</span>
                     <span class="project-date">{{ project.year }}</span>

@@ -502,24 +502,11 @@ main {
         font-weight: 600;
         letter-spacing: 0.04em;
         color: var(--text-soft);
-        text-decoration: none;
-        transition: background 0.2s, color 0.2s;
-
-        &:hover,
-        &:focus-visible {
-            background: var(--surface-hover);
-            color: var(--text);
-        }
     }
 
     .tag-tech {
         border-color: var(--accent);
         color: var(--accent);
-
-        &:hover,
-        &:focus-visible {
-            color: var(--accent-hover);
-        }
     }
 }
 
