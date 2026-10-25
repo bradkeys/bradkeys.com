@@ -1286,6 +1286,11 @@ body::after {
         view-transition-name: page-content;
     }
 
+    /* Same-page filter transitions only animate the tiles. */
+    .filtering main {
+        view-transition-name: none;
+    }
+
     ::view-transition-old(page-content) {
         animation: 0.18s ease-in both page-out;
     }

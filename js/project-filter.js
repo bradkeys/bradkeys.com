@@ -62,13 +62,16 @@
     function applyAnimated() {
         var reduce = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
         if ( !document.startViewTransition || reduce ) { apply(); return; }
+        // "filtering" drops <main>'s page-transition layer (see the CSS), which
+        // would otherwise slide and resize the content above the grid.
+        document.documentElement.classList.add( 'filtering' );
         tiles.forEach( function ( tile, i ) { tile.style.viewTransitionName = 'tile-' + i; } );
         var transition = document.startViewTransition( apply );
-        transition.finished.then( function () {
+        function cleanup() {
             tiles.forEach( function ( tile ) { tile.style.viewTransitionName = ''; } );
-        }, function () {
-            tiles.forEach( function ( tile ) { tile.style.viewTransitionName = ''; } );
-        } );
+            document.documentElement.classList.remove( 'filtering' );
+        }
+        transition.finished.then( cleanup, cleanup );
     }
 
     box.addEventListener( 'click', function ( event ) {
