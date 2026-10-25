@@ -19,27 +19,29 @@ title: Game Dev Blog
         </div>
     </article>
 {% endfor %}
-<!-- Pagination links -->
-<!--<div id="pagination-wrapper">-->
-<!--    <div id="pagination">-->
-<!--        {% if paginator.previous_page %}-->
-<!--        <a href="{{ paginator.previous_page_path }}">-->
-<!--            <span id="prev" class="can-page">&#8249;</span>-->
-<!--        </a>-->
-<!--        {% else %}-->
-<!--        <span id="prev">&nbsp;</span>-->
-<!--        {% endif %}-->
-
-<!--        <span id="page-number">-->
-<!--            <span id="current-page">{{ paginator.page }}</span> of {{ paginator.total_pages }}-->
-<!--        </span>-->
-
-<!--        {% if paginator.next_page %}-->
-<!--        <a href="{{ paginator.next_page_path }}">-->
-<!--            <span id="next" class="can-page">&#8250;</span>-->
-<!--        </a>-->
-<!--        {% else %}-->
-<!--        <span id="next">&nbsp;</span>-->
-<!--        {% endif %}-->
-<!--    </div>-->
-<!--</div>-->
+{% if paginator.total_pages > 1 %}
+<nav class="pagination" aria-label="Blog pages">
+    {% if paginator.previous_page %}
+        <a class="pagination-link" href="{{ paginator.previous_page_path }}" rel="prev"><span aria-hidden="true">&larr;</span> Newer</a>
+    {% else %}
+        <span class="pagination-link pagination-disabled" aria-hidden="true">&larr; Newer</span>
+    {% endif %}
+    <ol class="pagination-pages">
+        {% for n in (1..paginator.total_pages) %}
+            {% if n == 1 %}{% assign page_path = '/blog/' %}{% else %}{% assign page_path = site.paginate_path | replace: ':num', n %}{% endif %}
+            <li>
+                {% if n == paginator.page %}
+                    <span class="pagination-link pagination-current" aria-current="page"><span class="visually-hidden">Page </span>{{ n }}</span>
+                {% else %}
+                    <a class="pagination-link" href="{{ page_path }}"><span class="visually-hidden">Page </span>{{ n }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+    {% if paginator.next_page %}
+        <a class="pagination-link" href="{{ paginator.next_page_path }}" rel="next">Older <span aria-hidden="true">&rarr;</span></a>
+    {% else %}
+        <span class="pagination-link pagination-disabled" aria-hidden="true">Older &rarr;</span>
+    {% endif %}
+</nav>
+{% endif %}

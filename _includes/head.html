@@ -1,5 +1,5 @@
 {% assign page_title = page.title | default: site.title %}
-{% if page.url == '/' %}{% assign full_title = "Brad Keys – Unity Game Developer & Designer" %}{% else %}{% assign full_title = page_title | append: " · " | append: site.title %}{% endif %}
+{% if page.url == '/' %}{% assign full_title = "Brad Keys – Unity Game Developer & Designer" %}{% else %}{% assign full_title = page_title | append: " · " | append: site.title %}{% if paginator.page and paginator.page > 1 %}{% assign full_title = page_title | append: " (page " | append: paginator.page | append: ") · " | append: site.title %}{% endif %}{% endif %}
 {% if page.description %}{% assign page_desc = page.description %}{% elsif page.layout == 'portfolio' %}{% assign project = site.data.portfolio[page.title] %}{% assign page_desc = page.title | append: ' – ' | append: project.role | append: ' at ' | append: project.company | append: ' (' | append: project.year | append: '). A game by Brad Keys.' %}{% elsif page.layout == 'post' %}{% capture page_desc %}{% include post-summary.html post=page words=28 %}{% endcapture %}{% assign page_desc = page_desc | truncate: 160 %}{% endif %}
 {% if page_desc == nil or page_desc == "" %}{% assign page_desc = site.description %}{% endif %}
 {% assign canonical = site.url | append: page.url | replace: 'index.html', '' %}
