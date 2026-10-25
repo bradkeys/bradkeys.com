@@ -1398,14 +1398,18 @@ body::after {
         animation: wash-drift 45s ease-in-out infinite alternate;
     }
 
-    /* translate/opacity rather than transform, so the hover lift and tilt
-       are not overridden. "backwards" means the animation stops affecting the
-       tile once it has finished entering. */
-    @supports (animation-timeline: view()) {
-        .project {
-            animation: tile-in linear backwards;
-            animation-timeline: view();
-            animation-range: entry 0% entry 45%;
+    /* Tiles below the fold start faded and lowered; js/tile-reveal.js removes
+       the class as they scroll into view. translate/scale rather than
+       transform, so the hover lift and tilt are not overridden. (This was a
+       CSS scroll-driven animation, but iOS Safari left tiles stuck invisible.) */
+    .project {
+        transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s,
+            opacity 0.5s ease-out, translate 0.5s ease-out, scale 0.5s ease-out;
+
+        &.pre-reveal {
+            opacity: 0;
+            translate: 0 36px;
+            scale: 0.96;
         }
     }
 
@@ -1432,14 +1436,6 @@ body::after {
 
     to {
         transform: translate3d(3%, 3%, 0) scale(1.08);
-    }
-}
-
-@keyframes tile-in {
-    from {
-        opacity: 0;
-        translate: 0 36px;
-        scale: 0.96;
     }
 }
 
