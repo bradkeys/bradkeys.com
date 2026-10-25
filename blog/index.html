@@ -14,7 +14,7 @@ title: Game Dev Blog
         <div class="post-body">
             <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_string }}</time>
             <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-            <p class="post-excerpt">{{ post.content | strip_html | truncatewords:60 }}</p>
+            <p class="post-excerpt">{% include post-summary.html post=post words=45 %}</p>
             <a class="read-more" href="{{ post.url }}">Read more<span class="visually-hidden"> about {{ post.title | escape }}</span> &rarr;</a>
         </div>
     </article>
