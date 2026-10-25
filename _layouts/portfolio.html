@@ -5,10 +5,28 @@ layout: default
 {% assign project = site.data.portfolio[page.title] %}
 
 <div id="project-page">
-    <h1>{{ page.title }}</h1>
-    <h2>{{ project.company }} ({{ project.year }})</h2>
-    <h3><em>{{ project.role }}</em></h3>
-    <br />
+    <header id="project-header">
+        <p class="project-meta">{{ project.company }} &middot; {{ project.year }}</p>
+        <h1>{{ page.title }}</h1>
+        <p class="project-role">{{ project.role }}</p>
+        <div id="platforms">
+            {% comment %}Icons and labels come from _data/platforms.yml. A platform with no URL (e.g. the app was removed from its store) is still listed, unlinked.{% endcomment %}
+            {% for platform in project.platforms %}
+                {% assign key = platform[0] %}
+                {% assign info = site.data.platforms[key] %}
+                {% assign label = info.label | default: platform[0] %}
+                {% capture badge %}{% if info.icon %}{% include icons/{{ info.icon }}.svg %}{% endif %}<span>{{ label }}</span>{% endcapture %}
+                {% if platform[1] %}
+                    <a class="platform hvr-grow" href="{{ platform[1] }}">{{ badge }}</a>
+                {% else %}
+                    <span class="platform platform-unlinked" title="No longer available">{{ badge }}<span class="visually-hidden"> (no longer available)</span></span>
+                {% endif %}
+            {% endfor %}
+            {% if project.website %}
+                <a class="platform hvr-grow" href="{{ project.website }}">{% include icons/globe.svg %}<span>{{ project.website | remove: 'http://' | remove: 'https://' | remove: 'www.' }}</span></a>
+            {% endif %}
+        </div>
+    </header>
     {% if project.video %}
         <div id="video-outer">
             <div id="video-inner">
@@ -28,28 +46,6 @@ layout: default
         		{% capture shot %}/img/portfolio/thumbs/{{ image | split: '.' | first }}.jpg{% endcapture %}<img alt="{{ page.title }} screenshot {{ forloop.index }}" src="{{ shot }}" {% include img-size.html src=shot %} loading="lazy" decoding="async" />
         	</a>
     	{% endfor %}
-    </div>
-    {% if project.website %}
-    <div id="project-website">
-        <h4>Website</h4>
-        <a href="{{ project.website }}">
-            {{ project.website | remove: 'http://' | remove: 'https://' }}
-        </a>
-    </div>
-    {% endif %}
-    <div id="platforms">
-        {% for platform in project.platforms %}
-            {% comment %}Icons and labels come from _data/platforms.yml. A platform with no URL (e.g. the app was removed from its store) is still listed, unlinked.{% endcomment %}
-            {% assign key = platform[0] %}
-            {% assign info = site.data.platforms[key] %}
-            {% assign label = info.label | default: platform[0] %}
-            {% capture badge %}{% if info.icon %}{% include icons/{{ info.icon }}.svg %}{% endif %}<span>{{ label }}</span>{% endcapture %}
-            {% if platform[1] %}
-                <a class="platform hvr-grow" href="{{ platform[1] }}">{{ badge }}</a>
-            {% else %}
-                <span class="platform platform-unlinked" title="No longer available">{{ badge }}<span class="visually-hidden"> (no longer available)</span></span>
-            {% endif %}
-        {% endfor %}
     </div>
     {% if project.summary %}
         <div id="project-summary">

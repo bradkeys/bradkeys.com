@@ -88,100 +88,84 @@ html {
         #header-wrapper {
             width: 100%;
             background-color: white;
+            border-bottom: 1px solid #ddd;
 
             #header {
                 max-width: 1000px;
                 margin: 0 auto;
-                padding: 20px;
+                padding: 14px 20px;
                 display: flex;
-                justify-content: center;
+                flex-wrap: wrap;
+                justify-content: space-between;
                 align-items: center;
+                gap: 8px 24px;
 
                 #logo {
-                	-webkit-flex-grow: 1;
-                	flex-grow: 1;
-                	width: 90%;
-                	text-shadow: 1px 1px 3px #666, 3px 3px 0px white;
-                	display: block;
-
-                	a {
-                        padding: 0;
-                        margin: 0;
+                    a {
+                        display: block;
                         text-decoration: none;
+                        color: #111;
+                        line-height: 1.1;
 
                         #logo-title {
-                            text-transform: uppercase;
-                            font-size: 6em;
                             display: block;
-                            color: #111;
+                            text-transform: uppercase;
+                            font-size: 1.7em;
+                            font-weight: 700;
+                            letter-spacing: 0.08em;
                         }
 
                         #logo-subtitle {
+                            display: block;
+                            margin-top: 3px;
                             text-transform: uppercase;
-                        	font-size: 2em;
-                        	display: block;
-                        	color: black;
-                        	text-shadow: 0px 0px 0px #666, 0px 0px 0px white;
+                            font-size: 0.75em;
+                            letter-spacing: 0.14em;
+                            color: #555;
                         }
-                    }
-
-                    a:hover {
-                        padding: 0;
-                        margin: 0;
-                        text-decoration: none;
                     }
                 }
 
                 nav {
-                    -webkit-flex-shrink: 0;
-                    flex-shrink: 0;
-
-                    #social-links {
-                        width: 90%;
-                        margin: 25px auto;
-                        text-align: center;
-
-                        a {
-                            margin: 0px 5px 5px;
-                        }
-                    }
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 4px 20px;
 
                     #nav-links {
-                        text-align: center;
-                        vertical-align: top;
-                        white-space: nowrap;
+                        display: flex;
+                        gap: 4px;
 
-                        .btn {
-                            padding: 14px 24px;
-                            border: 1px solid black;
+                        .nav-link {
+                            padding: 8px 10px;
+                            border-bottom: 2px solid transparent;
+                            color: #111;
+                            font-size: 0.8em;
                             font-weight: 700;
-                            letter-spacing: 1px;
+                            letter-spacing: 0.12em;
                             text-transform: uppercase;
                             text-decoration: none;
-                        }
+                            transition: border-color 0.2s;
 
-                        .btn:focus, .btn:active:focus, .btn.active:focus {
-                            outline: 0 none;
-                        }
-
-                        a {
-                            background-color: white;
-                            color: black;
-                            border: 1px solid black;
-                            display: inline-block;
-                            margin-right: 5px;
-                        }
-
-                        a:hover {
-                            background-color: black;
-                            color: white;
-                        }
-
-                        li a:hover {
-                            color: white;
+                            &:hover,
+                            &:focus-visible,
+                            &[aria-current="page"] {
+                                border-bottom-color: #111;
+                            }
                         }
                     }
-                } // nav
+
+                    #social-links {
+                        display: flex;
+                        gap: 8px;
+
+                        .social-icon {
+                            width: 34px;
+                            height: 34px;
+                            border-width: 1.5px;
+                        }
+                    }
+                }
             } // header
         } // header-wrapper
 
@@ -190,7 +174,7 @@ html {
             margin-bottom: 50px;
 
             main {
-                margin-top: 50px;
+                margin-top: 32px;
                 padding: 0px 15px;
                 min-height: 850px;
                 overflow: hidden;
@@ -203,7 +187,8 @@ html {
                 h1 {
                     text-align: center;
                     color: white;
-                    font-size: 4em;
+                    font-size: 2.5em;
+                    font-weight: 700;
                 }
 
                 > img {
@@ -505,9 +490,53 @@ html {
                         }
                     }
 
-                    h1, h2, h3, #screenshots, #project-website, #platforms {
-                        margin: 0 auto;
-                        text-align: center;
+                    #video-outer {
+                        max-height: none;
+                        height: auto;
+                    }
+
+                    #video-inner {
+                        max-width: 640px;
+                        height: auto;
+                        padding-bottom: 0;
+                        aspect-ratio: 16 / 9;
+                    }
+
+                    #project-header, #video-outer, #screenshots {
+                        width: 90%;
+                        max-width: 1000px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        box-sizing: border-box;
+                        text-align: left;
+                    }
+
+                    #project-header {
+                        margin-bottom: 20px;
+
+                        .project-meta {
+                            margin: 0 0 4px;
+                            font-size: 0.7em;
+                            font-weight: 700;
+                            letter-spacing: 0.14em;
+                            text-transform: uppercase;
+                            color: #aaa;
+                        }
+
+                        h1 {
+                            margin: 0;
+                            padding: 0;
+                            font-size: 2.4em;
+                            line-height: 1.15;
+                        }
+
+                        .project-role {
+                            margin: 6px 0 0;
+                            font-size: 1em;
+                            color: #ccc;
+                        }
                     }
 
                     h5 {
@@ -561,6 +590,7 @@ html {
 
                     #screenshots {
                         margin-bottom: 25px;
+                        padding-top: 4px;
 
                         img {
                             width: 150px;
@@ -570,20 +600,16 @@ html {
                         }
                     }
 
-                    #project-website {
-                        margin-bottom: 15px;
-                    }
-
                     #platforms {
-                        margin-bottom: 15px;
+                        margin-top: 4px;
 
                         .platform {
                             display: inline-flex;
                             vertical-align: middle;
                             align-items: center;
                             gap: 8px;
-                            margin: 15px 5px 0;
-                            padding: 8px 16px;
+                            margin: 12px 8px 0 0;
+                            padding: 6px 14px;
                             border: 1px solid #aaa;
                             border-radius: 6px;
                             font-size: 14px;
@@ -828,6 +854,33 @@ html {
     } // body
 } // html
 
+/* Phones: keep the links and icons on one row under the name. */
+@media all and (max-width: 480px) {
+    html body #header-wrapper #header {
+        padding: 12px 15px;
+
+        nav {
+            width: 100%;
+            justify-content: space-between;
+            gap: 0 8px;
+
+            #nav-links {
+                gap: 0;
+
+                .nav-link {
+                    padding: 8px 6px;
+                    letter-spacing: 0.08em;
+                }
+            }
+
+            #social-links .social-icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+}
+
 /* mobile scaling */
 
 @media all and (max-width: 1154px)  {
@@ -849,7 +902,7 @@ html {
     main {
         h1 {
             text-align: center;
-            font-size: 3em;
+            font-size: 2.2em;
         }
 
         #blog {
@@ -869,34 +922,7 @@ html {
         }
     }
 
-    #header {
-        flex-wrap: wrap;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-        padding-top: 5px;
-        padding-bottom: 5px;
 
-        #logo {
-            text-align: center;
-            margin: 0 auto;
-        }
-
-        nav {
-            #nav-links {
-                margin: 15px 0;
-
-                a, button {
-                    font-size: 1em;
-                    min-width: 100px;
-                }
-            }
-
-            #social-links {
-                -webkit-flex-direction: row;
-                flex-direction: row;
-            }
-        }
-    }
 
     .btn {
         padding: 14px 8px;
@@ -908,19 +934,7 @@ html {
 @media all and (max-width: 904px)  {
     html {
         body {
-            #header-wrapper {
-                #header {
-                    nav {
-                        #logo-title {
-                            font-size: 4em;
-                        }
 
-                        #logo-subtitle {
-                        	font-size: 1.7em;
-                        }
-                    }
-                }
-            }
 
             #main-wrapper {
                 main {
@@ -957,45 +971,12 @@ html {
         body {
             line-height: unset;
 
-            #header-wrapper {
-                #header {
-                    nav {
-                        font-size: 10px;
 
-                        #logo-title {
-                            font-size: 3em;
-                        }
-
-                        #logo-subtitle {
-                        	font-size: 1.3em;
-                        }
-
-                        #nav-links {
-                            margin-bottom: 0;
-
-                            .btn {
-                                padding: 14px 10px;
-                            }
-                        }
-
-                        #social-links {
-                            a {
-                                margin: 0px 3px 5px;
-                            }
-                        }
-
-                        .social-icon {
-                            width: 48px;
-                            height: 48px;
-                        }
-                    }
-                }
-            }
 
             #main-wrapper {
                 main {
                     h1 {
-                        font-size: 3em;
+                        font-size: 2.2em;
                     }
 
                     #portfolio {
@@ -1079,12 +1060,7 @@ html {
 @media all and (max-width: 325px)  {
     html {
         body {
-            #header-wrapper {
-                #header {
-                    margin-right: 0;
-                    margin-left: 1%;
-                }
-            }
+
 
             #main-wrapper {
                 main {
