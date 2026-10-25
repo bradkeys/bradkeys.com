@@ -667,6 +667,7 @@ html {
                                 width: 400px;
                                 height: 200px;
                                 background-repeat: no-repeat;
+                                position: relative;
                                 display: inline-block;
                                 color: white;
                                 font-weight: bold;
@@ -681,19 +682,21 @@ html {
                                     object-fit: cover;
                                 }
 
+                                // Title and year are always visible (touch screens have no
+                                // hover); the role appears on hover or keyboard focus.
                                 .project-info {
-                                    display: inline;
                                     position: absolute;
                                     left: 0;
-                                    width: 400px;
-                                    padding: 5px;
+                                    bottom: 0;
+                                    width: 100%;
+                                    box-sizing: border-box;
+                                    padding: 28px 10px 8px;
                                     text-align: left;
-                                    opacity: 0;
-                                    background-color: #0005;
-                                    transition: 0.5s ease-in-out;
+                                    background: linear-gradient(to bottom, #0000, #000c);
+                                    transition: background 0.3s ease-in-out;
 
                                     .project-title {
-                                        font-size: 2em;
+                                        font-size: 1.1em;
                                         display: inline;
                                     }
 
@@ -701,19 +704,29 @@ html {
                                         float: right;
                                         display: inline;
                                         text-align: right;
-                                        margin-right: 15px;
-                                        margin-bottom: 15px;
-                                        font-size: 1.5em;
+                                        font-size: 1em;
+                                        opacity: 0.85;
                                     }
 
                                     .project-role {
-                                        font-size: 1.2em;
+                                        display: block;
+                                        max-height: 0;
+                                        overflow: hidden;
+                                        font-size: 0.95em;
+                                        font-weight: normal;
+                                        opacity: 0;
+                                        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
                                     }
                                 } // .project-info
 
-                                &:hover {
+                                &:hover, &:focus-within {
                                   .project-info {
-                                    opacity: 100%;
+                                    background: #000b;
+
+                                    .project-role {
+                                        max-height: 3em;
+                                        opacity: 1;
+                                    }
                                   }
                                 }
                             } // .project
@@ -821,13 +834,6 @@ html {
     main {
         #project-list {
             .project {
-                .project-title {
-                    font-size: 1.5em;
-                }
-
-                .project-date {
-                    font-size: 1.3em;
-                }
             }
 
             .project, .project img, .project-info {
@@ -920,13 +926,6 @@ html {
                 main {
                     #project-list {
                         .project {
-                            .project-title {
-                                font-size: 2em;
-                            }
-
-                            .project-date {
-                                font-size: 1.5em;
-                            }
                         }
 
                         .project, .project img, .project-info {
@@ -1002,13 +1001,6 @@ html {
                     #portfolio {
                         #project-list {
                             .project {
-                                .project-title {
-                                    font-size: 1.5em;
-                                }
-
-                                .project-date {
-                                    font-size: 1.3em;
-                                }
                             }
 
                             .project, .project img, .project-info {

@@ -18,7 +18,8 @@ url: https://bradkeys.com
 default_image: /img/default-thumbnail.jpg
 description: Game developer and designer with 15+ years of Unity experience. Game dev blog and portfolio of Brad Keys.
 highlighter: rouge
-paginate: 999  # I am not actively blogging enough to need this
+paginate: 999
+paginate_path: "/blog/page:num/"  # I am not actively blogging enough to need this
 sass:
   style: compressed
   sourcemap: never
