@@ -4,7 +4,7 @@ title: Portfolio
 ---
 
 <div id="portfolio">
-    <div id="about" class="row">
+    <div id="about">
         <p>
             I work in the video game industry and have a passion for learning and innovating with new technologies.
             I have been creating games with <a href="https://unity.com">Unity</a> since 2006,
@@ -20,17 +20,14 @@ title: Portfolio
     <div id="project-list">
         {% for project_info in site.data.portfolio %}
             {% assign project = project_info[1] %}
-            <a href="/portfolio/{{ project.filename }}/">
-                <div class="project hvr-grow">
-                    {% capture thumb %}/img/portfolio/{{ project.thumbnail }}{% endcapture %}<img alt="{{ project_info[0] }} thumbnail" src="{{ thumb }}" {% include img-size.html src=thumb %} loading="lazy" decoding="async" />
-                    <div class="transbox"></div>
-                    <div class="project-info">
-                        <span class="project-title">{{ project_info[0] }}</span>
-                        <span class="project-date">{{ project.year }}</span>
-                        <br />
-                        <span class="project-role"><em>{{ project.role }}</em></span>
-                    </div>
-                </div>
+            {% capture thumb %}/img/portfolio/{{ project.thumbnail }}{% endcapture %}
+            <a class="project" href="/portfolio/{{ project.filename }}/">
+                <img alt="{{ project_info[0] }} thumbnail" src="{{ thumb }}" {% include img-size.html src=thumb %} loading="lazy" decoding="async" />
+                <span class="project-info">
+                    <span class="project-title">{{ project_info[0] }}</span>
+                    <span class="project-date">{{ project.year }}</span>
+                    <span class="project-role">{{ project.role }}</span>
+                </span>
             </a>
         {% endfor %}
     </div>

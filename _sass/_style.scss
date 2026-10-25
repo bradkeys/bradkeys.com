@@ -1,51 +1,69 @@
+/* Site styles. A dark theme built on a handful of custom properties; layout is
+   flat selectors with two breakpoints (640px and 480px). Bootstrap (the
+   trimmed copy in _bootstrap.scss) is only used for its reset and the blog's
+   collapsible panels, so anything it sets on html/body/headings is
+   overridden here. */
+
+:root {
+    --bg: #0b0b0d;
+    --header-bg: rgba(17, 17, 20, 0.88);
+    --surface: #141418;
+    --surface-hover: #1c1c22;
+    --border: #2b2b32;
+    --border-strong: #4a4a55;
+    --text: #ececf1;
+    --text-soft: #d2d2d9;
+    --muted: #a0a0ab;
+    --accent: #8ab4ff;
+    --accent-hover: #b6d0ff;
+    --radius: 10px;
+    --max: 1000px;
+    --measure: 760px;
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
 
 /* width/height attributes reserve space; CSS controls the displayed size. */
 img {
     height: auto;
 }
 
-/* Round icon links (LinkedIn, GitHub), styled like the .btn-sharp nav buttons:
-   outlined, inverting on hover. The colours are custom properties so a dark
-   page can flip them. */
-.social-icon {
-    --social-fg: black;
-    --social-bg: white;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    box-sizing: border-box;
-    border: 2px solid var(--social-fg);
-    border-radius: 50%;
-    background: var(--social-bg);
-    color: var(--social-fg);
-    text-decoration: none;
-    transition: background 0.2s;
+html {
+    font-size: 100%;
+    background: var(--bg);
+}
 
-    // The glyph takes its colour from the variables, not from the link colour,
-    // so the general a / a:hover colours elsewhere in the stylesheet can't
-    // turn it into the same colour as the circle. The rule targets the <path>
-    // because the Font Awesome SVGs set fill="currentColor" on it, which would
-    // otherwise follow the link colour.
-    .platform-icon {
-        width: 50%;
-        height: 50%;
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
 
-        path {
-            fill: var(--social-fg);
-            transition: fill 0.2s;
-        }
+a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+
+    &:hover {
+        color: var(--accent-hover);
+        text-decoration: none;
     }
+}
 
-    &:hover,
-    &:focus-visible {
-        background: var(--social-fg);
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
 
-        .platform-icon path {
-            fill: var(--social-bg);
-        }
-    }
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font);
+    color: var(--text);
+    line-height: 1.2;
 }
 
 .visually-hidden {
@@ -60,1024 +78,843 @@ img {
     border: 0;
 }
 
-.btn-sharp {
-    border-radius: 2;
-    background-color: white;
-    border: 2px solid black;
-    color: black;
+/* Round icon links (LinkedIn, GitHub, YouTube). The colours are custom
+   properties so a card or page can flip them; the glyph takes its colour from
+   them, not from the link colour, because the Font Awesome SVGs set
+   fill="currentColor" on their <path>. */
+.social-icon {
+    --social-fg: var(--text);
+    --social-bg: transparent;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    box-sizing: border-box;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--social-bg);
+    color: var(--social-fg);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
 
-    &:hover {
-        color: white;
-        background-color: black;
+    .platform-icon {
+        width: 50%;
+        height: 50%;
+
+        path {
+            fill: var(--social-fg);
+            transition: fill 0.2s;
+        }
     }
 }
 
-/* Main Styles*/
-html {
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
+a.social-icon:hover,
+a.social-icon:focus-visible,
+a:hover > .social-icon,
+a:focus-visible > .social-icon {
+    background: var(--social-fg);
+    border-color: var(--social-fg);
 
-    body {
+    .platform-icon path {
+        fill: var(--bg);
+    }
+}
+
+/* ---------- Site header ---------- */
+
+#header-wrapper {
+    width: 100%;
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    backdrop-filter: saturate(1.4) blur(10px);
+}
+
+#header {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+}
+
+#logo a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    line-height: 1.15;
+}
+
+#logo-title {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+#logo-subtitle {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+#header nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 18px;
+}
+
+#nav-links {
+    display: flex;
+    gap: 2px;
+}
+
+.nav-link {
+    padding: 8px 10px;
+    border-bottom: 2px solid transparent;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--text);
+    }
+
+    &[aria-current="page"] {
+        color: var(--text);
+        border-bottom-color: var(--text);
+    }
+}
+
+#social-links {
+    display: flex;
+    gap: 8px;
+}
+
+@media (min-width: 640px) {
+    #header-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+    }
+}
+
+/* ---------- Page frame ---------- */
+
+main {
+    display: block;
+    max-width: var(--max);
+    min-height: 70vh;
+    margin: 0 auto;
+    padding: 40px 20px 64px;
+    box-sizing: border-box;
+
+    h1 {
+        margin: 0 0 20px;
+        font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        text-align: left;
+    }
+
+    .lead {
+        max-width: var(--measure);
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: var(--text-soft);
+    }
+}
+
+/* ---------- Home: portfolio grid ---------- */
+
+#about {
+    max-width: var(--measure);
+    margin-bottom: 36px;
+    font-size: 1.0625rem;
+    color: var(--text-soft);
+
+    p {
+        margin: 0 0 14px;
+    }
+}
+
+#project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+    gap: 20px;
+}
+
+.project {
+    position: relative;
+    display: block;
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+
+    img {
+        display: block;
+        width: 100%;
         height: 100%;
-        margin: 0px;
-        padding: 0px;
-        background-color: black;
-        font-family: Arial, Helvetica, sans-serif;
-
-        #header-wrapper {
-            width: 100%;
-            background-color: white;
-            border-bottom: 1px solid #ddd;
-
-            #header {
-                max-width: 1000px;
-                margin: 0 auto;
-                padding: 14px 20px;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
-                gap: 8px 24px;
-
-                #logo {
-                    a {
-                        display: block;
-                        text-decoration: none;
-                        color: #111;
-                        line-height: 1.1;
-
-                        #logo-title {
-                            display: block;
-                            text-transform: uppercase;
-                            font-size: 1.7em;
-                            font-weight: 700;
-                            letter-spacing: 0.08em;
-                        }
-
-                        #logo-subtitle {
-                            display: block;
-                            margin-top: 3px;
-                            text-transform: uppercase;
-                            font-size: 0.75em;
-                            letter-spacing: 0.14em;
-                            color: #555;
-                        }
-                    }
-                }
-
-                nav {
-                    display: flex;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    gap: 4px 20px;
-
-                    #nav-links {
-                        display: flex;
-                        gap: 4px;
-
-                        .nav-link {
-                            padding: 8px 10px;
-                            border-bottom: 2px solid transparent;
-                            color: #111;
-                            font-size: 0.8em;
-                            font-weight: 700;
-                            letter-spacing: 0.12em;
-                            text-transform: uppercase;
-                            text-decoration: none;
-                            transition: border-color 0.2s;
-
-                            &:hover,
-                            &:focus-visible,
-                            &[aria-current="page"] {
-                                border-bottom-color: #111;
-                            }
-                        }
-                    }
-
-                    #social-links {
-                        display: flex;
-                        gap: 8px;
-
-                        .social-icon {
-                            width: 34px;
-                            height: 34px;
-                            border-width: 1.5px;
-                        }
-                    }
-                }
-            } // header
-        } // header-wrapper
-
-        #main-wrapper {
-            width: 100%;
-            margin-bottom: 50px;
-
-            main {
-                margin-top: 32px;
-                padding: 0px 15px;
-                min-height: 850px;
-                overflow: hidden;
-                background-color: black;
-                color: white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                h1 {
-                    text-align: center;
-                    color: white;
-                    font-size: 2.5em;
-                    font-weight: 700;
-                }
-
-                > img {
-                    max-width: 100%;
-                }
-
-                a {
-                    color: #BBF;
-                    text-decoration: underline;
-                }
-
-                a:hover {
-                    text-decoration: none;
-                    color: #AAF;
-                }
-
-                #blog {
-                    margin-top: 15px;
-                    width: 100%;
-                    max-width: 1000px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-
-                    article {
-                        padding: 5px;
-                        margin: 0 auto;
-                        margin-bottom: 50px;
-                        font-size: 1.2em;
-
-                        h1 {
-                            font-size: 1.5em;
-                            padding: 5px;
-                            margin-top: 0;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-align: left;
-                            text-overflow: ellipsis;
-
-                            a {
-                                color: white;
-                            }
-                        }
-
-                        a {
-                            text-decoration: none;
-                        }
-
-                        time {
-                            font-size: 1em;
-                        }
-
-                        img {
-                            width: 200px;
-                            margin-top: 10px;
-                            margin-bottom: 15px;
-                            border-radius: 5px;
-                        }
-
-                        .excerpt {
-                            p {
-                                font-size: 1em;
-                            }
-
-                            .btn {
-                                margin-top: 15px;
-                                color: white;
-                                background-color: black;
-                                border: 1px solid white;
-                                display: block;
-                                width: 200px;
-                                padding: 14px 24px;
-                                letter-spacing: 1px;
-                                text-transform: uppercase;
-                                text-decoration: none;
-                                font-size: 13px;
-                                font-weight: 700;
-                                font-family: Arial, Helvetica, sans-serif;
-
-                                &:hover {
-                                    color: black;
-                                    background-color: white;
-                                }
-                            }
-                        }
-                    }
-
-                    #pagination-wrapper {
-                        width: 100%;
-                        margin-top: 20px;
-
-                        #pagination {
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: center;
-                            align-items: center;
-                            width: 100%;
-                            height: 100px;
-
-                            #page-number {
-                                font-size: 2em;
-                                text-align: center;
-                                width: 100%;
-                                height: 100%;
-                                color: white;
-
-                                #current-page {
-                                    font-size: 150%;
-                                }
-                            }
-
-                            a {
-                                text-decoration: none;
-
-                                &:active {
-                                    #prev, #next {
-                                        background-color: black;
-                                        color: white;
-                                    }
-                                }
-                            }
-
-                            #next, #prev {
-                                display: inline-block;
-                                width: 50px;
-                                background-color: #0005;
-                                color: black;
-                                text-decoration: none;
-                                font-weight: bold;
-                                font-size: 4em;
-                            }
-
-                            #prev {
-                                border-radius: 5px 0 5px 0;
-                            }
-
-                            #next {
-                                border-radius: 0 5px 0 5px;
-                            }
-                        }
-                    }
-                }
-
-                #blog-post {
-                    article {
-                        padding: 5px;
-                        margin: 0 auto;
-                        margin-bottom: 25px;
-                        font-size: 1.2em;
-                        max-width: 1000px;
-
-                        #article-header {
-                            width: 100%;
-                            padding: 2px;
-                            border-radius: 5px;
-                            margin-bottom: 35px;
-
-                            h1 {
-                                color: white;
-                                font-size: 2.5em;
-                                font-weight: bold;
-                            }
-
-                            time {
-                                display: block;
-                                font-size: 1.5em;
-                                text-align: center;
-                                font-style: italic;
-                                margin-bottom: 5px;
-                            }
-                        }
-
-                        .content {
-                            max-width: 1000px;
-                            text-align: left;
-                            font-size: 1em;
-
-                            a {
-                                color: #BBF;
-                                text-decoration: underline;
-                                font-weight: bold;
-                            }
-
-                            a:hover {
-                                text-decoration: none;
-                            }
-
-                            img:not(.video-thumb) {
-                                margin: 0 auto;
-                                margin-bottom: 15px;
-                                padding: 0;
-                                display: block;
-                                max-width: 100%;
-                                max-height: 500px;
-                                object-fit: contain;
-                                border-radius: 5px;
-                            }
-
-                            .image-description {
-                                font-size: 0.9em;
-                                font-style: italic;
-                                color: #AAA;
-                                text-align: center;
-                                display: block;
-                                margin: 0 auto;
-                                margin-bottom: 15px;
-                            }
-
-                            img:not(.video-thumb), iframe {
-                                margin-bottom: 15px;
-                                margin-top: 15px;
-                            }
-
-                            /* Modified Bootstrap Collapsable Panels */
-                            .panel-group {
-                                margin-top: 25px;
-
-                                .panel {
-                                    border-style: none;
-
-                                    .panel-title {
-                                        a {
-                                            color: black;
-                                            text-transform: uppercase;
-                                        }
-                                    }
-
-                                    .panel-body {
-                                        background-color: black;
-                                        padding: 0;
-                                        margin: 0;
-                                    }
-                                }
-                            } // .panel-group
-                        } // .content
-                    } // article
-                } // #blog-post
-
-                #contact {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    margin-top: 50px;
-                    width: 100%;
-
-                    .about {
-                        width: 100%;
-                        max-width: 700px;
-                        padding: 0 20px;
-                        font-size: 1.2em;
-                        line-height: 1.5;
-
-                        a {
-                            text-decoration: underline;
-                        }
-                    }
-
-                    .info {
-                        padding: 20px;
-                        width: 340px;
-
-                        // Text links only: .social-icon sets its own colours (and inverts them on hover)
-                        a:not(.social-icon) {
-                            color: white;
-                        }
-
-                        .social-icon {
-                            --social-fg: white;
-                            --social-bg: black;
-                        }
-                    }
-
-                    .type {
-                        font-weight: bold;
-                        font-size: 2em;
-                        margin-left: 25px;
-                        display: block;
-                    }
-
-                    .data {
-                        margin-bottom: 35px;
-                        margin-left: 25px;
-                        display: block;
-                    }
-                }
-
-                #project-page {
-                    font-size: 1.2em;
-                    margin-bottom: 50px;
-
-                    a {
-                        text-decoration: underline;
-
-                        &:hover {
-                            text-decoration: none;
-                            color: #99F;
-                        }
-                    }
-
-                    #video-outer {
-                        max-height: none;
-                        height: auto;
-                    }
-
-                    #video-inner {
-                        max-width: 640px;
-                        height: auto;
-                        padding-bottom: 0;
-                        aspect-ratio: 16 / 9;
-                    }
-
-                    #project-header, #video-outer, #screenshots {
-                        width: 90%;
-                        max-width: 1000px;
-                        margin-left: auto;
-                        margin-right: auto;
-                        padding-left: 5px;
-                        padding-right: 5px;
-                        box-sizing: border-box;
-                        text-align: left;
-                    }
-
-                    #project-header {
-                        margin-bottom: 20px;
-
-                        .project-meta {
-                            margin: 0 0 4px;
-                            font-size: 0.7em;
-                            font-weight: 700;
-                            letter-spacing: 0.14em;
-                            text-transform: uppercase;
-                            color: #aaa;
-                        }
-
-                        h1 {
-                            margin: 0;
-                            padding: 0;
-                            font-size: 2.4em;
-                            line-height: 1.15;
-                        }
-
-                        .project-role {
-                            margin: 6px 0 0;
-                            font-size: 1em;
-                            color: #ccc;
-                        }
-                    }
-
-                    h5 {
-                        text-align: left;
-                        margin: 15px 0px;
-                        font-size: 1em;
-                        font-weight: bold;
-                    }
-
-                    .arcade-figure {
-                        max-width: 260px;
-                        margin: 15px auto 25px;
-                        text-align: center;
-
-                        img {
-                            width: 100%;
-                            height: auto;
-                        }
-
-                        figcaption {
-                            margin-top: 6px;
-                            font-size: 0.85em;
-                            opacity: 0.8;
-                        }
-                    }
-
-                    h6 {
-                        text-align: left;
-                        margin: 25px 0px 10px;
-                        font-size: 1.15em;
-                        font-weight: bold;
-
-                        small {
-                            font-weight: normal;
-                            opacity: 0.7;
-                        }
-                    }
-
-                    hr {
-                        width: 90%;
-                        max-width: 1000px;
-                        border: 0;
-                        height: 0;
-                        border-top: 1px solid rgba(0, 0, 0, 0.1);
-                        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-                    }
-
-                    iframe {
-                        margin-bottom: 25px;
-                    }
-
-                    #screenshots {
-                        margin-bottom: 25px;
-                        padding-top: 4px;
-
-                        img {
-                            width: 150px;
-                            border-radius: 5px;
-                            margin-bottom: 10px;
-                            margin-right: 10px;
-                        }
-                    }
-
-                    #platforms {
-                        margin-top: 4px;
-
-                        .platform {
-                            display: inline-flex;
-                            vertical-align: middle;
-                            align-items: center;
-                            gap: 8px;
-                            margin: 12px 8px 0 0;
-                            padding: 6px 14px;
-                            border: 1px solid #aaa;
-                            border-radius: 6px;
-                            font-size: 14px;
-                            font-weight: bold;
-                            color: white;
-                            text-decoration: none;
-                        }
-
-                        .platform-icon {
-                            width: 1.3em;
-                            height: 1.3em;
-                            fill: currentColor;
-                        }
-
-                        a.platform:hover,
-                        a.platform:focus-visible {
-                            border-color: white;
-                            background: #1a1a1a;
-                        }
-
-                        .platform-unlinked {
-                            opacity: 0.45;
-                            cursor: default;
-                        }
-                    }
-
-                    #project-story, #project-summary, #project-blog-posts {
-                        margin: 0 auto;
-                        width: 90%;
-                        max-width: 1000px;
-                        padding-left: 5px;
-                        text-align: left;
-                    }
-
-                    #project-story video {
-                        display: block;
-                        margin: 0 auto;
-                        width: 100%;
-                        height: auto;
-                        margin: 15px 0;
-                    }
-
-                    #project-story img {
-                        margin-bottom: 15px;
-                    }
-                }
-
-                #portfolio {
-                    #about {
-                        margin: 0 auto;
-                        position: relative;
-                        margin-bottom: 25px;
-                        max-width: 1000px;
-
-                        a {
-                            text-decoration: underline;
-
-                            &:hover {
-                                color: white;
-                                text-decoration: none;
-                            }
-                        }
-
-                        p {
-                            text-align: left;
-                            font-size: 1.2em;
-                        }
-                    }
-
-                    #project-list {
-                        width: 80%;
-                        max-width: 1500px;
-                        margin: 0 auto;
-                        position: relative;
-                        text-align: center;
-
-                        a {
-                            text-decoration: none;
-
-                            .project {
-                                width: 400px;
-                                height: 200px;
-                                background-repeat: no-repeat;
-                                position: relative;
-                                display: inline-block;
-                                color: white;
-                                font-weight: bold;
-                                margin: 0 20px 20px 0;
-
-                                img {
-                                    display: inline;
-                                    position: absolute;
-                                    left: 0;
-                                    width: 400px;
-                                    height: 200px;
-                                    object-fit: cover;
-                                }
-
-                                // Title and year are always visible (touch screens have no
-                                // hover); the role appears on hover or keyboard focus.
-                                .project-info {
-                                    position: absolute;
-                                    left: 0;
-                                    bottom: 0;
-                                    width: 100%;
-                                    box-sizing: border-box;
-                                    padding: 28px 10px 8px;
-                                    text-align: left;
-                                    background: linear-gradient(to bottom, #0000, #000c);
-                                    transition: background 0.3s ease-in-out;
-
-                                    .project-title {
-                                        font-size: 1.1em;
-                                        display: inline;
-                                    }
-
-                                    .project-date {
-                                        float: right;
-                                        display: inline;
-                                        text-align: right;
-                                        font-size: 1em;
-                                        opacity: 0.85;
-                                    }
-
-                                    .project-role {
-                                        display: block;
-                                        max-height: 0;
-                                        overflow: hidden;
-                                        font-size: 0.95em;
-                                        font-weight: normal;
-                                        opacity: 0;
-                                        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-                                    }
-                                } // .project-info
-
-                                &:hover, &:focus-within {
-                                  .project-info {
-                                    background: #000b;
-
-                                    .project-role {
-                                        max-height: 3em;
-                                        opacity: 1;
-                                    }
-                                  }
-                                }
-                            } // .project
-                        } // #project-list a
-                    } // #project-list
-                } // #portfolio
-
-                #video-outer {
-                    max-width: 640px;
-                    max-height: 360px;
-                    width: 100%;
-                    height: 100%;
-                    margin: 0 auto;
-                    margin-bottom: 25px;
-                    padding-top: 15px;
-                }
-
-                #video-inner {
-                    height: 0px;
-                    padding-bottom: 56.25%;
-                    position: relative;
-
-                    iframe {
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                    }
-                }
-
-                // Click-to-load YouTube thumbnail (see _includes/youtube.html). Works inside
-                // #video-inner and inside .video-embed, which posts use for bare embeds.
-                .video-facade {
-                    position: absolute;
-                    inset: 0;
-                    display: block;
-                    background: black;
-                    overflow: hidden;
-
-                    // The 4:3 thumbnail has black bars; cover crops them in the 16:9 box.
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        opacity: 0.9;
-                        transition: opacity 0.2s;
-                    }
-
-                    .video-play {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        width: 68px;
-                        height: 68px;
-                        margin: -34px 0 0 -34px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border-radius: 50%;
-                        background: rgba(0, 0, 0, 0.7);
-                        color: white;
-                        transition: background 0.2s;
-                    }
-
-                    .platform-icon {
-                        width: 28px;
-                        height: 28px;
-                        margin-left: 4px;
-                    }
-
-                    &:hover img,
-                    &:focus-visible img {
-                        opacity: 1;
-                    }
-
-                    &:hover .video-play,
-                    &:focus-visible .video-play {
-                        background: #f00;
-                    }
-                }
-
-                .video-embed {
-                    position: relative;
-                    width: 100%;
-                    max-width: 500px;
-                    aspect-ratio: 16 / 9;
-                    margin: 15px 0;
-
-                    iframe {
-                        position: absolute;
-                        inset: 0;
-                        width: 100%;
-                        height: 100%;
-                        margin: 0;
-                        border: 0;
-                    }
-                }
-            } // main
-        } // main-wrapper
-    } // body
-} // html
-
-/* Phones: keep the links and icons on one row under the name. */
-@media all and (max-width: 480px) {
-    html body #header-wrapper #header {
+        object-fit: cover;
+        transition: transform 0.4s;
+    }
+
+    &:hover,
+    &:focus-visible {
+        color: #fff;
+        transform: translateY(-3px);
+        border-color: var(--border-strong);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+
+        img {
+            transform: scale(1.04);
+        }
+
+        .project-role {
+            max-height: 2.6em;
+            opacity: 1;
+        }
+    }
+}
+
+/* Title and year are always visible (touch screens have no hover); the role
+   appears on hover or keyboard focus. */
+.project-info {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0 10px;
+    padding: 36px 14px 10px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.85));
+}
+
+.project-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.project-date {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.project-role {
+    flex-basis: 100%;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 0.85rem;
+    color: #ddd;
+    opacity: 0;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* ---------- Project pages ---------- */
+
+#project-page {
+    max-width: 860px;
+    margin: 0 auto;
+    color: var(--text-soft);
+}
+
+#project-header {
+    margin-bottom: 20px;
+
+    .project-meta {
+        margin: 0 0 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    h1 {
+        margin: 0;
+        line-height: 1.1;
+    }
+
+    .project-role {
+        max-height: none;
+        margin: 8px 0 0;
+        font-size: 1.05rem;
+        color: var(--muted);
+        opacity: 1;
+    }
+}
+
+#platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.platform-icon {
+    width: 1.2em;
+    height: 1.2em;
+    fill: currentColor;
+}
+
+a.platform:hover,
+a.platform:focus-visible {
+    color: var(--text);
+    border-color: var(--border-strong);
+    background: var(--surface-hover);
+}
+
+.platform-unlinked {
+    opacity: 0.45;
+    cursor: default;
+}
+
+#video-outer {
+    margin: 20px 0;
+}
+
+#video-inner {
+    position: relative;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #000;
+
+    iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+}
+
+#screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+
+    img {
+        display: block;
+        width: 150px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+    }
+}
+
+#project-summary,
+#project-story,
+#project-blog-posts {
+    h4 {
+        margin: 28px 0 10px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    h5 {
+        margin: 24px 0 10px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text);
+    }
+
+    h6 {
+        margin: 28px 0 10px;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--text);
+
+        small {
+            font-weight: 400;
+            color: var(--muted);
+        }
+    }
+
+    p,
+    li {
+        line-height: 1.7;
+    }
+
+    p {
+        margin: 0 0 14px;
+    }
+}
+
+#project-page hr {
+    margin: 32px 0 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+}
+
+#project-story {
+    video {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 15px 0;
+    }
+
+    img {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+.arcade-figure {
+    max-width: 260px;
+    margin: 18px auto 26px;
+    text-align: center;
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    figcaption {
+        margin-top: 8px;
+        font-size: 0.85rem;
+        color: var(--muted);
+    }
+}
+
+/* ---------- Blog list ---------- */
+
+#blog {
+    max-width: var(--measure);
+    margin: 0 auto;
+}
+
+.post-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--border);
+
+    &:first-of-type {
+        border-top: 0;
+        padding-top: 8px;
+    }
+}
+
+.post-thumb img {
+    display: block;
+    width: 200px;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.post-body {
+    min-width: 0;
+
+    time {
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    h2 {
+        margin: 4px 0 8px;
+        font-size: 1.45rem;
+
+        a {
+            color: var(--text);
+            text-decoration: none;
+
+            &:hover {
+                color: var(--accent);
+            }
+        }
+    }
+
+    .post-excerpt {
+        margin: 0 0 12px;
+        color: var(--text-soft);
+    }
+
+    .read-more {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+}
+
+/* ---------- Blog posts ---------- */
+
+#blog-post article {
+    max-width: var(--measure);
+    margin: 0 auto;
+}
+
+#article-header {
+    margin-bottom: 28px;
+
+    h1 {
+        margin: 0 0 8px;
+        line-height: 1.15;
+    }
+
+    time {
+        display: block;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+}
+
+#blog-post .content {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--text-soft);
+
+    p {
+        margin: 0 0 1.2em;
+    }
+
+    h2, h3, h4 {
+        margin: 1.8em 0 0.6em;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    a {
+        font-weight: 600;
+    }
+
+    img:not(.video-thumb) {
+        display: block;
+        max-width: 100%;
+        max-height: 500px;
+        margin: 1.2rem auto;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    iframe {
+        margin: 1.2rem 0;
+        max-width: 100%;
+    }
+
+    .image-description {
+        display: block;
+        margin: 0 auto 1.2rem;
+        font-size: 0.9rem;
+        font-style: italic;
+        text-align: center;
+        color: var(--muted);
+    }
+
+    blockquote {
+        margin: 1.2em 0;
+        padding: 0 0 0 18px;
+        border-left: 3px solid var(--border-strong);
+        color: var(--muted);
+    }
+
+    code {
+        padding: 2px 5px;
+        border-radius: 4px;
+        background: #25252c;
+        color: #f0b6c4;
+        font-size: 0.88em;
+    }
+
+    pre {
+        margin: 1.2em 0;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: #f8f8f2;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        word-break: normal;
+        word-wrap: normal;
+        overflow: auto;
+
+        code {
+            padding: 0;
+            color: inherit;
+            font-size: inherit;
+            white-space: pre;
+        }
+    }
+
+    table {
+        margin: 1.2em 0;
+        border-collapse: collapse;
+
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+        }
+    }
+
+    /* Collapsible panels (Bootstrap markup, restyled dark). */
+    .panel-group {
+        margin: 1.6em 0;
+
+        .panel {
+            margin-bottom: 8px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            box-shadow: none;
+        }
+
+        .panel-heading {
+            padding: 10px 16px;
+            border: 0;
+            background: none;
+        }
+
+        .panel-title {
+            margin: 0;
+            font-size: 1rem;
+
+            a {
+                color: var(--text);
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+        }
+
+        .panel-body {
+            padding: 0 16px 8px;
+        }
+    }
+}
+
+/* Click-to-load YouTube thumbnail (see _includes/youtube.html). Works inside
+   #video-inner and inside .video-embed, which posts use for bare embeds. */
+.video-facade {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    background: black;
+
+    /* The 4:3 thumbnail has black bars; cover crops them in the 16:9 box. */
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+    }
+
+    .video-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 68px;
+        height: 68px;
+        margin: -34px 0 0 -34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        transition: background 0.2s;
+    }
+
+    .platform-icon {
+        width: 28px;
+        height: 28px;
+        margin-left: 4px;
+    }
+
+    &:hover img,
+    &:focus-visible img {
+        opacity: 1;
+    }
+
+    &:hover .video-play,
+    &:focus-visible .video-play {
+        background: #f00;
+    }
+}
+
+.video-embed {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 16 / 9;
+    margin: 15px 0;
+
+    iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: 0;
+    }
+}
+
+/* ---------- Contact ---------- */
+
+#contact .about {
+    max-width: var(--measure);
+    font-size: 1.0625rem;
+    color: var(--text-soft);
+
+    p {
+        margin: 0 0 14px;
+    }
+}
+
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    max-width: var(--measure);
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--text);
+        background: var(--surface-hover);
+        border-color: var(--border-strong);
+    }
+
+    .social-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .type {
+        display: block;
+        font-size: 1.05rem;
+        font-weight: 700;
+    }
+
+    .data {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--muted);
+    }
+}
+
+/* ---------- Phones ---------- */
+
+@media (max-width: 640px) {
+    main {
+        padding: 28px 16px 48px;
+    }
+
+    .post-card {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .post-thumb img {
+        width: 100%;
+        height: 160px;
+        aspect-ratio: auto;
+    }
+}
+
+/* Keep the links and icons on one row under the name. */
+@media (max-width: 480px) {
+    #header {
         padding: 12px 15px;
-
-        nav {
-            width: 100%;
-            justify-content: space-between;
-            gap: 0 8px;
-
-            #nav-links {
-                gap: 0;
-
-                .nav-link {
-                    padding: 8px 6px;
-                    letter-spacing: 0.08em;
-                }
-            }
-
-            #social-links .social-icon {
-                width: 30px;
-                height: 30px;
-            }
-        }
     }
-}
 
-/* mobile scaling */
-
-@media all and (max-width: 1154px)  {
-    main {
-        #project-list {
-            .project {
-            }
-
-            .project, .project img, .project-info {
-                max-width: 300px;
-                max-height: 150px;
-                width: 100%;
-            }
-        }
+    #header nav {
+        width: 100%;
+        justify-content: space-between;
+        gap: 0 8px;
     }
-}
 
-@media all and (max-width: 990px)  {
-    main {
-        h1 {
-            text-align: center;
-            font-size: 2.2em;
-        }
+    #nav-links {
+        gap: 0;
 
-        #blog {
-            time {
-                display: block;
-            }
-
-            h1 {
-                font-size: 1.5em;
-            }
-        }
-
-        #project-page {
-            #screenshots img {
-                width: 125px;
-            }
+        .nav-link {
+            padding: 8px 6px;
+            letter-spacing: 0.08em;
         }
     }
 
-
-
-    .btn {
-        padding: 14px 8px;
-        letter-spacing: 0px;
-        font-weight: 500;
-    }
-}
-
-@media all and (max-width: 904px)  {
-    html {
-        body {
-
-
-            #main-wrapper {
-                main {
-                    #project-list {
-                        .project {
-                        }
-
-                        .project, .project img, .project-info {
-                            max-width: 400px;
-                            max-height: 200px;
-                            width: 100%;
-                        }
-                    }
-
-                    #contact {
-                        .info {
-                            margin: 0 auto;
-                        }
-                    }
-
-                    article {
-                        code {
-                            font-size: 0.7em;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media all and (max-width: 600px)  {
-    html {
-        body {
-            line-height: unset;
-
-
-
-            #main-wrapper {
-                main {
-                    h1 {
-                        font-size: 2.2em;
-                    }
-
-                    #portfolio {
-                        #project-list {
-                            .project {
-                            }
-
-                            .project, .project img, .project-info {
-                                max-width: 300px;
-                                max-height: 150px;
-                                width: 100%;
-                            }
-                        }
-                    }
-
-                    #contact {
-                        .info {
-                            margin: 0 auto;
-                        }
-
-                        .info {
-                            margin-top: 50px;
-                        }
-                    }
-
-                    #blog {
-                        article {
-                            h1 {
-                                white-space: normal;
-                                overflow: visible;
-                                text-overflow: clip;
-                            }
-
-                            img {
-                                display: none;
-                            }
-                        }
-                        #pagination-wrapper {
-                            #pagination {
-                                #page-number {
-                                    width: 65%;
-                                }
-
-                                #next, #prev {
-                                    width: 15%;
-                                }
-                            }
-                        }
-                    }
-
-                    article {
-                        code {
-                            font-size: 0.5em;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media all and (max-width: 400px)  {
-    html {
-        body {
-
-            #main-wrapper {
-                main {
-                   #portfolio {
-                       #project-list {
-                           margin-left: 7%;
-                       }
-                   }
-                }
-            }
-        }
-    }
-}
-
-
-
-@media all and (max-width: 325px)  {
-    html {
-        body {
-
-
-            #main-wrapper {
-                main {
-                   #portfolio {
-                       #project-list {
-                           margin-left: -1%;
-                       }
-                   }
-                }
-            }
-        }
+    #social-links .social-icon {
+        width: 30px;
+        height: 30px;
     }
 }
 
 /* Visitors who ask their system for less motion get no hover scaling or push
-   animation, and transitions finish instantly. (The autoplaying videos and the
-   click-to-load video already check this preference in JavaScript.) */
+   animation, and transitions finish immediately. */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -1090,7 +927,11 @@ html {
 
     .hvr-grow:hover,
     .hvr-grow:focus,
-    .hvr-grow:active {
+    .hvr-grow:active,
+    .project:hover,
+    .project:focus-visible,
+    .project:hover img,
+    .project:focus-visible img {
         transform: none;
     }
 
