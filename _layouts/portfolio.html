@@ -18,8 +18,8 @@ layout: default
         <h1>{{ page.title }}</h1>
         <p class="project-role">{{ project.role }}</p>
         <ul class="project-tags" aria-label="Tags">
-            {% for tag in project.tech %}<li class="tag tag-tech">{{ tag }}</li>{% endfor %}
-            {% for tag in project.roles %}<li class="tag tag-role">{{ tag }}</li>{% endfor %}
+            {% for tag in project.tech %}<li><a class="tag tag-tech" href="/?tech={{ tag | slugify }}" title="See all {{ tag }} projects">{{ tag }}</a></li>{% endfor %}
+            {% for tag in project.roles %}<li><a class="tag tag-role" href="/?role={{ tag | slugify }}" title="See projects where I was a {{ tag | downcase }}">{{ tag }}</a></li>{% endfor %}
         </ul>
         <div id="platforms">
             {% comment %}Icons and labels come from _data/platforms.yml. A platform with no URL (e.g. the app was removed from its store) is still listed, unlinked.{% endcomment %}

@@ -404,6 +404,88 @@ main {
     }
 }
 
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+
+    &[hidden] {
+        display: none;
+    }
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-label {
+    min-width: 112px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.filter-chip {
+    padding: 4px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-soft);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+
+    &:hover {
+        border-color: var(--text);
+        color: var(--text);
+    }
+
+    &[aria-pressed="true"] {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #000;
+    }
+}
+
+.filter-status {
+    min-height: 1.4em;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.project[hidden] {
+    display: none;
+}
+
+/* Tech tags sit over the top-left corner of a tile. */
+.tile-tags {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.tile-tag {
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.65);
+    color: var(--text);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -420,11 +502,24 @@ main {
         font-weight: 600;
         letter-spacing: 0.04em;
         color: var(--text-soft);
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+
+        &:hover,
+        &:focus-visible {
+            background: var(--surface-hover);
+            color: var(--text);
+        }
     }
 
     .tag-tech {
         border-color: var(--accent);
         color: var(--accent);
+
+        &:hover,
+        &:focus-visible {
+            color: var(--accent-hover);
+        }
     }
 }
 
@@ -983,6 +1078,10 @@ a.platform:focus-visible {
 
     .project-nav {
         grid-template-columns: 1fr;
+    }
+
+    .filter-label {
+        flex-basis: 100%;
     }
 
     .project-nav-next {

@@ -1,0 +1,11 @@
+# The tags that can be filtered on, in display order. Projects list their tags
+# in _data/portfolio.yml (`tech` and `roles`); the values must match these.
+tech:
+  - Unity
+  - Flash
+  - SaaS
+  - HTML5
+roles:
+  - Game Designer
+  - Developer
+  - Product Manager

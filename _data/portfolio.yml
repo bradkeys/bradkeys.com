@@ -141,7 +141,7 @@ GemQuest Casino:
     company: Boom Digital Media Group
     role: Web Developer
     year: 2018
-    tech: []
+    tech: [HTML5]
     roles: ["Developer"]
     thumbnail: gemquest-banner.jpg
     filename: gemquest
@@ -369,7 +369,7 @@ Lumos Powered:
     role: Web / Unity Developer
     year: 2013
     tech: [Unity, SaaS]
-    roles: ["Developer"]
+    roles: ["Developer", "Product Manager"]
     thumbnail: lumospowered-banner2.png
     filename: lumospowered
     images:
@@ -454,7 +454,7 @@ Lumos:
     role: Web Developer
     year: 2011
     tech: [SaaS]
-    roles: ["Developer"]
+    roles: ["Developer", "Product Manager"]
     thumbnail: lumos-banner.png
     filename: lumos
     images:
