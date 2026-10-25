@@ -768,7 +768,9 @@ a.platform:focus-visible {
 
     img {
         display: block;
-        width: 150px;
+        width: 160px;
+        aspect-ratio: 1;
+        object-fit: cover;
         border: 1px solid var(--border);
         border-radius: 8px;
     }
