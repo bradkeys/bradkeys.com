@@ -56,16 +56,34 @@
         }
     }
 
+    // Where supported, tiles glide to their new positions instead of jumping.
+    // Each tile gets a view-transition-name only for the duration of the
+    // transition.
+    function applyAnimated() {
+        var reduce = window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
+        if ( !document.startViewTransition || reduce ) { apply(); return; }
+        // "filtering" drops <main>'s page-transition layer (see the CSS), which
+        // would otherwise slide and resize the content above the grid.
+        document.documentElement.classList.add( 'filtering' );
+        tiles.forEach( function ( tile, i ) { tile.style.viewTransitionName = 'tile-' + i; } );
+        var transition = document.startViewTransition( apply );
+        function cleanup() {
+            tiles.forEach( function ( tile ) { tile.style.viewTransitionName = ''; } );
+            document.documentElement.classList.remove( 'filtering' );
+        }
+        transition.finished.then( cleanup, cleanup );
+    }
+
     box.addEventListener( 'click', function ( event ) {
         var chip = event.target.closest( '.filter-chip' );
         if ( !chip ) { return; }
         var filter = chip.dataset.filter;
         state[ filter ] = state[ filter ] === chip.dataset.value ? '' : chip.dataset.value;
         writeUrl();
-        apply();
+        applyAnimated();
     } );
 
-    window.addEventListener( 'popstate', function () { readUrl(); apply(); } );
+    window.addEventListener( 'popstate', function () { readUrl(); applyAnimated(); } );
 
     readUrl();
     apply();

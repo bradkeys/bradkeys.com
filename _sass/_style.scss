@@ -34,7 +34,7 @@ html {
 
 body {
     margin: 0;
-    background: var(--bg);
+    background: transparent;
     color: var(--text);
     font-family: var(--font);
     font-size: 1rem;
@@ -315,11 +315,26 @@ main {
             transform: scale(1.04);
         }
 
+        &::after {
+            opacity: 1;
+        }
+
         .project-role {
             max-height: 2.6em;
             opacity: 1;
         }
     }
+}
+
+/* Cursor spotlight, positioned by js/tile-effects.js through --mx/--my. */
+.project::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(138, 180, 255, 0.22), transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
 }
 
 /* Title and year are always visible (touch screens have no hover); the role
@@ -1167,6 +1182,90 @@ a.platform:focus-visible {
     }
 }
 
+/* ---------- Motion extras ----------
+   Ambient background, scroll-in tiles and the 3D tilt. All of it sits behind
+   no-preference so reduced-motion visitors get the static theme. */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Soft colour wash behind everything. */
+body::before {
+    inset: -25%;
+    background:
+        radial-gradient(40% 35% at 20% 25%, rgba(138, 180, 255, 0.13), transparent 70%),
+        radial-gradient(35% 40% at 80% 20%, rgba(170, 120, 255, 0.10), transparent 70%),
+        radial-gradient(45% 40% at 60% 85%, rgba(60, 200, 190, 0.08), transparent 70%);
+}
+
+/* Film grain keeps the dark surface from looking flat. */
+body::after {
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media print {
+    body::before,
+    body::after {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    body::before {
+        animation: wash-drift 45s ease-in-out infinite alternate;
+    }
+
+    /* translate/opacity rather than transform, so the hover lift and tilt
+       are not overridden. "backwards" means the animation stops affecting the
+       tile once it has finished entering. */
+    @supports (animation-timeline: view()) {
+        .project {
+            animation: tile-in linear backwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry 45%;
+        }
+    }
+
+    /* Tilt toward the cursor (angles set by js/tile-effects.js). */
+    @media (hover: hover) and (pointer: fine) {
+        .project.tilting {
+            transition: transform 0.12s ease-out, border-color 0.25s, box-shadow 0.25s;
+            transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-3px);
+        }
+    }
+
+    /* Filtering: tiles glide to their new positions. */
+    ::view-transition-group(*) {
+        animation-duration: 0.35s;
+        animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+}
+
+@keyframes wash-drift {
+    from {
+        transform: translate3d(-3%, -2%, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(3%, 3%, 0) scale(1.08);
+    }
+}
+
+@keyframes tile-in {
+    from {
+        opacity: 0;
+        translate: 0 36px;
+        scale: 0.96;
+    }
+}
+
 /* Visitors who ask their system for less motion get no hover scaling or push
    animation, and transitions finish immediately. */
 /* ---------- Page transitions ----------
@@ -1185,6 +1284,11 @@ a.platform:focus-visible {
 
     main {
         view-transition-name: page-content;
+    }
+
+    /* Same-page filter transitions only animate the tiles. */
+    .filtering main {
+        view-transition-name: none;
     }
 
     ::view-transition-old(page-content) {
