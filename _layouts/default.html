@@ -2,6 +2,7 @@
 <html lang="en">
     {% include head.html %}
     <body>
+        <a class="skip-link" href="#main-content">Skip to content</a>
         {% assign path = page.url %}
         <div id="header-wrapper">
             <div id="header">
@@ -25,7 +26,7 @@
             </div>
         </div>
         <div id="main-wrapper">
-            <main>
+            <main id="main-content" tabindex="-1">
                 {{ content }}
             </main>
         </div>

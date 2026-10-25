@@ -3,12 +3,24 @@ layout: default
 ---
 
 {% assign project = site.data.portfolio[page.title] %}
+{% comment %}Neighbours in the portfolio grid order, for the Previous / Next links.{% endcomment %}
+{% assign found = false %}{% assign prev_project = nil %}{% assign next_project = nil %}{% assign last_project = nil %}
+{% for p in site.data.portfolio %}
+    {% if found and next_project == nil %}{% assign next_project = p %}{% endif %}
+    {% if p[0] == page.title %}{% assign found = true %}{% assign prev_project = last_project %}{% endif %}
+    {% assign last_project = p %}
+{% endfor %}
 
 <div id="project-page">
     <header id="project-header">
+        <a class="back-link" href="/">&larr; All projects</a>
         <p class="project-meta">{{ project.company }} &middot; {{ project.year }}</p>
         <h1>{{ page.title }}</h1>
         <p class="project-role">{{ project.role }}</p>
+        <ul class="project-tags" aria-label="Tags">
+            {% for tag in project.tech %}<li class="tag tag-tech">{{ tag }}</li>{% endfor %}
+            {% for tag in project.roles %}<li class="tag tag-role">{{ tag }}</li>{% endfor %}
+        </ul>
         <div id="platforms">
             {% comment %}Icons and labels come from _data/platforms.yml. A platform with no URL (e.g. the app was removed from its store) is still listed, unlinked.{% endcomment %}
             {% for platform in project.platforms %}
@@ -33,7 +45,7 @@ layout: default
                 {% if project.video contains 'youtube.com/embed/' %}
                     {% assign video_id = project.video | split: '/embed/' | last | split: '?' | first %}
                     {% assign video_title = page.title | append: ' video' %}
-                    {% include youtube.html id=video_id title=video_title %}
+                    {% include youtube.html id=video_id title=video_title eager=true %}
                 {% else %}
                     <iframe src="{{ project.video | replace: 'www.youtube.com', 'www.youtube-nocookie.com' }}" title="{{ page.title }} video" frameborder="0" loading="lazy" allowfullscreen></iframe>
                 {% endif %}
@@ -73,6 +85,20 @@ layout: default
             </ul>
         </div>
     {% endif%}
+    <nav class="project-nav" aria-label="More projects">
+        {% if prev_project %}
+            <a class="project-nav-link project-nav-prev" href="/portfolio/{{ prev_project[1].filename }}/" rel="prev">
+                <span class="project-nav-label">&larr; Previous</span>
+                <span class="project-nav-title">{{ prev_project[0] }}</span>
+            </a>
+        {% endif %}
+        {% if next_project %}
+            <a class="project-nav-link project-nav-next" href="/portfolio/{{ next_project[1].filename }}/" rel="next">
+                <span class="project-nav-label">Next &rarr;</span>
+                <span class="project-nav-title">{{ next_project[0] }}</span>
+            </a>
+        {% endif %}
+    </nav>
 </div>
 
 <script src="/js/lightbox.js" defer></script>

@@ -22,7 +22,7 @@ title: Portfolio
             {% assign project = project_info[1] %}
             {% capture thumb %}/img/portfolio/{{ project.thumbnail }}{% endcapture %}
             <a class="project" href="/portfolio/{{ project.filename }}/">
-                <img alt="{{ project_info[0] }} thumbnail" src="{{ thumb }}" {% include img-size.html src=thumb %} loading="lazy" decoding="async" />
+                <img alt="{{ project_info[0] }} thumbnail" src="{{ thumb }}" {% include img-size.html src=thumb %} loading="{% if forloop.index <= 6 %}eager{% else %}lazy{% endif %}" decoding="async" />
                 <span class="project-info">
                     <span class="project-title">{{ project_info[0] }}</span>
                     <span class="project-date">{{ project.year }}</span>

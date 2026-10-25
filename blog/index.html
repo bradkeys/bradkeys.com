@@ -9,7 +9,7 @@ title: Game Dev Blog
     <article class="post-card">
         {% assign thumb = post.image | default: site.default_image %}
         <a class="post-thumb" href="{{ post.url }}" tabindex="-1" aria-hidden="true">
-            <img src="{{ thumb }}" alt="" {% include img-size.html src=thumb %} loading="lazy" decoding="async" />
+            <img src="{{ thumb }}" alt="" {% include img-size.html src=thumb %} loading="{% if forloop.index <= 3 %}eager{% else %}lazy{% endif %}" decoding="async" />
         </a>
         <div class="post-body">
             <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date_to_string }}</time>

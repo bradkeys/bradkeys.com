@@ -66,6 +66,30 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
 }
 
+/* Hidden until a keyboard user tabs to it as the first thing on the page. */
+.skip-link {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 100;
+    padding: 10px 16px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateY(-200%);
+
+    &:focus {
+        transform: none;
+        color: #000;
+    }
+}
+
+main:focus {
+    outline: none;
+}
+
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -345,6 +369,18 @@ main {
 #project-header {
     margin-bottom: 20px;
 
+    .back-link {
+        display: inline-block;
+        margin-bottom: 18px;
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-decoration: none;
+
+        &:hover {
+            color: var(--text);
+        }
+    }
+
     .project-meta {
         margin: 0 0 6px;
         font-size: 0.75rem;
@@ -365,6 +401,30 @@ main {
         font-size: 1.05rem;
         color: var(--muted);
         opacity: 1;
+    }
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+
+    .tag {
+        padding: 2px 10px;
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--text-soft);
+    }
+
+    .tag-tech {
+        border-color: var(--accent);
+        color: var(--accent);
     }
 }
 
@@ -522,6 +582,53 @@ a.platform:focus-visible {
         font-size: 0.85rem;
         color: var(--muted);
     }
+}
+
+.project-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+}
+
+.project-nav-link {
+    display: block;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--text);
+        background: var(--surface-hover);
+        border-color: var(--border-strong);
+    }
+}
+
+.project-nav-next {
+    grid-column: 2;
+    text-align: right;
+}
+
+.project-nav-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.project-nav-title {
+    display: block;
+    margin-top: 2px;
+    font-weight: 700;
 }
 
 /* ---------- Blog list ---------- */
@@ -872,6 +979,14 @@ a.platform:focus-visible {
 @media (max-width: 640px) {
     main {
         padding: 28px 16px 48px;
+    }
+
+    .project-nav {
+        grid-template-columns: 1fr;
+    }
+
+    .project-nav-next {
+        grid-column: auto;
     }
 
     .post-card {
