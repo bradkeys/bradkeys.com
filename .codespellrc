@@ -1,0 +1,5 @@
+[codespell]
+# Only checks site content; embedded game builds, assets and generated output are skipped.
+skip = .git,_site,vendor,.bundle,ggj*,tojam*,files,img,video,*.js,*.scss,*.xml,*.json,Gemfile.lock
+# rouge: Jekyll's highlighter; nd: CSS ".nd" selector; focussed/targetting: British spellings.
+ignore-words-list = rouge,nd,focussed,targetting
